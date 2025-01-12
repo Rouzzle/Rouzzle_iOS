@@ -11,11 +11,26 @@
 		BD34AD242D2927D60031548C /* Rouzzle_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD34AD202D2927D60031548C /* Rouzzle_iOSApp.swift */; };
 		BD34AD262D2927D60031548C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD34AD1D2D2927D60031548C /* Assets.xcassets */; };
 		BD764D452D312932008E94E5 /* RoutineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D442D312932008E94E5 /* RoutineItem.swift */; };
-		BD764D472D313320008E94E5 /* RoutineListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D462D313320008E94E5 /* RoutineListView.swift */; };
+		BD764D472D313320008E94E5 /* RoutineHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D462D313320008E94E5 /* RoutineHomeView.swift */; };
 		BD764D4D2D31338C008E94E5 /* SocialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D4C2D31338C008E94E5 /* SocialView.swift */; };
 		BD764D4F2D313394008E94E5 /* RecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D4E2D313394008E94E5 /* RecommendView.swift */; };
 		BD764D512D3133A8008E94E5 /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D502D3133A8008E94E5 /* StatisticView.swift */; };
 		BD764D532D3133B2008E94E5 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D522D3133B2008E94E5 /* MyPageView.swift */; };
+		BD764D5B2D3154A2008E94E5 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D5A2D3154A2008E94E5 /* Font+Extension.swift */; };
+		BD764D672D3154B6008E94E5 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = BD764D622D3154B6008E94E5 /* Pretendard-Medium.otf */; };
+		BD764D682D3154B6008E94E5 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = BD764D632D3154B6008E94E5 /* Pretendard-Regular.otf */; };
+		BD764D692D3154B6008E94E5 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BD764D642D3154B6008E94E5 /* Pretendard-SemiBold.otf */; };
+		BD764D6A2D3154B6008E94E5 /* Halo Dek.otf in Resources */ = {isa = PBXBuildFile; fileRef = BD764D5C2D3154B6008E94E5 /* Halo Dek.otf */; };
+		BD764D6B2D3154B6008E94E5 /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BD764D5F2D3154B6008E94E5 /* Pretendard-ExtraBold.otf */; };
+		BD764D6C2D3154B6008E94E5 /* Pretendard-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = BD764D5D2D3154B6008E94E5 /* Pretendard-Black.otf */; };
+		BD764D6D2D3154B6008E94E5 /* Pretendard-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = BD764D602D3154B6008E94E5 /* Pretendard-ExtraLight.otf */; };
+		BD764D6E2D3154B6008E94E5 /* Pretendard-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = BD764D652D3154B6008E94E5 /* Pretendard-Thin.otf */; };
+		BD764D6F2D3154B6008E94E5 /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = BD764D5E2D3154B6008E94E5 /* Pretendard-Bold.otf */; };
+		BD764D702D3154B6008E94E5 /* Pretendard-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = BD764D612D3154B6008E94E5 /* Pretendard-Light.otf */; };
+		BD764D732D31552E008E94E5 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D722D31552E008E94E5 /* Color+Extension.swift */; };
+		BD764D762D3157A3008E94E5 /* QuotesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D752D3157A3008E94E5 /* QuotesProvider.swift */; };
+		BD764D782D315B88008E94E5 /* RoutineHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D772D315B88008E94E5 /* RoutineHomeViewModel.swift */; };
+		BD764D7B2D337090008E94E5 /* Untitled.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D7A2D33708F008E94E5 /* Untitled.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,11 +39,27 @@
 		BD34AD1E2D2927D60031548C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BD34AD202D2927D60031548C /* Rouzzle_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rouzzle_iOSApp.swift; sourceTree = "<group>"; };
 		BD764D442D312932008E94E5 /* RoutineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineItem.swift; sourceTree = "<group>"; };
-		BD764D462D313320008E94E5 /* RoutineListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineListView.swift; sourceTree = "<group>"; };
+		BD764D462D313320008E94E5 /* RoutineHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineHomeView.swift; sourceTree = "<group>"; };
 		BD764D4C2D31338C008E94E5 /* SocialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialView.swift; sourceTree = "<group>"; };
 		BD764D4E2D313394008E94E5 /* RecommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendView.swift; sourceTree = "<group>"; };
 		BD764D502D3133A8008E94E5 /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
 		BD764D522D3133B2008E94E5 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
+		BD764D5A2D3154A2008E94E5 /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
+		BD764D5C2D3154B6008E94E5 /* Halo Dek.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Halo Dek.otf"; sourceTree = "<group>"; };
+		BD764D5D2D3154B6008E94E5 /* Pretendard-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Black.otf"; sourceTree = "<group>"; };
+		BD764D5E2D3154B6008E94E5 /* Pretendard-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Bold.otf"; sourceTree = "<group>"; };
+		BD764D5F2D3154B6008E94E5 /* Pretendard-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraBold.otf"; sourceTree = "<group>"; };
+		BD764D602D3154B6008E94E5 /* Pretendard-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-ExtraLight.otf"; sourceTree = "<group>"; };
+		BD764D612D3154B6008E94E5 /* Pretendard-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Light.otf"; sourceTree = "<group>"; };
+		BD764D622D3154B6008E94E5 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
+		BD764D632D3154B6008E94E5 /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
+		BD764D642D3154B6008E94E5 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
+		BD764D652D3154B6008E94E5 /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
+		BD764D712D3154DE008E94E5 /* Rouzzle-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Rouzzle-iOS-Info.plist"; sourceTree = SOURCE_ROOT; };
+		BD764D722D31552E008E94E5 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		BD764D752D3157A3008E94E5 /* QuotesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesProvider.swift; sourceTree = "<group>"; };
+		BD764D772D315B88008E94E5 /* RoutineHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineHomeViewModel.swift; sourceTree = "<group>"; };
+		BD764D7A2D33708F008E94E5 /* Untitled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Untitled.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,10 +92,12 @@
 		BD34AD212D2927D60031548C /* Rouzzle_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				BD764D712D3154DE008E94E5 /* Rouzzle-iOS-Info.plist */,
 				BD764D3E2D312858008E94E5 /* App */,
 				BD764D432D312908008E94E5 /* Model */,
 				BD764D402D3128BA008E94E5 /* Features */,
 				BD764D3F2D312866008E94E5 /* Resource */,
+				BD764D592D315491008E94E5 /* Utils */,
 			);
 			path = Rouzzle_iOS;
 			sourceTree = "<group>";
@@ -82,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				BD34AD1D2D2927D60031548C /* Assets.xcassets */,
+				BD764D662D3154B6008E94E5 /* Font */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -101,7 +135,9 @@
 		BD764D412D3128C6008E94E5 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				BD764D742D315774008E94E5 /* Model */,
 				BD764D422D3128D3008E94E5 /* View */,
+				BD764D582D31347B008E94E5 /* ViewModel */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -109,7 +145,7 @@
 		BD764D422D3128D3008E94E5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BD764D462D313320008E94E5 /* RoutineListView.swift */,
+				BD764D462D313320008E94E5 /* RoutineHomeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -125,7 +161,7 @@
 		BD764D482D31332C008E94E5 /* Statistic */ = {
 			isa = PBXGroup;
 			children = (
-				BD764D502D3133A8008E94E5 /* StatisticView.swift */,
+				BD764D542D3133E1008E94E5 /* View */,
 			);
 			path = Statistic;
 			sourceTree = "<group>";
@@ -133,7 +169,7 @@
 		BD764D492D313334008E94E5 /* Recommend */ = {
 			isa = PBXGroup;
 			children = (
-				BD764D4E2D313394008E94E5 /* RecommendView.swift */,
+				BD764D552D3133E8008E94E5 /* View */,
 			);
 			path = Recommend;
 			sourceTree = "<group>";
@@ -141,7 +177,7 @@
 		BD764D4A2D31334D008E94E5 /* Social */ = {
 			isa = PBXGroup;
 			children = (
-				BD764D4C2D31338C008E94E5 /* SocialView.swift */,
+				BD764D562D3133EE008E94E5 /* View */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -149,9 +185,92 @@
 		BD764D4B2D313352008E94E5 /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
-				BD764D522D3133B2008E94E5 /* MyPageView.swift */,
+				BD764D572D3133F5008E94E5 /* View */,
 			);
 			path = MyPage;
+			sourceTree = "<group>";
+		};
+		BD764D542D3133E1008E94E5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BD764D502D3133A8008E94E5 /* StatisticView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BD764D552D3133E8008E94E5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BD764D4E2D313394008E94E5 /* RecommendView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BD764D562D3133EE008E94E5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BD764D4C2D31338C008E94E5 /* SocialView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BD764D572D3133F5008E94E5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BD764D522D3133B2008E94E5 /* MyPageView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BD764D582D31347B008E94E5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BD764D772D315B88008E94E5 /* RoutineHomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BD764D592D315491008E94E5 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BD764D792D336CD7008E94E5 /* Global */,
+				BD764D5A2D3154A2008E94E5 /* Font+Extension.swift */,
+				BD764D722D31552E008E94E5 /* Color+Extension.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		BD764D662D3154B6008E94E5 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				BD764D5C2D3154B6008E94E5 /* Halo Dek.otf */,
+				BD764D5D2D3154B6008E94E5 /* Pretendard-Black.otf */,
+				BD764D5E2D3154B6008E94E5 /* Pretendard-Bold.otf */,
+				BD764D5F2D3154B6008E94E5 /* Pretendard-ExtraBold.otf */,
+				BD764D602D3154B6008E94E5 /* Pretendard-ExtraLight.otf */,
+				BD764D612D3154B6008E94E5 /* Pretendard-Light.otf */,
+				BD764D622D3154B6008E94E5 /* Pretendard-Medium.otf */,
+				BD764D632D3154B6008E94E5 /* Pretendard-Regular.otf */,
+				BD764D642D3154B6008E94E5 /* Pretendard-SemiBold.otf */,
+				BD764D652D3154B6008E94E5 /* Pretendard-Thin.otf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		BD764D742D315774008E94E5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BD764D7A2D33708F008E94E5 /* Untitled.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BD764D792D336CD7008E94E5 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				BD764D752D3157A3008E94E5 /* QuotesProvider.swift */,
+			);
+			path = Global;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,6 +335,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD34AD262D2927D60031548C /* Assets.xcassets in Resources */,
+				BD764D672D3154B6008E94E5 /* Pretendard-Medium.otf in Resources */,
+				BD764D682D3154B6008E94E5 /* Pretendard-Regular.otf in Resources */,
+				BD764D692D3154B6008E94E5 /* Pretendard-SemiBold.otf in Resources */,
+				BD764D6A2D3154B6008E94E5 /* Halo Dek.otf in Resources */,
+				BD764D6B2D3154B6008E94E5 /* Pretendard-ExtraBold.otf in Resources */,
+				BD764D6C2D3154B6008E94E5 /* Pretendard-Black.otf in Resources */,
+				BD764D6D2D3154B6008E94E5 /* Pretendard-ExtraLight.otf in Resources */,
+				BD764D6E2D3154B6008E94E5 /* Pretendard-Thin.otf in Resources */,
+				BD764D6F2D3154B6008E94E5 /* Pretendard-Bold.otf in Resources */,
+				BD764D702D3154B6008E94E5 /* Pretendard-Light.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,11 +356,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD764D512D3133A8008E94E5 /* StatisticView.swift in Sources */,
+				BD764D732D31552E008E94E5 /* Color+Extension.swift in Sources */,
 				BD764D532D3133B2008E94E5 /* MyPageView.swift in Sources */,
 				BD34AD222D2927D60031548C /* ContentView.swift in Sources */,
+				BD764D782D315B88008E94E5 /* RoutineHomeViewModel.swift in Sources */,
 				BD764D4F2D313394008E94E5 /* RecommendView.swift in Sources */,
+				BD764D762D3157A3008E94E5 /* QuotesProvider.swift in Sources */,
 				BD764D4D2D31338C008E94E5 /* SocialView.swift in Sources */,
-				BD764D472D313320008E94E5 /* RoutineListView.swift in Sources */,
+				BD764D5B2D3154A2008E94E5 /* Font+Extension.swift in Sources */,
+				BD764D472D313320008E94E5 /* RoutineHomeView.swift in Sources */,
+				BD764D7B2D337090008E94E5 /* Untitled.swift in Sources */,
 				BD764D452D312932008E94E5 /* RoutineItem.swift in Sources */,
 				BD34AD242D2927D60031548C /* Rouzzle_iOSApp.swift in Sources */,
 			);
@@ -369,6 +503,7 @@
 				DEVELOPMENT_TEAM = U6NUHA5DNR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Rouzzle-iOS-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -397,6 +532,7 @@
 				DEVELOPMENT_TEAM = U6NUHA5DNR;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Rouzzle-iOS-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
