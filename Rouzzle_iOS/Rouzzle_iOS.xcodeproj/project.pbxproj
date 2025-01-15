@@ -31,6 +31,19 @@
 		BD764D762D3157A3008E94E5 /* QuotesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D752D3157A3008E94E5 /* QuotesProvider.swift */; };
 		BD764D782D315B88008E94E5 /* RoutineHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D772D315B88008E94E5 /* RoutineHomeViewModel.swift */; };
 		BD764D7B2D337090008E94E5 /* Untitled.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D7A2D33708F008E94E5 /* Untitled.swift */; };
+		BD764D7F2D33713D008E94E5 /* AddRoutineContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D7E2D33713D008E94E5 /* AddRoutineContainerView.swift */; };
+		BD764D822D33740C008E94E5 /* AddRoutineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D812D33740C008E94E5 /* AddRoutineViewModel.swift */; };
+		BD764D842D3374AA008E94E5 /* AddRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D832D3374AA008E94E5 /* AddRoutineView.swift */; };
+		BD764D862D3374BE008E94E5 /* AddRoutineTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D852D3374BE008E94E5 /* AddRoutineTaskView.swift */; };
+		BD764D892D3378F4008E94E5 /* RouzzleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D882D3378F4008E94E5 /* RouzzleTextField.swift */; };
+		BD764D972D337D04008E94E5 /* EmojiSearchKeywords.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D8F2D337D04008E94E5 /* EmojiSearchKeywords.swift */; };
+		BD764D982D337D04008E94E5 /* EmojiCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D8E2D337D04008E94E5 /* EmojiCategory.swift */; };
+		BD764D992D337D04008E94E5 /* EmojiPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D942D337D04008E94E5 /* EmojiPickerViewModel.swift */; };
+		BD764D9A2D337D04008E94E5 /* EmojiPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D912D337D04008E94E5 /* EmojiPickerView.swift */; };
+		BD764D9B2D337D04008E94E5 /* EmojiComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D922D337D04008E94E5 /* EmojiComponents.swift */; };
+		BD764D9D2D337D55008E94E5 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D9C2D337D52008E94E5 /* Day.swift */; };
+		BD764D9F2D33B5C7008E94E5 /* EmojiButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D9E2D33B5C0008E94E5 /* EmojiButton.swift */; };
+		BD764DA22D33C55E008E94E5 /* Publisher+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DA12D33C55E008E94E5 /* Publisher+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +73,19 @@
 		BD764D752D3157A3008E94E5 /* QuotesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuotesProvider.swift; sourceTree = "<group>"; };
 		BD764D772D315B88008E94E5 /* RoutineHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineHomeViewModel.swift; sourceTree = "<group>"; };
 		BD764D7A2D33708F008E94E5 /* Untitled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Untitled.swift; sourceTree = "<group>"; };
+		BD764D7E2D33713D008E94E5 /* AddRoutineContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineContainerView.swift; sourceTree = "<group>"; };
+		BD764D812D33740C008E94E5 /* AddRoutineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineViewModel.swift; sourceTree = "<group>"; };
+		BD764D832D3374AA008E94E5 /* AddRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineView.swift; sourceTree = "<group>"; };
+		BD764D852D3374BE008E94E5 /* AddRoutineTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineTaskView.swift; sourceTree = "<group>"; };
+		BD764D882D3378F4008E94E5 /* RouzzleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouzzleTextField.swift; sourceTree = "<group>"; };
+		BD764D8E2D337D04008E94E5 /* EmojiCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCategory.swift; sourceTree = "<group>"; };
+		BD764D8F2D337D04008E94E5 /* EmojiSearchKeywords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiSearchKeywords.swift; sourceTree = "<group>"; };
+		BD764D912D337D04008E94E5 /* EmojiPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiPickerView.swift; sourceTree = "<group>"; };
+		BD764D922D337D04008E94E5 /* EmojiComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiComponents.swift; sourceTree = "<group>"; };
+		BD764D942D337D04008E94E5 /* EmojiPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiPickerViewModel.swift; sourceTree = "<group>"; };
+		BD764D9C2D337D52008E94E5 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		BD764D9E2D33B5C0008E94E5 /* EmojiButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiButton.swift; sourceTree = "<group>"; };
+		BD764DA12D33C55E008E94E5 /* Publisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +149,7 @@
 		BD764D402D3128BA008E94E5 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				BD764D7C2D33711A008E94E5 /* AddRoutine */,
 				BD764D412D3128C6008E94E5 /* Home */,
 				BD764D482D31332C008E94E5 /* Statistic */,
 				BD764D492D313334008E94E5 /* Recommend */,
@@ -153,6 +180,7 @@
 		BD764D432D312908008E94E5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BD764D9C2D337D52008E94E5 /* Day.swift */,
 				BD764D442D312932008E94E5 /* RoutineItem.swift */,
 			);
 			path = Model;
@@ -233,9 +261,10 @@
 		BD764D592D315491008E94E5 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				BD764DA02D33C545008E94E5 /* Extension */,
+				BD764D872D3378D1008E94E5 /* Component */,
 				BD764D792D336CD7008E94E5 /* Global */,
-				BD764D5A2D3154A2008E94E5 /* Font+Extension.swift */,
-				BD764D722D31552E008E94E5 /* Color+Extension.swift */,
+				BD764D962D337D04008E94E5 /* Emoji */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -271,6 +300,88 @@
 				BD764D752D3157A3008E94E5 /* QuotesProvider.swift */,
 			);
 			path = Global;
+			sourceTree = "<group>";
+		};
+		BD764D7C2D33711A008E94E5 /* AddRoutine */ = {
+			isa = PBXGroup;
+			children = (
+				BD764D802D337400008E94E5 /* ViewModel */,
+				BD764D7D2D337124008E94E5 /* View */,
+			);
+			path = AddRoutine;
+			sourceTree = "<group>";
+		};
+		BD764D7D2D337124008E94E5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BD764D7E2D33713D008E94E5 /* AddRoutineContainerView.swift */,
+				BD764D832D3374AA008E94E5 /* AddRoutineView.swift */,
+				BD764D852D3374BE008E94E5 /* AddRoutineTaskView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BD764D802D337400008E94E5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BD764D812D33740C008E94E5 /* AddRoutineViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BD764D872D3378D1008E94E5 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				BD764D882D3378F4008E94E5 /* RouzzleTextField.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		BD764D902D337D04008E94E5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BD764D8E2D337D04008E94E5 /* EmojiCategory.swift */,
+				BD764D8F2D337D04008E94E5 /* EmojiSearchKeywords.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BD764D932D337D04008E94E5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BD764D9E2D33B5C0008E94E5 /* EmojiButton.swift */,
+				BD764D912D337D04008E94E5 /* EmojiPickerView.swift */,
+				BD764D922D337D04008E94E5 /* EmojiComponents.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BD764D952D337D04008E94E5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BD764D942D337D04008E94E5 /* EmojiPickerViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BD764D962D337D04008E94E5 /* Emoji */ = {
+			isa = PBXGroup;
+			children = (
+				BD764D902D337D04008E94E5 /* Model */,
+				BD764D932D337D04008E94E5 /* View */,
+				BD764D952D337D04008E94E5 /* ViewModel */,
+			);
+			path = Emoji;
+			sourceTree = "<group>";
+		};
+		BD764DA02D33C545008E94E5 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BD764D5A2D3154A2008E94E5 /* Font+Extension.swift */,
+				BD764D722D31552E008E94E5 /* Color+Extension.swift */,
+				BD764DA12D33C55E008E94E5 /* Publisher+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,18 +467,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD764D512D3133A8008E94E5 /* StatisticView.swift in Sources */,
+				BD764D892D3378F4008E94E5 /* RouzzleTextField.swift in Sources */,
+				BD764DA22D33C55E008E94E5 /* Publisher+Extension.swift in Sources */,
+				BD764D9F2D33B5C7008E94E5 /* EmojiButton.swift in Sources */,
+				BD764D9D2D337D55008E94E5 /* Day.swift in Sources */,
 				BD764D732D31552E008E94E5 /* Color+Extension.swift in Sources */,
 				BD764D532D3133B2008E94E5 /* MyPageView.swift in Sources */,
 				BD34AD222D2927D60031548C /* ContentView.swift in Sources */,
 				BD764D782D315B88008E94E5 /* RoutineHomeViewModel.swift in Sources */,
+				BD764D862D3374BE008E94E5 /* AddRoutineTaskView.swift in Sources */,
+				BD764D822D33740C008E94E5 /* AddRoutineViewModel.swift in Sources */,
 				BD764D4F2D313394008E94E5 /* RecommendView.swift in Sources */,
+				BD764D972D337D04008E94E5 /* EmojiSearchKeywords.swift in Sources */,
+				BD764D982D337D04008E94E5 /* EmojiCategory.swift in Sources */,
+				BD764D992D337D04008E94E5 /* EmojiPickerViewModel.swift in Sources */,
+				BD764D9A2D337D04008E94E5 /* EmojiPickerView.swift in Sources */,
+				BD764D9B2D337D04008E94E5 /* EmojiComponents.swift in Sources */,
 				BD764D762D3157A3008E94E5 /* QuotesProvider.swift in Sources */,
 				BD764D4D2D31338C008E94E5 /* SocialView.swift in Sources */,
+				BD764D842D3374AA008E94E5 /* AddRoutineView.swift in Sources */,
 				BD764D5B2D3154A2008E94E5 /* Font+Extension.swift in Sources */,
 				BD764D472D313320008E94E5 /* RoutineHomeView.swift in Sources */,
 				BD764D7B2D337090008E94E5 /* Untitled.swift in Sources */,
 				BD764D452D312932008E94E5 /* RoutineItem.swift in Sources */,
 				BD34AD242D2927D60031548C /* Rouzzle_iOSApp.swift in Sources */,
+				BD764D7F2D33713D008E94E5 /* AddRoutineContainerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
