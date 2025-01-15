@@ -15,15 +15,37 @@ final class AddRoutineViewModel {
         case info = 0.5
         case task = 1.0
     }
-    
-    // MARK: - Properties
-    private var cancellables: Set<AnyCancellable> = []
-    private let dailySubject = CurrentValueSubject<Bool, Never>(false)
-    
-    var step: Step = .info
+        
+    // MARK: - RoutineItem 업데이트 관련 프로퍼티
     var title: String = ""
-    var selectedEmoji: String? = "🧩"
+    var emoji: String? = "🧩"
+    var repeatCount: Int?
+    var interval: Int?
     var selectedDateWithTime: [Day: Date] = [:]
+    var alarmIDs: [Int: String]? {
+        guard isNotificationEnabled else { return nil }
+        return generateAlarmIDs(for: selectedDateWithTime)
+    }
+    var recommendTodoTask: [RecommendTodoTask] = []
+    var routineTask: [RoutineTask] = []
+
+    // MARK: - View 전용 프로퍼티
+    var step: Step = .info
+    var disabled: Bool {
+        selectedDateWithTime.isEmpty || title.isEmpty
+    }
+    
+    var isNotificationEnabled: Bool = false {
+        didSet {
+            if isNotificationEnabled {
+                interval = interval ?? 1 // 기본값: 1분
+                repeatCount = repeatCount ?? 1 // 기본값: 1번
+            } else {
+                interval = nil
+                repeatCount = nil
+            }
+        }
+    }
     
     var isDaily: Bool {
         get {
@@ -38,10 +60,20 @@ final class AddRoutineViewModel {
             .map { $0.value.formatted(.dateTime.hour().minute()) }
     }
     
-    var isCompleted: Bool = false
-    
+    var isCompleted: Bool {
+        !title.isEmpty && emoji != ""
+    }
+
     init() {
         
+    }
+    
+    private func generateAlarmIDs(for dates: [Day: Date]) -> [Int: String] {
+        var generatedIDs: [Int: String] = [:]
+        for (day, _) in dates {
+            generatedIDs[day.rawValue] = UUID().uuidString
+        }
+        return generatedIDs
     }
     
     func toggleDaily() {
@@ -74,7 +106,12 @@ final class AddRoutineViewModel {
         return uniqueTimes.count > 1
     }
     
-    private func validateForm() {
-        isCompleted = !title.isEmpty && selectedEmoji != ""
+    func getRecommendTask() {
+        guard let time = selectedDateWithTime.first?.value else {
+            return
+        }
+        let timeSet = time.getTimeCategory()
+        let routineTitles = routineTask.map { $0.title }
+        recommendTodoTask = RecommendTaskData.getRecommendedTasks(for: timeSet, excluding: routineTitles)
     }
 }

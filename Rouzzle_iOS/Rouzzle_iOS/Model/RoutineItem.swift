@@ -17,7 +17,6 @@ final class RoutineItem: Identifiable {
     var interval: Int?
     var dayStartTime: [Int: String]
     var alarmIDs: [Int: String]?
-    var userId: String
     
     @Relationship(deleteRule: .cascade)
     var taskList: [TaskList] = []
@@ -33,8 +32,7 @@ final class RoutineItem: Identifiable {
         dayStartTime: [Int: String],
         repeatCount: Int? = nil,
         interval: Int? = nil,
-        alarmIDs: [Int: String]? = nil,
-        userId: String = ""
+        alarmIDs: [Int: String]? = nil
     ) {
         self.id = id
         self.title = title
@@ -43,7 +41,6 @@ final class RoutineItem: Identifiable {
         self.repeatCount = repeatCount
         self.interval = interval
         self.alarmIDs = alarmIDs
-        self.userId = userId
     }
     
 }

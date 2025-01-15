@@ -44,6 +44,10 @@
 		BD764D9D2D337D55008E94E5 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D9C2D337D52008E94E5 /* Day.swift */; };
 		BD764D9F2D33B5C7008E94E5 /* EmojiButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D9E2D33B5C0008E94E5 /* EmojiButton.swift */; };
 		BD764DA22D33C55E008E94E5 /* Publisher+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DA12D33C55E008E94E5 /* Publisher+Extension.swift */; };
+		BD764DA42D3780B0008E94E5 /* RouzzlePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DA32D3780B0008E94E5 /* RouzzlePicker.swift */; };
+		BD764DA62D3786FC008E94E5 /* RouzzleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DA52D3786FC008E94E5 /* RouzzleButton.swift */; };
+		BD764DA82D378764008E94E5 /* RecommendTaskData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DA72D378764008E94E5 /* RecommendTaskData.swift */; };
+		BD764DAA2D37880A008E94E5 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DA92D37880A008E94E5 /* Date+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +90,10 @@
 		BD764D9C2D337D52008E94E5 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		BD764D9E2D33B5C0008E94E5 /* EmojiButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiButton.swift; sourceTree = "<group>"; };
 		BD764DA12D33C55E008E94E5 /* Publisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extension.swift"; sourceTree = "<group>"; };
+		BD764DA32D3780B0008E94E5 /* RouzzlePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouzzlePicker.swift; sourceTree = "<group>"; };
+		BD764DA52D3786FC008E94E5 /* RouzzleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouzzleButton.swift; sourceTree = "<group>"; };
+		BD764DA72D378764008E94E5 /* RecommendTaskData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTaskData.swift; sourceTree = "<group>"; };
+		BD764DA92D37880A008E94E5 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +190,7 @@
 			children = (
 				BD764D9C2D337D52008E94E5 /* Day.swift */,
 				BD764D442D312932008E94E5 /* RoutineItem.swift */,
+				BD764DA72D378764008E94E5 /* RecommendTaskData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -333,6 +342,8 @@
 			isa = PBXGroup;
 			children = (
 				BD764D882D3378F4008E94E5 /* RouzzleTextField.swift */,
+				BD764DA32D3780B0008E94E5 /* RouzzlePicker.swift */,
+				BD764DA52D3786FC008E94E5 /* RouzzleButton.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -380,6 +391,7 @@
 				BD764D5A2D3154A2008E94E5 /* Font+Extension.swift */,
 				BD764D722D31552E008E94E5 /* Color+Extension.swift */,
 				BD764DA12D33C55E008E94E5 /* Publisher+Extension.swift */,
+				BD764DA92D37880A008E94E5 /* Date+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -469,7 +481,9 @@
 				BD764D512D3133A8008E94E5 /* StatisticView.swift in Sources */,
 				BD764D892D3378F4008E94E5 /* RouzzleTextField.swift in Sources */,
 				BD764DA22D33C55E008E94E5 /* Publisher+Extension.swift in Sources */,
+				BD764DA42D3780B0008E94E5 /* RouzzlePicker.swift in Sources */,
 				BD764D9F2D33B5C7008E94E5 /* EmojiButton.swift in Sources */,
+				BD764DAA2D37880A008E94E5 /* Date+Extension.swift in Sources */,
 				BD764D9D2D337D55008E94E5 /* Day.swift in Sources */,
 				BD764D732D31552E008E94E5 /* Color+Extension.swift in Sources */,
 				BD764D532D3133B2008E94E5 /* MyPageView.swift in Sources */,
@@ -490,6 +504,8 @@
 				BD764D472D313320008E94E5 /* RoutineHomeView.swift in Sources */,
 				BD764D7B2D337090008E94E5 /* Untitled.swift in Sources */,
 				BD764D452D312932008E94E5 /* RoutineItem.swift in Sources */,
+				BD764DA82D378764008E94E5 /* RecommendTaskData.swift in Sources */,
+				BD764DA62D3786FC008E94E5 /* RouzzleButton.swift in Sources */,
 				BD34AD242D2927D60031548C /* Rouzzle_iOSApp.swift in Sources */,
 				BD764D7F2D33713D008E94E5 /* AddRoutineContainerView.swift in Sources */,
 			);
