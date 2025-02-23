@@ -26,28 +26,39 @@ enum EmojiButtonType {
                 }
         }
     }
+    
+    var fontSize: CGFloat {
+        switch self {
+        case .keyboard:
+            return 24
+        case .routineEmoji:
+            return 70
+        }
+    }
 }
 
 struct EmojiButton: View {
     @State private var showSheet = false
     @Binding var selectedEmoji: String?
     private(set) var emojiButtonType: EmojiButtonType
-   // var onEmojiSelected: (String) -> Void
+    var onEmojiSelected: (String) -> Void
 
-    init(selectedEmoji: Binding<String?>, emojiButtonType: EmojiButtonType) {
+    init(selectedEmoji: Binding<String?>, emojiButtonType: EmojiButtonType, onEmojiSelected: @escaping (String) -> Void) {
         self._selectedEmoji = selectedEmoji
         self.emojiButtonType = emojiButtonType
+        self.onEmojiSelected = onEmojiSelected
     }
 
     var body: some View {
         VStack {
             HStack(spacing: 15) {
                 Button(action: {
+//                    hideKeyboard()
                     showSheet.toggle()
                 }, label: {
                     if let emoji = selectedEmoji {
                         Text(emoji)
-                            .font(.system(size: 70))
+                            .font(.system(size: emojiButtonType.fontSize))
                     } else {
                         emojiButtonType.view
                     }
@@ -62,6 +73,7 @@ struct EmojiButton: View {
                 ),
                 onEmojiSelected: { emoji in
                     selectedEmoji = emoji
+                    onEmojiSelected(emoji)
                     showSheet = false
                 }
             )

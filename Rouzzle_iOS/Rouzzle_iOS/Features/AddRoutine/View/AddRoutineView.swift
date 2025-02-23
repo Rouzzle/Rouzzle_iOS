@@ -19,7 +19,9 @@ struct AddRoutineView: View {
                     EmojiButton(
                         selectedEmoji: $viewModel.emoji,
                         emojiButtonType: .routineEmoji
-                    )
+                    ){ selectedEmoji in
+                        print("Selected Emoji: \(selectedEmoji)")
+                    }
                     .padding(.top, 20)
                     .frame(maxWidth: .infinity, minHeight: proxy.size.height * 0.05)
                     RoutineBasicSettingView(viewModel: viewModel, action: {

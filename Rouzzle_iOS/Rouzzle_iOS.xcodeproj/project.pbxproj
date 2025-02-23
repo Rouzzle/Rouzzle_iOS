@@ -48,6 +48,15 @@
 		BD764DA62D3786FC008E94E5 /* RouzzleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DA52D3786FC008E94E5 /* RouzzleButton.swift */; };
 		BD764DA82D378764008E94E5 /* RecommendTaskData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DA72D378764008E94E5 /* RecommendTaskData.swift */; };
 		BD764DAA2D37880A008E94E5 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DA92D37880A008E94E5 /* Date+Extension.swift */; };
+		BD764DB62D3CC02B008E94E5 /* RoutineCategoryByTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DB52D3CC02B008E94E5 /* RoutineCategoryByTime.swift */; };
+		BD764DB92D3CC24D008E94E5 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = BD764DB82D3CC24D008E94E5 /* Factory */; };
+		BD764DBB2D3CC576008E94E5 /* RoutineStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DBA2D3CC576008E94E5 /* RoutineStore.swift */; };
+		BD764DBD2D3CC907008E94E5 /* SwiftDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DBC2D3CC907008E94E5 /* SwiftDataService.swift */; };
+		BD764DC02D3CCEA5008E94E5 /* BorderModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DBF2D3CCEA5008E94E5 /* BorderModifier.swift */; };
+		BD764DC22D3CCF2D008E94E5 /* NewTaskSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DC12D3CCF2D008E94E5 /* NewTaskSheetView.swift */; };
+		BD764DC42D3CD52D008E94E5 /* TimeBasedRecommendSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DC32D3CD52D008E94E5 /* TimeBasedRecommendSetView.swift */; };
+		BD764DC62D3CD564008E94E5 /* RecommendTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DC52D3CD55D008E94E5 /* RecommendTask.swift */; };
+		BDC8BD7D2D6475230048CA54 /* TaskStatusPuzzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC8BD7C2D6475230048CA54 /* TaskStatusPuzzle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +103,14 @@
 		BD764DA52D3786FC008E94E5 /* RouzzleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouzzleButton.swift; sourceTree = "<group>"; };
 		BD764DA72D378764008E94E5 /* RecommendTaskData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTaskData.swift; sourceTree = "<group>"; };
 		BD764DA92D37880A008E94E5 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		BD764DB52D3CC02B008E94E5 /* RoutineCategoryByTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineCategoryByTime.swift; sourceTree = "<group>"; };
+		BD764DBA2D3CC576008E94E5 /* RoutineStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineStore.swift; sourceTree = "<group>"; };
+		BD764DBC2D3CC907008E94E5 /* SwiftDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftDataService.swift; sourceTree = "<group>"; };
+		BD764DBF2D3CCEA5008E94E5 /* BorderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderModifier.swift; sourceTree = "<group>"; };
+		BD764DC12D3CCF2D008E94E5 /* NewTaskSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskSheetView.swift; sourceTree = "<group>"; };
+		BD764DC32D3CD52D008E94E5 /* TimeBasedRecommendSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBasedRecommendSetView.swift; sourceTree = "<group>"; };
+		BD764DC52D3CD55D008E94E5 /* RecommendTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTask.swift; sourceTree = "<group>"; };
+		BDC8BD7C2D6475230048CA54 /* TaskStatusPuzzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStatusPuzzle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD764DB92D3CC24D008E94E5 /* Factory in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,8 +148,8 @@
 				BD764D3E2D312858008E94E5 /* App */,
 				BD764D432D312908008E94E5 /* Model */,
 				BD764D402D3128BA008E94E5 /* Features */,
-				BD764D3F2D312866008E94E5 /* Resource */,
 				BD764D592D315491008E94E5 /* Utils */,
+				BD764D3F2D312866008E94E5 /* Resource */,
 			);
 			path = Rouzzle_iOS;
 			sourceTree = "<group>";
@@ -141,6 +159,7 @@
 			children = (
 				BD34AD202D2927D60031548C /* Rouzzle_iOSApp.swift */,
 				BD34AD1E2D2927D60031548C /* ContentView.swift */,
+				BD764DBA2D3CC576008E94E5 /* RoutineStore.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -270,6 +289,7 @@
 		BD764D592D315491008E94E5 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				BD764DBE2D3CCE92008E94E5 /* Modifier */,
 				BD764DA02D33C545008E94E5 /* Extension */,
 				BD764D872D3378D1008E94E5 /* Component */,
 				BD764D792D336CD7008E94E5 /* Global */,
@@ -307,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				BD764D752D3157A3008E94E5 /* QuotesProvider.swift */,
+				BD764DBC2D3CC907008E94E5 /* SwiftDataService.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -314,8 +335,9 @@
 		BD764D7C2D33711A008E94E5 /* AddRoutine */ = {
 			isa = PBXGroup;
 			children = (
-				BD764D802D337400008E94E5 /* ViewModel */,
+				BD764DB42D3CBF82008E94E5 /* Model */,
 				BD764D7D2D337124008E94E5 /* View */,
+				BD764D802D337400008E94E5 /* ViewModel */,
 			);
 			path = AddRoutine;
 			sourceTree = "<group>";
@@ -326,6 +348,8 @@
 				BD764D7E2D33713D008E94E5 /* AddRoutineContainerView.swift */,
 				BD764D832D3374AA008E94E5 /* AddRoutineView.swift */,
 				BD764D852D3374BE008E94E5 /* AddRoutineTaskView.swift */,
+				BD764DC32D3CD52D008E94E5 /* TimeBasedRecommendSetView.swift */,
+				BD764DC12D3CCF2D008E94E5 /* NewTaskSheetView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -341,6 +365,8 @@
 		BD764D872D3378D1008E94E5 /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				BD764DC52D3CD55D008E94E5 /* RecommendTask.swift */,
+				BDC8BD7C2D6475230048CA54 /* TaskStatusPuzzle.swift */,
 				BD764D882D3378F4008E94E5 /* RouzzleTextField.swift */,
 				BD764DA32D3780B0008E94E5 /* RouzzlePicker.swift */,
 				BD764DA52D3786FC008E94E5 /* RouzzleButton.swift */,
@@ -396,6 +422,22 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		BD764DB42D3CBF82008E94E5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BD764DB52D3CC02B008E94E5 /* RoutineCategoryByTime.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BD764DBE2D3CCE92008E94E5 /* Modifier */ = {
+			isa = PBXGroup;
+			children = (
+				BD764DBF2D3CCEA5008E94E5 /* BorderModifier.swift */,
+			);
+			path = Modifier;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -413,6 +455,7 @@
 			);
 			name = Rouzzle_iOS;
 			packageProductDependencies = (
+				BD764DB82D3CC24D008E94E5 /* Factory */,
 			);
 			productName = Rouzzle_iOS;
 			productReference = BD34AD082D2927C80031548C /* Rouzzle_iOS.app */;
@@ -442,6 +485,9 @@
 			);
 			mainGroup = BD34ACFF2D2927C80031548C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				BD764DB72D3CC24D008E94E5 /* XCRemoteSwiftPackageReference "Factory" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BD34AD092D2927C80031548C /* Products */;
 			projectDirPath = "";
@@ -482,31 +528,39 @@
 				BD764D892D3378F4008E94E5 /* RouzzleTextField.swift in Sources */,
 				BD764DA22D33C55E008E94E5 /* Publisher+Extension.swift in Sources */,
 				BD764DA42D3780B0008E94E5 /* RouzzlePicker.swift in Sources */,
+				BD764DB62D3CC02B008E94E5 /* RoutineCategoryByTime.swift in Sources */,
 				BD764D9F2D33B5C7008E94E5 /* EmojiButton.swift in Sources */,
 				BD764DAA2D37880A008E94E5 /* Date+Extension.swift in Sources */,
 				BD764D9D2D337D55008E94E5 /* Day.swift in Sources */,
 				BD764D732D31552E008E94E5 /* Color+Extension.swift in Sources */,
 				BD764D532D3133B2008E94E5 /* MyPageView.swift in Sources */,
+				BDC8BD7D2D6475230048CA54 /* TaskStatusPuzzle.swift in Sources */,
 				BD34AD222D2927D60031548C /* ContentView.swift in Sources */,
 				BD764D782D315B88008E94E5 /* RoutineHomeViewModel.swift in Sources */,
 				BD764D862D3374BE008E94E5 /* AddRoutineTaskView.swift in Sources */,
 				BD764D822D33740C008E94E5 /* AddRoutineViewModel.swift in Sources */,
 				BD764D4F2D313394008E94E5 /* RecommendView.swift in Sources */,
 				BD764D972D337D04008E94E5 /* EmojiSearchKeywords.swift in Sources */,
+				BD764DBD2D3CC907008E94E5 /* SwiftDataService.swift in Sources */,
 				BD764D982D337D04008E94E5 /* EmojiCategory.swift in Sources */,
 				BD764D992D337D04008E94E5 /* EmojiPickerViewModel.swift in Sources */,
 				BD764D9A2D337D04008E94E5 /* EmojiPickerView.swift in Sources */,
+				BD764DC22D3CCF2D008E94E5 /* NewTaskSheetView.swift in Sources */,
 				BD764D9B2D337D04008E94E5 /* EmojiComponents.swift in Sources */,
 				BD764D762D3157A3008E94E5 /* QuotesProvider.swift in Sources */,
 				BD764D4D2D31338C008E94E5 /* SocialView.swift in Sources */,
 				BD764D842D3374AA008E94E5 /* AddRoutineView.swift in Sources */,
+				BD764DC62D3CD564008E94E5 /* RecommendTask.swift in Sources */,
+				BD764DC42D3CD52D008E94E5 /* TimeBasedRecommendSetView.swift in Sources */,
 				BD764D5B2D3154A2008E94E5 /* Font+Extension.swift in Sources */,
 				BD764D472D313320008E94E5 /* RoutineHomeView.swift in Sources */,
+				BD764DBB2D3CC576008E94E5 /* RoutineStore.swift in Sources */,
 				BD764D7B2D337090008E94E5 /* Untitled.swift in Sources */,
 				BD764D452D312932008E94E5 /* RoutineItem.swift in Sources */,
 				BD764DA82D378764008E94E5 /* RecommendTaskData.swift in Sources */,
 				BD764DA62D3786FC008E94E5 /* RouzzleButton.swift in Sources */,
 				BD34AD242D2927D60031548C /* Rouzzle_iOSApp.swift in Sources */,
+				BD764DC02D3CCEA5008E94E5 /* BorderModifier.swift in Sources */,
 				BD764D7F2D33713D008E94E5 /* AddRoutineContainerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -713,6 +767,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BD764DB72D3CC24D008E94E5 /* XCRemoteSwiftPackageReference "Factory" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Factory.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BD764DB82D3CC24D008E94E5 /* Factory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BD764DB72D3CC24D008E94E5 /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BD34AD002D2927C80031548C /* Project object */;
 }
