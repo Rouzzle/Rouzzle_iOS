@@ -8,76 +8,10 @@
 import SwiftUI
 import SwiftData
 
-// Your enums remain the same
+// Navigation Path
 enum NavigationDestination: Hashable {
     case addTaskView
     case routineCompleteView
-}
-
-struct RoutineItemView: View {
-    let routine: RoutineItem
-    let onTap: () -> Void
-    
-    var body: some View {
-        Button(action: onTap) {
-            ZStack {
-                Image(.completedRoutine)
-                    .resizable()
-                    .frame(maxWidth: .infinity)
-                    .aspectRatio(370 / 137, contentMode: .fit)
-                
-                HStack {
-                    Text(routine.emoji)
-                        .font(.ptBold(.title2))
-                        .padding(.trailing, 10)
-                        .padding(.bottom, 7)
-                    
-                    VStack(alignment: .leading, spacing: 5) {
-                        Text(routine.title)
-                            .font(.ptSemiBold())
-                            .foregroundStyle(.black)
-                            .bold()
-                    }
-                    
-                    Spacer()
-                    
-                    VStack(alignment: .trailing, spacing: 5) {
-                        HStack(spacing: 5) {
-                            Image(systemName: "bell")
-                        }
-                        Text(convertDaysToString(days: routine.dayStartTime.keys.sorted()))
-                            .font(.caption)
-                    }
-                    .foregroundStyle(Color.subHeadlineFontColor)
-                }
-                .padding(.horizontal, 20)
-                .offset(y: -7)
-            }
-            .padding(.horizontal)
-        }
-    }
-}
-
-struct HeaderView: View {
-    let onAddTap: () -> Void
-    let quoteText: String
-    var body: some View {
-        VStack {
-            Text(quoteText)
-                .font(.ptSemiBold(.title3))
-                .frame(maxWidth: .infinity, minHeight: 50, alignment: .top)
-                .padding(.top, 5)
-            
-            HStack {
-                Button(action: onAddTap) {
-                    Image(systemName: "plus")
-                        .font(.title)
-                }
-            }
-            .padding(.horizontal)
-            .padding(.bottom, 5)
-        }
-    }
 }
 
 // Main View
@@ -112,8 +46,19 @@ struct RoutineHomeView: View {
                 routineHomeViewModel.updateQuote()
             }
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Text("🧩 루틴 10일차 · 🔥 연속 성공 5일차")
+                        .font(.ptLight(.caption2))
+                        .foregroundStyle(.gray)
+                }
+                
                 ToolbarItem(placement: .topBarTrailing) {
-                    ChallengeButton(onTap: { isShowingChallengeView.toggle() })
+                    Button(action: {}) {
+                        Image(systemName: "gearshape.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .font(.title3)
+                    }
                 }
             }
             .navigationDestination(for: NavigationDestination.self) { destination in
@@ -128,51 +73,6 @@ struct RoutineHomeView: View {
                 EmptyView()
             }
         }
-    }
-}
-
-struct ChallengeButton: View {
-    let onTap: () -> Void
-    
-    var body: some View {
-        Button(action: onTap) {
-            HStack {
-                Image(systemName: "trophy.fill")
-                    .resizable()
-                    .scaledToFit()
-                    .foregroundColor(.yellow)
-                    .frame(width: 18, height: 18)
-                Text("챌린지")
-                    .font(.ptMedium())
-                    .foregroundColor(.black)
-            }
-            .frame(width: 90, height: 30)
-            .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(.white)
-                    .shadow(color: .black.opacity(0.1), radius: 2)
-            )
-        }
-    }
-}
-
-// Helper functions
-func convertDaysToString(days: [Int]) -> String {
-    let dayNames = ["일", "월", "화", "수", "목", "금", "토"]
-    
-    let dayStrings = days.compactMap { dayIndex -> String? in
-        guard dayIndex >= 1 && dayIndex <= 7 else { return nil }
-        return dayNames[dayIndex - 1]
-    }
-    
-    if days.contains(1) && days.contains(7) && days.count == 7 {
-        return "매일"
-    } else if Set([2, 3, 4, 5, 6]).isSubset(of: days) && !days.contains(1) && !days.contains(7) {
-        return "평일"
-    } else if Set([1, 7]).isSubset(of: days) && days.count == 2 {
-        return "주말"
-    } else {
-        return dayStrings.joined(separator: " ")
     }
 }
 
