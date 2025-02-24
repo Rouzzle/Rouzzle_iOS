@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 struct HeaderView: View {
-    let onAddTap: () -> Void
     let quoteText: String
     var body: some View {
         VStack {
@@ -17,15 +16,6 @@ struct HeaderView: View {
                 .font(.ptSemiBold(.title3))
                 .frame(maxWidth: .infinity, minHeight: 50, alignment: .top)
                 .padding(.top, 5)
-            
-            HStack {
-                Button(action: onAddTap) {
-                    Image(systemName: "plus")
-                        .font(.title)
-                }
-            }
-            .padding(.horizontal)
-            .padding(.bottom, 5)
         }
     }
 }

@@ -18,13 +18,24 @@ enum NavigationDestination: Hashable {
 struct RoutineHomeView: View {
     @Query private var routines: [RoutineItem]
     @State private var isShowingAddRoutineSheet: Bool = false
-    @State private var isShowingChallengeView: Bool = false
     @State private var path = NavigationPath()
     @State private var routineHomeViewModel = RoutineHomeViewModel()
+    @State private var selectedFilter = false
     var body: some View {
         NavigationStack(path: $path) {
             ScrollView {
-                HeaderView(onAddTap: { isShowingAddRoutineSheet.toggle() }, quoteText: routineHomeViewModel.currentQuote)
+                HeaderView(quoteText: routineHomeViewModel.currentQuote)
+                    .padding()
+                HStack {
+                    RoutineFilterToggle(isToday: $selectedFilter)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Button(action: {isShowingAddRoutineSheet.toggle()}) {
+                        Image(systemName: "plus")
+                            .font(.title)
+                    }
+                }
+                .padding(.horizontal)
+                .padding(.bottom)
                 
                 ForEach(routines) { routine in
                     RoutineItemView(routine: routine) {
@@ -41,6 +52,9 @@ struct RoutineHomeView: View {
                         .aspectRatio(contentMode: .fit)
                         .padding(.horizontal)
                 }
+            }
+            .fullScreenCover(isPresented: $isShowingAddRoutineSheet) {
+                AddRoutineContainerView()
             }
             .refreshable {
                 routineHomeViewModel.updateQuote()
@@ -64,14 +78,12 @@ struct RoutineHomeView: View {
             .navigationDestination(for: NavigationDestination.self) { destination in
                 switch destination {
                 case .addTaskView:
-                    EmptyView()
+                    AddRoutineContainerView()
                 case .routineCompleteView:
                     EmptyView()
                 }
             }
-            .navigationDestination(isPresented: $isShowingChallengeView) {
-                EmptyView()
-            }
+            
         }
     }
 }

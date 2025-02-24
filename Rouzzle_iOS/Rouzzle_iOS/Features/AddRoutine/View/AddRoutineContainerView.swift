@@ -33,7 +33,6 @@ struct AddRoutineContainerView: View {
             .padding()
             
             ProgressView(value: viewModel.step.rawValue, total: 1.0)
-                .tint(.accent)
                 .progressViewStyle(.linear)
                 .padding(.horizontal)
 

@@ -63,10 +63,6 @@ final class AddRoutineViewModel {
     var isCompleted: Bool {
         !title.isEmpty && emoji != ""
     }
-
-    init() {
-        
-    }
     
     private func generateAlarmIDs(for dates: [Day: Date]) -> [Int: String] {
         var generatedIDs: [Int: String] = [:]
