@@ -36,7 +36,7 @@ struct RouzzleButton: View {
     var body: some View {
         Button(action: action) {
             Text("\(buttonType.rawValue)")
-                .font(.bold20)
+                .font(.ptBold())
                 .foregroundStyle(Color.white)
                 .frame(maxWidth: .infinity)
                 .frame(height: 60)

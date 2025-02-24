@@ -12,10 +12,8 @@
 		BD34AD262D2927D60031548C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD34AD1D2D2927D60031548C /* Assets.xcassets */; };
 		BD764D452D312932008E94E5 /* RoutineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D442D312932008E94E5 /* RoutineItem.swift */; };
 		BD764D472D313320008E94E5 /* RoutineHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D462D313320008E94E5 /* RoutineHomeView.swift */; };
-		BD764D4D2D31338C008E94E5 /* SocialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D4C2D31338C008E94E5 /* SocialView.swift */; };
 		BD764D4F2D313394008E94E5 /* RecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D4E2D313394008E94E5 /* RecommendView.swift */; };
 		BD764D512D3133A8008E94E5 /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D502D3133A8008E94E5 /* StatisticView.swift */; };
-		BD764D532D3133B2008E94E5 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D522D3133B2008E94E5 /* MyPageView.swift */; };
 		BD764D5B2D3154A2008E94E5 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D5A2D3154A2008E94E5 /* Font+Extension.swift */; };
 		BD764D672D3154B6008E94E5 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = BD764D622D3154B6008E94E5 /* Pretendard-Medium.otf */; };
 		BD764D682D3154B6008E94E5 /* Pretendard-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = BD764D632D3154B6008E94E5 /* Pretendard-Regular.otf */; };
@@ -66,10 +64,8 @@
 		BD34AD202D2927D60031548C /* Rouzzle_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rouzzle_iOSApp.swift; sourceTree = "<group>"; };
 		BD764D442D312932008E94E5 /* RoutineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineItem.swift; sourceTree = "<group>"; };
 		BD764D462D313320008E94E5 /* RoutineHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineHomeView.swift; sourceTree = "<group>"; };
-		BD764D4C2D31338C008E94E5 /* SocialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialView.swift; sourceTree = "<group>"; };
 		BD764D4E2D313394008E94E5 /* RecommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendView.swift; sourceTree = "<group>"; };
 		BD764D502D3133A8008E94E5 /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
-		BD764D522D3133B2008E94E5 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		BD764D5A2D3154A2008E94E5 /* Font+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 		BD764D5C2D3154B6008E94E5 /* Halo Dek.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Halo Dek.otf"; sourceTree = "<group>"; };
 		BD764D5D2D3154B6008E94E5 /* Pretendard-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Black.otf"; sourceTree = "<group>"; };
@@ -180,8 +176,6 @@
 				BD764D412D3128C6008E94E5 /* Home */,
 				BD764D482D31332C008E94E5 /* Statistic */,
 				BD764D492D313334008E94E5 /* Recommend */,
-				BD764D4A2D31334D008E94E5 /* Social */,
-				BD764D4B2D313352008E94E5 /* MyPage */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -230,22 +224,6 @@
 			path = Recommend;
 			sourceTree = "<group>";
 		};
-		BD764D4A2D31334D008E94E5 /* Social */ = {
-			isa = PBXGroup;
-			children = (
-				BD764D562D3133EE008E94E5 /* View */,
-			);
-			path = Social;
-			sourceTree = "<group>";
-		};
-		BD764D4B2D313352008E94E5 /* MyPage */ = {
-			isa = PBXGroup;
-			children = (
-				BD764D572D3133F5008E94E5 /* View */,
-			);
-			path = MyPage;
-			sourceTree = "<group>";
-		};
 		BD764D542D3133E1008E94E5 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,22 +236,6 @@
 			isa = PBXGroup;
 			children = (
 				BD764D4E2D313394008E94E5 /* RecommendView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		BD764D562D3133EE008E94E5 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				BD764D4C2D31338C008E94E5 /* SocialView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		BD764D572D3133F5008E94E5 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				BD764D522D3133B2008E94E5 /* MyPageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -533,7 +495,6 @@
 				BD764DAA2D37880A008E94E5 /* Date+Extension.swift in Sources */,
 				BD764D9D2D337D55008E94E5 /* Day.swift in Sources */,
 				BD764D732D31552E008E94E5 /* Color+Extension.swift in Sources */,
-				BD764D532D3133B2008E94E5 /* MyPageView.swift in Sources */,
 				BDC8BD7D2D6475230048CA54 /* TaskStatusPuzzle.swift in Sources */,
 				BD34AD222D2927D60031548C /* ContentView.swift in Sources */,
 				BD764D782D315B88008E94E5 /* RoutineHomeViewModel.swift in Sources */,
@@ -548,7 +509,6 @@
 				BD764DC22D3CCF2D008E94E5 /* NewTaskSheetView.swift in Sources */,
 				BD764D9B2D337D04008E94E5 /* EmojiComponents.swift in Sources */,
 				BD764D762D3157A3008E94E5 /* QuotesProvider.swift in Sources */,
-				BD764D4D2D31338C008E94E5 /* SocialView.swift in Sources */,
 				BD764D842D3374AA008E94E5 /* AddRoutineView.swift in Sources */,
 				BD764DC62D3CD564008E94E5 /* RecommendTask.swift in Sources */,
 				BD764DC42D3CD52D008E94E5 /* TimeBasedRecommendSetView.swift in Sources */,

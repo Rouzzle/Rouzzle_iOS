@@ -29,18 +29,6 @@ struct ContentView: View {
                     Text("추천")
                     Image(systemName: "star.fill")
                 }
-            
-            SocialView()
-                .tabItem {
-                    Text("소셜")
-                    Image(systemName: "person.3.fill")
-                }
-            
-            MyPageView()
-                .tabItem {
-                    Text("마이페이지")
-                    Image(systemName: "person.circle.fill")
-                }
         }
     }
 }

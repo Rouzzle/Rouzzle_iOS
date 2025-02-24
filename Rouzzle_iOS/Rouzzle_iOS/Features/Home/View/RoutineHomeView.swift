@@ -28,13 +28,13 @@ struct RoutineItemView: View {
                 
                 HStack {
                     Text(routine.emoji)
-                        .font(.bold40)
+                        .font(.ptBold(.title2))
                         .padding(.trailing, 10)
                         .padding(.bottom, 7)
                     
                     VStack(alignment: .leading, spacing: 5) {
                         Text(routine.title)
-                            .font(.semibold18)
+                            .font(.ptSemiBold())
                             .foregroundStyle(.black)
                             .bold()
                     }
@@ -45,9 +45,8 @@ struct RoutineItemView: View {
                         HStack(spacing: 5) {
                             Image(systemName: "bell")
                         }
-                        .font(.regular14)
                         Text(convertDaysToString(days: routine.dayStartTime.keys.sorted()))
-                            .font(.regular14)
+                            .font(.caption)
                     }
                     .foregroundStyle(Color.subHeadlineFontColor)
                 }
@@ -65,6 +64,7 @@ struct HeaderView: View {
     var body: some View {
         VStack {
             Text(quoteText)
+                .font(.ptSemiBold(.title3))
                 .frame(maxWidth: .infinity, minHeight: 50, alignment: .top)
                 .padding(.top, 5)
             
@@ -143,7 +143,7 @@ struct ChallengeButton: View {
                     .foregroundColor(.yellow)
                     .frame(width: 18, height: 18)
                 Text("챌린지")
-                    .font(.medium16)
+                    .font(.ptMedium())
                     .foregroundColor(.black)
             }
             .frame(width: 90, height: 30)

@@ -52,17 +52,17 @@ struct RoutineBasicSettingView: View {
     var body: some View {
         VStack(spacing: 20) {
             RouzzleTextField(text: $viewModel.title, placeholder: "제목을 입력해주세요.")
-                .font(.regular16)
+                //.font(.regular16)
             
             HStack {
                 Text("반복 요일")
-                    .font(.semibold18)
+                   //.font(.semibold18)
                 Spacer()
                 
                 HStack {
                     Image(systemName: viewModel.isDaily ? "checkmark.square" : "square")
                     Text("매일")
-                        .font(.regular16)
+                      //  .font(.regular16)
                 }
                 .foregroundColor(viewModel.isDaily ? .black : .gray)
                 .onTapGesture {
@@ -87,7 +87,7 @@ struct RoutineBasicSettingView: View {
                             }
                             Text(day.name)
                                 .foregroundColor(viewModel.isSelected(day) ? .black : .gray)
-                                .font(.regular16)
+                               // .font(.regular16)
                         }
                         .frame(maxWidth: .infinity, minHeight: 35)
                     }
@@ -99,14 +99,14 @@ struct RoutineBasicSettingView: View {
             
             HStack(alignment: .top) {
                 Text("시작 시간")
-                    .font(.semibold18)
+                   // .font(.semibold18)
                 Spacer()
                 if let firstDayTime = viewModel.firstDayTime  {
                     VStack(spacing: 4) {
                         Button (action: action) {
                             Text(firstDayTime)
                                 .foregroundStyle(.black)
-                                .font(.regular18)
+                               // .font(.regular18)
                                 .padding(.horizontal, 8)
                                 .padding(.vertical, 4)
                                 .background(.white)
@@ -115,7 +115,7 @@ struct RoutineBasicSettingView: View {
                         
                         if viewModel.checkIfTimesAreDifferent() {
                             Text("(요일별로 다름)")
-                                .font(.regular12)
+                               // .font(.regular12)
                                 .foregroundStyle(.gray)
                         }
                     }
@@ -137,7 +137,7 @@ struct RoutineNotificationView: View {
         VStack(spacing: 20) {
             HStack {
                 Text("루틴 시작 알림")
-                    .font(.semibold18)
+                    .font(.ptSemiBold())
                 Spacer()
                 Toggle("", isOn: $viewModel.isNotificationEnabled)
                     .labelsHidden()
@@ -153,7 +153,7 @@ struct RoutineNotificationView: View {
                         .font(.headline)
                     Image(systemName: isOneAlarm ? "checkmark.square" : "square")
                     Text("1회만")
-                        .font(.regular16)
+                        .font(.ptRegular())
                         .foregroundStyle(isOneAlarm ? .black : .gray)
                     Spacer()
                 }

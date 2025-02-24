@@ -21,7 +21,6 @@ struct AddRoutineContainerView: View {
                    goBack()
                 } label: {
                     Image(systemName: viewModel.step == .info ? "xmark" : "chevron.left")
-                        .font(.semibold20)
                 }
                 if viewModel.step != .info {
                     Spacer()
@@ -29,7 +28,7 @@ struct AddRoutineContainerView: View {
             }
             .overlay {
                 Text(viewModel.step == .info ? "루틴 등록" : "할 일 등록")
-                    .font(.semibold18)
+                    .font(.ptSemiBold())
             }
             .padding()
             

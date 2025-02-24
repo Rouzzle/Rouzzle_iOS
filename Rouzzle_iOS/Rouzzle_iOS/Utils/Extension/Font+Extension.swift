@@ -9,146 +9,86 @@ import SwiftUI
 
 extension Font {
     
-    /// Bold Fonts
-    static var bold80: Font {
-        return Font.custom("Pretendard-Bold", size: 80)
-    }
-    
-    static var bold66: Font {
-        return Font.custom("Pretendard-Bold", size: 66)
-    }
-    
-    static var bold50: Font {
-        return Font.custom("Pretendard-Bold", size: 50)
-    }
-    static var bold40: Font {
-        return Font.custom("Pretendard-Bold", size: 40)
-    }
-    
-    static var bold36: Font {
-        return Font.custom("Pretendard-Bold", size: 36)
-    }
-    
-    static var bold30: Font {
-        return Font.custom("Pretendard-Bold", size: 30)
-    }
-    
-    static var bold24: Font {
-        return Font.custom("Pretendard-Bold", size: 24)
-    }
-    
-    static var bold20: Font {
-        return Font.custom("Pretendard-Bold", size: 20)
-    }
-    
-    static var bold18: Font {
-        return Font.custom("Pretendard-Bold", size: 18)
-    }
-    
-    static var bold16: Font {
-        return Font.custom("Pretendard-Bold", size: 16)
-    }
-    
-    static var bold14: Font {
-        return Font.custom("Pretendard-Bold", size: 14)
-    }
-    
-    static var bold12: Font {
-        return Font.custom("Pretendard-Bold", size: 12)
+    enum PretendardStyle: String {
+        case bold = "Pretendard-Bold"
+        case semiBold = "Pretendard-SemiBold"
+        case regular = "Pretendard-Regular"
+        case light = "Pretendard-Light"
+        case medium = "Pretendard-Medium"
     }
 
-    /// SemiBold Fonts
-    static var semibold24: Font {
-        return Font.custom("Pretendard-SemiBold", size: 24)
+    /// Font.TextStyle을 UIFont.TextStyle로 매핑하는 헬퍼 메서드
+    private static func mapTextStyle(_ textStyle: Font.TextStyle) -> UIFont.TextStyle {
+        switch textStyle {
+        case .largeTitle: return .largeTitle
+        case .title: return .title1
+        case .title2: return .title2
+        case .title3: return .title3
+        case .headline: return .headline
+        case .subheadline: return .subheadline
+        case .body: return .body
+        case .callout: return .callout
+        case .caption: return .caption1
+        case .caption2: return .caption2
+        case .footnote: return .footnote
+        @unknown default: return .body
+        }
     }
-    
-    static var semibold20: Font {
-        return Font.custom("Pretendard-SemiBold", size: 20)
-    }
-    
-    static var semibold18: Font {
-        return Font.custom("Pretendard-SemiBold", size: 18)
-    }
-    
-    static var semibold16: Font {
-        return Font.custom("Pretendard-SemiBold", size: 16)
-    }
-    
-    static var semibold14: Font {
-        return Font.custom("Pretendard-SemiBold", size: 14)
-    }
-    
-    static var semibold12: Font {
-        return Font.custom("Pretendard-SemiBold", size: 12)
-    }
-    
-    static var semibold8: Font {
-        return Font.custom("Pretendard-SemiBold", size: 8)
+    /// 공통 폰트 생성 메서드
+    private static func kpFont(
+        _ style: PretendardStyle,
+        textStyle: TextStyle? = nil,
+        size: CGFloat? = nil
+    ) -> Font {
+        if let size = size {
+            return .custom(style.rawValue, size: size, relativeTo: textStyle ?? .body)
+        } else if let textStyle = textStyle {
+            let uiTextStyle = mapTextStyle(textStyle)
+            let defaultSize = UIFont.preferredFont(forTextStyle: uiTextStyle).pointSize
+            return .custom(style.rawValue, size: defaultSize, relativeTo: textStyle)
+        } else {
+            let defaultSize = UIFont.preferredFont(forTextStyle: .body).pointSize
+            return .custom(style.rawValue, size: defaultSize)
+        }
     }
 
-    /// Medium Fonts
-    static var medium18: Font {
-        return Font.custom("Pretendard-Medium", size: 18)
+    static func ptBold(
+        _ textStyle: TextStyle? = nil,
+        size: CGFloat? = nil
+    ) -> Font {
+        kpFont(.bold, textStyle: textStyle, size: size)
     }
-    
-    static var medium16: Font {
-        return Font.custom("Pretendard-Medium", size: 16)
+
+    static func ptSemiBold(
+        _ textStyle: TextStyle? = nil,
+        size: CGFloat? = nil
+    ) -> Font {
+        kpFont(.semiBold, textStyle: textStyle, size: size)
     }
-    
-    static var medium14: Font {
-        return Font.custom("Pretendard-Medium", size: 14)
+
+    static func ptMedium(
+        _ textStyle: TextStyle? = nil,
+        size: CGFloat? = nil
+    ) -> Font {
+        kpFont(.medium, textStyle: textStyle, size: size)
     }
-    
-    static var medium12: Font {
-        return Font.custom("Pretendard-Medium", size: 12)
+
+    static func ptLight(
+        _ textStyle: TextStyle? = nil,
+        size: CGFloat? = nil
+    ) -> Font {
+        kpFont(.light, textStyle: textStyle, size: size)
     }
-    
-    static var medium11: Font {
-        return Font.custom("Pretendard-Medium", size: 11)
-    }
-    
-    /// Regular Fonts
-    static var regular24: Font {
-        return Font.custom("Pretendard-Regular", size: 24)
-    }
-    
-    static var regular20: Font {
-        return Font.custom("Pretendard-Regular", size: 20)
-    }
-    
-    static var regular18: Font {
-        return Font.custom("Pretendard-Regular", size: 18)
-    }
-    
-    static var regular16: Font {
-        return Font.custom("Pretendard-Regular", size: 16)
-    }
-    
-    static var regular14: Font {
-        return Font.custom("Pretendard-Regular", size: 14)
-    }
-    
-    static var regular12: Font {
-        return Font.custom("Pretendard-Regular", size: 12)
-    }
-    
-    static var regular10: Font {
-        return Font.custom("Pretendard-Regular", size: 10)
+
+    static func ptRegular(
+        _ textStyle: TextStyle? = nil,
+        size: CGFloat? = nil
+    ) -> Font {
+        kpFont(.regular, textStyle: textStyle, size: size)
     }
     
     static var haloDek48: Font {
         return Font.custom("Halo Dek", fixedSize: 48)
     }
     
-    static var light12: Font {
-        return Font.custom("Pretendard-Light", fixedSize: 12)
-    }
-    
-    static var light14: Font {
-        return Font.custom("Pretendard-Light", fixedSize: 14)
-    }
-    
-    static var light16: Font {
-        return Font.custom("Pretendard-Light", fixedSize: 16)
-    }
 }

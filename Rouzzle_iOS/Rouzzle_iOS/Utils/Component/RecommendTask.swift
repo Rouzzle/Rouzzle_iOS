@@ -19,14 +19,14 @@ struct RecommendTask: View {
         VStack(alignment: .leading) {
             HStack(spacing: 4) {
                 Text(emojiTxt)
-                    .font(.bold40)
+                    .font(.system(size: 40))
                 
                 Text(title)
-                    .font(.semibold16)
+                    .font(.ptSemiBold())
                     .padding(.leading, 8)
                 
                 Text(timeInterval)
-                    .font(.regular12)
+                    .font(.ptLight(.footnote))
                     .foregroundStyle(Color.subHeadlineFontColor)
                     .padding(.leading, 4)
                 
@@ -44,7 +44,7 @@ struct RecommendTask: View {
             .padding(.bottom, 3)
             
             Text(description)
-                .font(.light12)
+                .font(.ptRegular(.callout))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .lineSpacing(4)
                 .multilineTextAlignment(.leading)

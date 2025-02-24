@@ -123,7 +123,7 @@ struct TaskInputView: View {
             
             TextField("추가할 할 일을 입력해 주세요.", text: $text)
                 .focused($focusField, equals: .task)
-                .font(.regular18)
+                .font(.ptRegular())
             
             Button(action: onAddTask) {
                 Image(systemName: "arrow.up")

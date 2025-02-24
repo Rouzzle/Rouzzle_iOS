@@ -27,7 +27,7 @@ struct CategoryButton: View {
     var body: some View {
         Button(action: action) {
             Text(category.rawValue)
-                .font(.regular14)
+                .font(.ptRegular())
                 .padding(.horizontal, 16)
                 .padding(.vertical, 6)
                 .background(
@@ -53,7 +53,7 @@ struct SearchBar: View {
             
             TextField("이모지 검색", text: $text)
                 .padding(.trailing, 8)
-                .font(.regular12)
+                .font(.ptRegular(.caption))
             
             if !text.isEmpty {
                 Button(
