@@ -10,13 +10,13 @@ import SwiftData
 
 // Navigation Path
 enum NavigationDestination: Hashable {
-    case addTaskView
-    case routineCompleteView
+    case routineTimerView(routine: RoutineItem)
 }
 
 // Main View
 struct RoutineHomeView: View {
     @Query private var routines: [RoutineItem]
+    @Environment(\.modelContext) private var modelContext
     @State private var isShowingAddRoutineSheet: Bool = false
     @State private var path = NavigationPath()
     @State private var routineHomeViewModel = RoutineHomeViewModel()
@@ -39,7 +39,7 @@ struct RoutineHomeView: View {
                 
                 ForEach(routines) { routine in
                     RoutineItemView(routine: routine) {
-                        path.append(NavigationDestination.addTaskView)
+                        path.append(NavigationDestination.routineTimerView(routine: routine))
                     }
                 }
                 
@@ -54,7 +54,7 @@ struct RoutineHomeView: View {
                 }
             }
             .fullScreenCover(isPresented: $isShowingAddRoutineSheet) {
-                AddRoutineContainerView()
+                AddRoutineContainerView(modelContext: modelContext)
             }
             .refreshable {
                 routineHomeViewModel.updateQuote()
@@ -77,13 +77,16 @@ struct RoutineHomeView: View {
             }
             .navigationDestination(for: NavigationDestination.self) { destination in
                 switch destination {
-                case .addTaskView:
-                    AddRoutineContainerView()
-                case .routineCompleteView:
-                    EmptyView()
+                case .routineTimerView(let routine):
+                    RoutineTimerView(routine: routine)
                 }
             }
             
+        }
+        .onAppear {
+            for i in routines {
+                print(i.taskList.count)
+            }
         }
     }
 }

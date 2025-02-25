@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Combine
+import SwiftData
 
 struct AddRoutineView: View {
     @Bindable var viewModel: AddRoutineViewModel
@@ -208,5 +208,12 @@ struct RoutineNotificationView: View {
 }
 
 #Preview {
-    AddRoutineView(viewModel: AddRoutineViewModel())
+    let modelContainer: ModelContainer
+    do {
+        modelContainer = try ModelContainer(for: RoutineItem.self, TaskList.self)
+    } catch {
+        fatalError("❌ Could not initialize ModelContainer: \(error.localizedDescription)")
+    }
+    return AddRoutineView(viewModel: AddRoutineViewModel(context: modelContainer.mainContext ))
+
 }

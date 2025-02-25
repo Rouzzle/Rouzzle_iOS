@@ -6,11 +6,19 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct AddRoutineContainerView: View {
+    
+    let modelContext: ModelContext
     @Environment(\.dismiss) private var dismiss
-    @State private var viewModel: AddRoutineViewModel = .init()
-
+    @State private var viewModel: AddRoutineViewModel
+    
+    init(modelContext: ModelContext) {
+        self.modelContext = modelContext
+        _viewModel = State(initialValue: AddRoutineViewModel(context: modelContext))
+    }
+    
     var body: some View {
         VStack {
             HStack {
@@ -60,5 +68,11 @@ struct AddRoutineContainerView: View {
 }
 
 #Preview {
-    AddRoutineContainerView()
+    let modelContainer: ModelContainer
+    do {
+        modelContainer = try ModelContainer(for: RoutineItem.self, TaskList.self)
+    } catch {
+        fatalError("❌ Could not initialize ModelContainer: \(error.localizedDescription)")
+    }
+    return AddRoutineContainerView(modelContext: modelContainer.mainContext)
 }

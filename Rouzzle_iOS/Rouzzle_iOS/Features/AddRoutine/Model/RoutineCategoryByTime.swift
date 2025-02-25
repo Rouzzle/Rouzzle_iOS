@@ -159,3 +159,18 @@ enum RoutineCategoryByTime: String, CaseIterable, Identifiable {
         }
     }
 }
+
+let recommendTodoTask: [RecommendTodoTask] = [
+    RecommendTodoTask(emoji: "🧘", title: "명상하기", timer: 10),
+    RecommendTodoTask(emoji: "🏋️‍♂️", title: "가벼운 운동하기", timer: 15),
+    RecommendTodoTask(emoji: "🍵", title: "차 한 잔 마시기", timer: 5),
+    RecommendTodoTask(emoji: "📖", title: "책 읽기", timer: 20),
+    RecommendTodoTask(emoji: "🌞", title: "산책하기", timer: 15),
+    RecommendTodoTask(emoji: "📝", title: "점심 계획 세우기", timer: 5),
+    RecommendTodoTask(emoji: "🎧", title: "좋아하는 음악 듣기", timer: 15),
+    RecommendTodoTask(emoji: "🍽", title: "요리하기", timer: 30),
+    RecommendTodoTask(emoji: "🛋", title: "휴식하기", timer: 20),
+    RecommendTodoTask(emoji: "📓", title: "오늘 하루 정리하기", timer: 10),
+    RecommendTodoTask(emoji: "🛀", title: "반신욕하기", timer: 20),
+    RecommendTodoTask(emoji: "🌙", title: "수면 준비하기", timer: 15)
+]
