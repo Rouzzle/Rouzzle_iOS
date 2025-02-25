@@ -35,7 +35,7 @@ extension Font {
         }
     }
     /// 공통 폰트 생성 메서드
-    private static func kpFont(
+    private static func ptFont(
         _ style: PretendardStyle,
         textStyle: TextStyle? = nil,
         size: CGFloat? = nil
@@ -56,35 +56,35 @@ extension Font {
         _ textStyle: TextStyle? = nil,
         size: CGFloat? = nil
     ) -> Font {
-        kpFont(.bold, textStyle: textStyle, size: size)
+        ptFont(.bold, textStyle: textStyle, size: size)
     }
-
+        
     static func ptSemiBold(
         _ textStyle: TextStyle? = nil,
         size: CGFloat? = nil
     ) -> Font {
-        kpFont(.semiBold, textStyle: textStyle, size: size)
+        ptFont(.semiBold, textStyle: textStyle, size: size)
     }
 
     static func ptMedium(
         _ textStyle: TextStyle? = nil,
         size: CGFloat? = nil
     ) -> Font {
-        kpFont(.medium, textStyle: textStyle, size: size)
+        ptFont(.medium, textStyle: textStyle, size: size)
     }
 
     static func ptLight(
         _ textStyle: TextStyle? = nil,
         size: CGFloat? = nil
     ) -> Font {
-        kpFont(.light, textStyle: textStyle, size: size)
+        ptFont(.light, textStyle: textStyle, size: size)
     }
 
     static func ptRegular(
         _ textStyle: TextStyle? = nil,
         size: CGFloat? = nil
     ) -> Font {
-        kpFont(.regular, textStyle: textStyle, size: size)
+        ptFont(.regular, textStyle: textStyle, size: size)
     }
     
     static var haloDek48: Font {
