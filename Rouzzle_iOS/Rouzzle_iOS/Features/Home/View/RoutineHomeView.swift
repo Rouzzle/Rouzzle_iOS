@@ -10,7 +10,7 @@ import SwiftData
 
 // Navigation Path
 enum NavigationDestination: Hashable {
-    case routineTimerView(routine: RoutineItem)
+    case routineTimerView(routine: RoutineItem) // 어떤 루틴이 선택되었는지 넘겨주기
 }
 
 // Main View
@@ -81,9 +81,6 @@ struct RoutineHomeView: View {
                 }
             }
             
-        }
-        .onAppear {
-            print(routines.count)
         }
     }
 }
