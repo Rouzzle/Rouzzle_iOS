@@ -208,12 +208,5 @@ struct RoutineNotificationView: View {
 }
 
 #Preview {
-    let modelContainer: ModelContainer
-    do {
-        modelContainer = try ModelContainer(for: RoutineItem.self, TaskList.self)
-    } catch {
-        fatalError("❌ Could not initialize ModelContainer: \(error.localizedDescription)")
-    }
-    return AddRoutineView(viewModel: AddRoutineViewModel(context: modelContainer.mainContext ))
-
+   AddRoutineView(viewModel: AddRoutineViewModel())
 }

@@ -26,7 +26,7 @@ final class RoutineItem: Identifiable {
     }
     
     init(
-        id: String = "",
+        id: String = UUID().uuidString,
         title: String,
         emoji: String,
         dayStartTime: [Int: String],

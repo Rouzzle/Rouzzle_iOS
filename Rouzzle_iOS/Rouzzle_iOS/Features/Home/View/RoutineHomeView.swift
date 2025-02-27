@@ -16,7 +16,6 @@ enum NavigationDestination: Hashable {
 // Main View
 struct RoutineHomeView: View {
     @Query private var routines: [RoutineItem]
-    @Environment(\.modelContext) private var modelContext
     @State private var isShowingAddRoutineSheet: Bool = false
     @State private var path = NavigationPath()
     @State private var routineHomeViewModel = RoutineHomeViewModel()
@@ -54,7 +53,7 @@ struct RoutineHomeView: View {
                 }
             }
             .fullScreenCover(isPresented: $isShowingAddRoutineSheet) {
-                AddRoutineContainerView(modelContext: modelContext)
+                AddRoutineContainerView()
             }
             .refreshable {
                 routineHomeViewModel.updateQuote()
@@ -84,23 +83,12 @@ struct RoutineHomeView: View {
             
         }
         .onAppear {
-            for i in routines {
-                print(i.taskList.count)
-            }
+            print(routines.count)
         }
     }
 }
 
 #Preview {
-    let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: RoutineItem.self, TaskList.self, configurations: config)
-    
-    let context = container.mainContext
-    RoutineItem.sampleData.forEach { routine in
-        context.insert(routine)
-    }
-    
-    return RoutineHomeView()
-        .modelContainer(container)
+    RoutineHomeView()
 }
 

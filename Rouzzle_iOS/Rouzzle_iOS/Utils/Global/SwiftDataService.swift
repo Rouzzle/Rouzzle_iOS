@@ -17,12 +17,17 @@ enum SwiftDataServiceError: Error {
 /// 데이터 관련 작업(루틴, TaskList)을 관리하는 싱글톤 클래스
 @MainActor
 final class SwiftDataService {
+    static private(set) var shared: SwiftDataService!
     
-    var context: ModelContext
+    let context: ModelContext
     
-    // 생성 시 외부에서 ModelContainer 주입
+    // 외부에서 ModelContext를 전달받아 초기화합니다.
     init(context: ModelContext) {
         self.context = context
+    }
+    // 앱 초기화 시 한 번만 호출해서 싱글톤을 구성합니다.
+    static func configure(with context: ModelContext) {
+        shared = SwiftDataService(context: context)
     }
     
     // MARK: - 루틴 관련 메서드
