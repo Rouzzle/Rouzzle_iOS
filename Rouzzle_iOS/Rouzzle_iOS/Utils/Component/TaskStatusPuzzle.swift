@@ -105,7 +105,7 @@ struct TaskStatusRow: View {
             RoundedRectangle(cornerRadius: 12)
                 .fill(backgroundColor)
                 .stroke(
-                    taskStatus == .inProgress ? Color.themeColor.opacity(0.3) : .grayborderline, // inProgress일 때만 테두리
+                    taskStatus == .inProgress ? Color.themeColor.opacity(0.3) : .rzd9D9D9, // inProgress일 때만 테두리
                     lineWidth: 1
                 )
         )
@@ -149,7 +149,7 @@ struct TaskRecommendPuzzle: View {
         .overlay(
             RoundedRectangle(cornerRadius: 12)
                 .stroke(style: StrokeStyle(lineWidth: 1, dash: [6, 3]))
-                .foregroundStyle(.grayborderline)
+                .foregroundStyle(.rzd9D9D9)
         )
         
     }

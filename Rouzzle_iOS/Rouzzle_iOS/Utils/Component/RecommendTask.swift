@@ -37,7 +37,7 @@ struct RecommendTask: View {
                     action()
                 } label: {
                     Image(systemName: isPlus ? "checkmark.circle.fill" : "plus.circle.fill")
-                        .foregroundStyle(isPlus ? .accent : .graylight)
+                        .foregroundStyle(isPlus ? .accent : .rzc1C1C1)
                         .font(.system(size: 24))
                 }
             }

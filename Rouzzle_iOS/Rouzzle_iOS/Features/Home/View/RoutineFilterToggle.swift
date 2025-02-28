@@ -64,7 +64,7 @@ struct RoutineFilterToggle: View {
         .background(
             RoundedRectangle(cornerRadius: 23)
                 .stroke(.white, lineWidth: 1)
-                .background(Color.toggleGray)
+                .background(Color.rzf2F2F2)
                 .clipShape(RoundedRectangle(cornerRadius: 23))
         )
     }
