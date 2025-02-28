@@ -184,11 +184,5 @@ struct RecommendTaskListView: View {
 
 
 #Preview {
-    let modelContainer: ModelContainer
-    do {
-        modelContainer = try ModelContainer(for: RoutineItem.self, TaskList.self)
-    } catch {
-        fatalError("❌ Could not initialize ModelContainer: \(error.localizedDescription)")
-    }
-    return AddRoutineTaskView(viewModel: AddRoutineViewModel(context: modelContainer.mainContext))
+    AddRoutineTaskView(viewModel: AddRoutineViewModel())
 }

@@ -6,18 +6,15 @@
 //
 
 import Foundation
-import Combine
 import Factory
 import SwiftData
 
 @MainActor
 @Observable
 final class AddRoutineViewModel {
-    private let swiftDataService: SwiftDataService
-    init(context: ModelContext) {
-        self.context = context
-        swiftDataService = SwiftDataService(context: context)
-    }
+    @ObservationIgnored
+    @Injected(\.swiftDataService) private var swiftDataService: SwiftDataServiceProtocol
+
     // MARK: - Types
     enum Step: Double {
         case info = 0.5
@@ -37,7 +34,6 @@ final class AddRoutineViewModel {
     var recommendTodoTask: [RecommendTodoTask] = []
     var routineTask: [RoutineTask] = []
     var isCompleted: Bool = false
-    var context: ModelContext
     // MARK: - View 전용 프로퍼티
     var step: Step = .info
     var disabled: Bool {
@@ -141,7 +137,7 @@ final class AddRoutineViewModel {
             alarmIDs: alarms
         )
         for task in routineTask.map({ $0.toTaskList() }) {
-             swiftDataService.addTask(to: newRoutine, task: task)
+            try swiftDataService.addTask(to: newRoutine, task: task)
         }
         // SwiftDataService를 이용해 루틴 추가
         try swiftDataService.addRoutine(newRoutine)

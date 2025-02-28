@@ -10,6 +10,9 @@ import SwiftUI
 struct RoutineTimerView: View {
     var routine: RoutineItem
     var body: some View {
+        ForEach(routine.taskList) { task in
+            Text(task.title)
+        }
         Text("RoutineTimerView")
     }
 }

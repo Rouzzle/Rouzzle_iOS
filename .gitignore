@@ -96,3 +96,6 @@ iOSInjectionProject/
 **/GoogleService-Info.plist
 
 *.xcconfig
+
+# Xcode 사용자별 설정 무시
+**/xcuserdata/
