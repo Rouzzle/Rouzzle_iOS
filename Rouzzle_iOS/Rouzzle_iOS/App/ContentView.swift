@@ -6,19 +6,20 @@
 //
 
 import SwiftUI
-import Combine
+import SwiftData
 
 struct ContentView: View {
-        
+    @Query private var routines: [RoutineItem]
     var body: some View {
+        
         TabView {
-            RoutineHomeView()
+            RoutineHomeView(routines: routines)
                 .tabItem {
                     Text("홈")
                     Image(systemName: "house.fill")
                 }
             
-            StatisticView()
+            StatisticView(routines: routines)
                 .tabItem {
                     Text("통계")
                     Image(systemName: "list.bullet.clipboard.fill")

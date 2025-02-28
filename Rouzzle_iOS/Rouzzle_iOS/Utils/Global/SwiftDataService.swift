@@ -31,7 +31,6 @@ final class SwiftDataServiceImpl: @preconcurrency SwiftDataServiceProtocol {
         self.context = modelContainer.mainContext
     }
     
-    
     // MARK: - 루틴 관련 메서드
     func addRoutine(_ routine: RoutineItem) throws {
         context.insert(routine)

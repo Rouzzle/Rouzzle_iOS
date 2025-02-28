@@ -15,7 +15,7 @@ enum NavigationDestination: Hashable {
 
 // Main View
 struct RoutineHomeView: View {
-    @Query private var routines: [RoutineItem]
+    var routines: [RoutineItem]
     @State private var isShowingAddRoutineSheet: Bool = false
     @State private var path = NavigationPath()
     @State private var routineHomeViewModel = RoutineHomeViewModel()
@@ -86,6 +86,6 @@ struct RoutineHomeView: View {
 }
 
 #Preview {
-    RoutineHomeView()
+    RoutineHomeView(routines: RoutineItem.sampleData)
 }
 

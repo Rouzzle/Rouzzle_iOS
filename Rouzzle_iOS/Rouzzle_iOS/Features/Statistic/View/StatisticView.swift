@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct StatisticView: View {
+    var routines: [RoutineItem]
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("\(routines.count)")
     }
 }
 
 #Preview {
-    StatisticView()
+    StatisticView(routines: RoutineItem.sampleData)
 }
