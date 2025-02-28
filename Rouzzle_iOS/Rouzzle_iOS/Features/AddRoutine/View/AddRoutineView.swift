@@ -39,6 +39,7 @@ struct AddRoutineView: View {
                     .animation(.smooth, value: viewModel.disabled)
                 }
             }
+            .padding(.horizontal)
             .fullScreenCover(isPresented: $showWeekSetTimeView, content: {
                 EmptyView()
             })
@@ -208,5 +209,5 @@ struct RoutineNotificationView: View {
 }
 
 #Preview {
-   AddRoutineView(viewModel: AddRoutineViewModel())
+    AddRoutineView(viewModel: .init())
 }
