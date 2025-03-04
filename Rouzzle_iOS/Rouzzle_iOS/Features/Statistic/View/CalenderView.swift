@@ -23,12 +23,13 @@ struct CalendarView: View {
         VStack(alignment: .center) {
             HStack {
                 Text("월간 요약")
-                    .font(.ptSemiBold(.headline))
-                Button {
-                    
-                } label: {
-                    Text("?")
-                }
+                    .font(.ptSemiBold(.title3))
+                Image(systemName: "questionmark.circle")
+                    .frame(width: 15, height: 15)
+                    .foregroundStyle(.rz747272)
+                    .onTapGesture {
+                        
+                    }
                 Spacer()
                 
                 Button {
@@ -49,6 +50,7 @@ struct CalendarView: View {
                 }
                 
             }
+            .padding()
             HStack {
                 ForEach(weekdaySymbols.indices, id: \.self) { index in
                     Text(weekdaySymbols[index].uppercased())
@@ -56,6 +58,7 @@ struct CalendarView: View {
                         .frame(maxWidth: .infinity)
                 }
             }
+            .padding(.horizontal)
         }
     }
     
@@ -70,7 +73,7 @@ struct CalendarView: View {
         let numberOfRows = Int(ceil(Double(daysInMonth + firstWeekday) / 7.0))
         /// 그리드 전체 셀 수에서 현재 달의 날짜와 첫 주 빈 칸을 뺀 나머지 (다음 달의 보충 날짜)
         let visibleDaysOfNextMonth = numberOfRows * 7 - (daysInMonth + firstWeekday)
-
+        
         return LazyVGrid(columns: Array(repeating: GridItem(), count: 7)) {
             ForEach(-firstWeekday ..< daysInMonth + visibleDaysOfNextMonth, id: \.self) { index in
                 Group {
@@ -97,6 +100,7 @@ struct CalendarView: View {
                 }
             }
         }
+        .padding(.horizontal)
     }
 }
 
@@ -155,26 +159,26 @@ private extension CalendarView {
     
     /// 특정 해당 날짜
     func getDate(for index: Int) -> Date {
-      let calendar = Calendar.current
-      guard let firstDayOfMonth = calendar.date(
-        from: DateComponents(
-          year: calendar.component(.year, from: month),
-          month: calendar.component(.month, from: month),
-          day: 1
-        )
-      ) else {
-        return Date()
-      }
-      
-      var dateComponents = DateComponents()
-      dateComponents.day = index
-      
-      let timeZone = TimeZone.current
-      let offset = Double(timeZone.secondsFromGMT(for: firstDayOfMonth))
-      dateComponents.second = Int(offset)
-      
-      let date = calendar.date(byAdding: dateComponents, to: firstDayOfMonth) ?? Date()
-      return date
+        let calendar = Calendar.current
+        guard let firstDayOfMonth = calendar.date(
+            from: DateComponents(
+                year: calendar.component(.year, from: month),
+                month: calendar.component(.month, from: month),
+                day: 1
+            )
+        ) else {
+            return Date()
+        }
+        
+        var dateComponents = DateComponents()
+        dateComponents.day = index
+        
+        let timeZone = TimeZone.current
+        let offset = Double(timeZone.secondsFromGMT(for: firstDayOfMonth))
+        dateComponents.second = Int(offset)
+        
+        let date = calendar.date(byAdding: dateComponents, to: firstDayOfMonth) ?? Date()
+        return date
     }
     
 }
