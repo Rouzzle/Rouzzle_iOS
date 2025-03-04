@@ -81,10 +81,11 @@ struct RoutineTimerView: View {
                 HStack(spacing: 14) {
                     // 일시정지
                     Button {
-                        
+                        viewModel.toggleTimer()
                     } label: {
                         Image(viewModel.timerState == .paused ? .playIcon : .pauseIcon)
                     }
+                    .disabled(viewModel.inProgressTask?.timer == nil)
                     
                     // 완료 체크
                     Button {
@@ -130,6 +131,9 @@ struct RoutineTimerView: View {
                 .padding(.bottom, 20)
             }
             .padding(.horizontal, 16)
+        }
+        .onAppear {
+            viewModel.startTimer()
         }
     }
 }
