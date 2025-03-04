@@ -20,6 +20,9 @@ final class RoutineItem: Identifiable {
     
     @Relationship(deleteRule: .cascade)
     var taskList: [TaskList] = []
+    
+    @Relationship(deleteRule: .cascade)
+    var history: [RoutineHistory] = []
      
     var isCompleted: Bool {
         return taskList.allSatisfy { $0.isCompleted }
@@ -69,6 +72,22 @@ final class TaskList: Identifiable {
         self.emoji = emoji
         self.timer = timer
         self.isCompleted = isCompleted
+    }
+}
+
+@Model
+final class RoutineHistory: Identifiable {
+    @Attribute(.unique) var id = UUID()
+    var date: Date
+    var isSuccess: Bool
+    
+    @Relationship(inverse: \RoutineItem.history)
+    var routine: RoutineItem?
+    
+    init(date: Date, isSuccess: Bool, routine: RoutineItem? = nil) {
+        self.date = date
+        self.isSuccess = isSuccess
+        self.routine = routine
     }
 }
 
