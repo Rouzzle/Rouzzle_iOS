@@ -10,7 +10,8 @@ import SwiftUI
 struct RoutineTimerView: View {
     @State var viewModel: RoutineTimerViewModel
     @Environment(\.dismiss) private var dismiss
-    
+    @Environment(\.modelContext) private var modelContext
+
     var body: some View {
         ZStack(alignment: .top) {
             // 그라데이션 배경
@@ -89,7 +90,7 @@ struct RoutineTimerView: View {
                     
                     // 완료 체크
                     Button {
-                        
+                        viewModel.markTaskAsCompleted(modelContext)
                     } label: {
                         Image(.checkIcon)
                     }

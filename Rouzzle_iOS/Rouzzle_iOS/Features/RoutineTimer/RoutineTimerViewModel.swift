@@ -61,6 +61,7 @@ final class RoutineTimerViewModel {
     var isRoutineCompleted = false // 모든 작업 완료 여부 체크
     var currentTaskIndex: Int = 0
     var timeRemaining: Int = 0
+    var routineItem: RoutineItem
     private var isResuming = false // 일시정지 후 재개 상태를 추적
     var routineTakeTime: (Date?, Date?) // 루틴 시작 시간 저장
     private var startTime: Date?
@@ -75,6 +76,7 @@ final class RoutineTimerViewModel {
     
     init(routine: RoutineItem) {
         self.viewTasks = routine.taskList
+        self.routineItem = routine
     }
     
     // MARK: - 타이머 시작 함수
@@ -131,5 +133,58 @@ final class RoutineTimerViewModel {
         }
     }
     
-
+    // MARK: - 완료 체크 및 다음 할일로 이동 함수
+    func markTaskAsCompleted(_ context: ModelContext) {
+        guard currentTaskIndex < viewTasks.count else {
+            endRoutine()
+            return
+        }
+        
+        endTime = Date()
+        let elapsedTime = Int(endTime?.timeIntervalSince(startTime ?? Date()) ?? 0) // 루틴 수행 시간
+        
+        viewTasks[currentTaskIndex].elapsedTime = elapsedTime
+        
+        if let modelIndex = routineItem.taskList.firstIndex(where: { $0.id == viewTasks[currentTaskIndex].id }) {
+            routineItem.taskList[modelIndex].isCompleted = true
+            viewTasks[currentTaskIndex].isCompleted = true
+            
+            do {
+                try context.save()
+                startTime = nil
+                endTime = nil
+            } catch {
+                print("할일 완료 실패")
+            }
+        }
+        
+        timer?.invalidate()
+        moveToNextIncompleteTask()
+        
+        if currentTaskIndex < viewTasks.count { // 다음 작업 남아있으면 타이머 재시작
+            timerState = .running
+            startTimer()
+        } else {
+            endRoutine()
+        }
+    }
+    
+    // MARK: - 할일 완료 시 다음 할일로 이동 함수
+    func moveToNextIncompleteTask() {
+        var foundIncompleteTask = false
+        var checkedTasks = 0
+        
+        while checkedTasks < viewTasks.count {
+            currentTaskIndex = (currentTaskIndex + 1) % viewTasks.count
+            checkedTasks += 1
+            if !viewTasks[currentTaskIndex].isCompleted {
+                foundIncompleteTask = true
+                break
+            }
+        }
+        
+        if !foundIncompleteTask {
+            endRoutine()
+        }
+    }
 }
