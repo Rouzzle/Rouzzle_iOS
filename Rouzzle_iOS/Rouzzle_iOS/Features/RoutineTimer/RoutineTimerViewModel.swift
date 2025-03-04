@@ -221,4 +221,25 @@ final class RoutineTimerViewModel {
             endRoutine()
         }
     }
+    
+    // MARK: - 진행 중인 할일 인덱스 초기화
+    func initializeCurrentTaskIndex() {
+        if let index = viewTasks.firstIndex(where: { !$0.isCompleted }) {
+            currentTaskIndex = index
+            return
+        }
+        isRoutineCompleted = true
+    }
+    
+    // MARK: - 모든 할일 완료되면 초기화
+    func resetTask() {
+        print("리셋 테스크")
+    
+        if routineItem.taskList.filter({!$0.isCompleted}).isEmpty && !routineItem.taskList.isEmpty { // 모든일이 완료되었다면 초기화
+            for task in routineItem.taskList {
+                task.isCompleted = false
+                task.elapsedTime = nil
+            }
+        }
+    }
 }

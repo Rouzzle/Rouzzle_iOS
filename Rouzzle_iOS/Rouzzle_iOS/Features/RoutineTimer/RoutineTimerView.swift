@@ -132,11 +132,13 @@ struct RoutineTimerView: View {
                 } label: {
                     Text("할일 전체 보기")
                         .underline()
+                        .font(.ptRegular())
                 }
                 .padding(.bottom, 20)
             }
             .padding(.horizontal, 16)
         }
+        .animation(.smooth, value: viewModel.timerState)
         .sheet(isPresented: $isShowingTaskListSheet) {
             TaskListSheet(
                 tasks: $viewModel.viewTasks,
@@ -146,6 +148,8 @@ struct RoutineTimerView: View {
             .presentationDetents(detents)
         }
         .onAppear {
+            viewModel.resetTask()
+            viewModel.initializeCurrentTaskIndex()
             viewModel.startTimer()
         }
     }
