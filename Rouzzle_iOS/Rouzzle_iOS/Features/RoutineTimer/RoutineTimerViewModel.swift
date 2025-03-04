@@ -202,4 +202,23 @@ final class RoutineTimerViewModel {
             endRoutine()
         }
     }
+    
+    // MARK: - 할일 스킵(inProgress -> pending 변경)
+    func skipTask() {
+        guard !isRoutineCompleted else {
+            timer?.invalidate()
+            return
+        }
+        
+        timer?.invalidate()
+        moveToNextIncompleteTask()
+        
+        if !isRoutineCompleted {
+            timerState = .running
+            isResuming = false
+            startTimer()
+        } else {
+            endRoutine()
+        }
+    }
 }

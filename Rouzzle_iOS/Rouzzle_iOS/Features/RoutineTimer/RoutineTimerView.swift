@@ -97,7 +97,7 @@ struct RoutineTimerView: View {
                     
                     // 건너뛰기
                     Button {
-                        
+                        viewModel.skipTask()
                     } label: {
                         Image(.skipIcon)
                     }
