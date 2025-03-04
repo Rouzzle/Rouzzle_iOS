@@ -10,7 +10,7 @@ import SwiftData
 
 @Model
 final class RoutineItem: Identifiable {
-    @Attribute(.unique) var id: String
+    @Attribute(.unique) var id: UUID
     var title: String
     var emoji: String
     var repeatCount: Int?
@@ -26,7 +26,7 @@ final class RoutineItem: Identifiable {
     }
     
     init(
-        id: String = "",
+        id: UUID = UUID(),
         title: String,
         emoji: String,
         dayStartTime: [Int: String],

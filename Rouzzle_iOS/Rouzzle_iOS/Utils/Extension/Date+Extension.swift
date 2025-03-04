@@ -64,6 +64,13 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    var formattedCalenderDate: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR") // 한국 로케일//
+        formatter.dateFormat = "yyyy.MM"
+        return formatter.string(from: self)
+    }
+    
     var extraData: String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")

@@ -7,24 +7,34 @@
 
 import SwiftUI
 import SwiftData
+import Factory
 
 @main
 struct Rouzzle_iOSApp: App {
-//    let modelContainer: ModelContainer
-//    
-//    init() {
-//        do {
-//            modelContainer = try ModelContainer(for: RoutineItem.self, TaskList.self)
-//        } catch {
-//            fatalError("❌ Could not initialize ModelContainer: \(error.localizedDescription)")
-//        }
-//    }
+    let modelContainer: ModelContainer
+    
+    init() {
+        do {
+#if DEBUG
+            if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] != nil { // 프리뷰에서 사용될 모델 컨테이너 
+                let config = ModelConfiguration(isStoredInMemoryOnly: true)
+                modelContainer = try ModelContainer(for: RoutineItem.self, TaskList.self, configurations: config)
+            } else {
+                modelContainer = try ModelContainer(for: RoutineItem.self, TaskList.self)
+            }
+#else
+            modelContainer = try ModelContainer(for: RoutineItem.self, TaskList.self)
+#endif
+        } catch {
+            fatalError("❌ ModelContainer 초기화 실패: \(error.localizedDescription)")
+        }
+        Container.modelContainer = modelContainer  // Container의 전역 변수에 주입
+    }
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .modelContainer(for: [RoutineItem.self, TaskList.self])
+                .modelContainer(modelContainer) // ContentView에 동일한 ModelContainer 전달
         }
     }
 }
-

@@ -39,6 +39,7 @@ struct AddRoutineView: View {
                     .animation(.smooth, value: viewModel.disabled)
                 }
             }
+            .padding(.horizontal)
             .fullScreenCover(isPresented: $showWeekSetTimeView, content: {
                 EmptyView()
             })
@@ -208,12 +209,5 @@ struct RoutineNotificationView: View {
 }
 
 #Preview {
-    let modelContainer: ModelContainer
-    do {
-        modelContainer = try ModelContainer(for: RoutineItem.self, TaskList.self)
-    } catch {
-        fatalError("❌ Could not initialize ModelContainer: \(error.localizedDescription)")
-    }
-    return AddRoutineView(viewModel: AddRoutineViewModel(context: modelContainer.mainContext ))
-
+    AddRoutineView(viewModel: .init())
 }

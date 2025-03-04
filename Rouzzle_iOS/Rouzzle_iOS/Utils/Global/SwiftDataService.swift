@@ -14,15 +14,21 @@ enum SwiftDataServiceError: Error {
     case deleteFailed(Error)
 }
 
+protocol SwiftDataServiceProtocol {
+    func addRoutine(_ routine: RoutineItem) throws
+    func deleteRoutine(_ routine: RoutineItem) throws
+    func deleteAllRoutines() throws
+    func resetRoutine(from routine: RoutineItem) throws
+    func addTask(to routineItem: RoutineItem, task: TaskList) throws
+    func deleteTask(from routineItem: RoutineItem, task: TaskList) throws
+}
 /// 데이터 관련 작업(루틴, TaskList)을 관리하는 싱글톤 클래스
 @MainActor
-final class SwiftDataService {
-    
-    var context: ModelContext
-    
-    // 생성 시 외부에서 ModelContainer 주입
-    init(context: ModelContext) {
-        self.context = context
+final class SwiftDataServiceImpl: @preconcurrency SwiftDataServiceProtocol {
+    let context: ModelContext
+
+    init(modelContainer: ModelContainer) {
+        self.context = modelContainer.mainContext
     }
     
     // MARK: - 루틴 관련 메서드
