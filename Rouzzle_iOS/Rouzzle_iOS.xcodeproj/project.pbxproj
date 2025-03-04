@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		238B0AA72D76BD2F00CC5AAB /* RecommendedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238B0AA62D76BD2F00CC5AAB /* RecommendedSet.swift */; };
 		BD34AD222D2927D60031548C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD34AD1E2D2927D60031548C /* ContentView.swift */; };
 		BD34AD242D2927D60031548C /* Rouzzle_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD34AD202D2927D60031548C /* Rouzzle_iOSApp.swift */; };
 		BD34AD262D2927D60031548C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD34AD1D2D2927D60031548C /* Assets.xcassets */; };
@@ -64,6 +65,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		238B0AA62D76BD2F00CC5AAB /* RecommendedSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedSet.swift; sourceTree = "<group>"; };
 		BD34AD082D2927C80031548C /* Rouzzle_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rouzzle_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD34AD1D2D2927D60031548C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD34AD1E2D2927D60031548C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				BD764D4E2D313394008E94E5 /* RecommendView.swift */,
+				238B0AA62D76BD2F00CC5AAB /* RecommendedSet.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				BD764D972D337D04008E94E5 /* EmojiSearchKeywords.swift in Sources */,
 				BD764DBD2D3CC907008E94E5 /* SwiftDataService.swift in Sources */,
 				BD764D982D337D04008E94E5 /* EmojiCategory.swift in Sources */,
+				238B0AA72D76BD2F00CC5AAB /* RecommendedSet.swift in Sources */,
 				BD764D992D337D04008E94E5 /* EmojiPickerViewModel.swift in Sources */,
 				BD764D9A2D337D04008E94E5 /* EmojiPickerView.swift in Sources */,
 				BD764DC22D3CCF2D008E94E5 /* NewTaskSheetView.swift in Sources */,
