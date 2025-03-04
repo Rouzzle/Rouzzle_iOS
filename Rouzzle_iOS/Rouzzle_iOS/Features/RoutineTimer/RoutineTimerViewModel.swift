@@ -74,6 +74,21 @@ final class RoutineTimerViewModel {
         return viewTasks[currentTaskIndex] // 진행 중인 작업 가져옴
     }
     
+    var nextPendingTask: TaskList? {
+        let totalTasks = viewTasks.count
+        var nextIndex = currentTaskIndex
+        var checkedTasks = 0
+
+        while checkedTasks < totalTasks {
+            nextIndex = (nextIndex + 1) % totalTasks
+            checkedTasks += 1
+            if !viewTasks[nextIndex].isCompleted && nextIndex != currentTaskIndex {
+                return viewTasks[nextIndex]
+            }
+        }
+        return nil
+    }
+    
     init(routine: RoutineItem) {
         self.viewTasks = routine.taskList
         self.routineItem = routine

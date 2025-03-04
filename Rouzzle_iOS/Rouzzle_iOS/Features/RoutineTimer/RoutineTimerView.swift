@@ -110,15 +110,17 @@ struct RoutineTimerView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.top, 30)
                 
-                TaskStatusRow(
-                    taskStatus: .pending,
-                    emojiText: "🧼",
-                    title: "설거지 하기",
-                    timeInterval: 180,
-                    showEditIcon: .constant(false),
-                    showDeleteIcon: .constant(false)
-                )
-                .padding(.top, 18)
+                if let nextTask = viewModel.nextPendingTask {
+                    TaskStatusRow(
+                        taskStatus: .pending,
+                        emojiText: nextTask.emoji,
+                        title: nextTask.title,
+                        timeInterval: nextTask.timer,
+                        showEditIcon: .constant(false),
+                        showDeleteIcon: .constant(false)
+                    )
+                    .padding(.top, 18)
+                }
                 
                 Spacer()
                 
