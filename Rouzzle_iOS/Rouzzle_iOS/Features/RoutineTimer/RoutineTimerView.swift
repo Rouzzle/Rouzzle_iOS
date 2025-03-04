@@ -11,6 +11,8 @@ struct RoutineTimerView: View {
     @State var viewModel: RoutineTimerViewModel
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
+    @State var isShowingTaskListSheet: Bool = false
+    @State private var detents: Set<PresentationDetent> = [.fraction(0.5)]
 
     var body: some View {
         ZStack(alignment: .top) {
@@ -126,7 +128,7 @@ struct RoutineTimerView: View {
                 
                 // MARK: - 할일 전체 보기
                 Button {
-                    
+                    isShowingTaskListSheet.toggle()
                 } label: {
                     Text("할일 전체 보기")
                         .underline()
@@ -134,6 +136,14 @@ struct RoutineTimerView: View {
                 .padding(.bottom, 20)
             }
             .padding(.horizontal, 16)
+        }
+        .sheet(isPresented: $isShowingTaskListSheet) {
+            TaskListSheet(
+                tasks: $viewModel.viewTasks,
+                detents: $detents,
+                inProgressTask: viewModel.inProgressTask
+            )
+            .presentationDetents(detents)
         }
         .onAppear {
             viewModel.startTimer()
