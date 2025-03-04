@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct RoutineTimerView: View {
-    var routine: RoutineItem
-    @State var viewModel: RoutineTimerViewModel = RoutineTimerViewModel()
+    @State var viewModel: RoutineTimerViewModel
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -34,10 +33,12 @@ struct RoutineTimerView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 
-                // MARK: - 루틴 이름
-                Text("💊 유산균 먹기")
-                    .font(.ptBold(size: 24))
-                    .padding(.top, 20)
+                // MARK: - 할일 이름
+                if let inProgressTask = viewModel.inProgressTask {
+                    Text("\(inProgressTask.emoji) \(inProgressTask.title)")
+                        .font(.ptBold(size: 24))
+                        .padding(.top, 20)
+                }
                 
                 // MARK: - 퍼즐 모양 타이머
                 ZStack {
@@ -112,14 +113,9 @@ struct RoutineTimerView: View {
             }
             .padding(.horizontal, 16)
         }
-        
-        // 루틴 나열
-//        ForEach(routine.taskList) { task in
-//            Text(task.title)
-//        }
     }
 }
 
 #Preview {
-    RoutineTimerView(routine: RoutineItem.sampleData[0], viewModel: .init())
+    RoutineTimerView(viewModel: .init(routine: RoutineItem.sampleData[0]))
 }

@@ -77,7 +77,7 @@ struct RoutineHomeView: View {
             .navigationDestination(for: NavigationDestination.self) { destination in
                 switch destination {
                 case .routineTimerView(let routine):
-                    RoutineTimerView(routine: routine)
+                    RoutineTimerView(viewModel: RoutineTimerViewModel(routine: routine))
                 }
             }
             

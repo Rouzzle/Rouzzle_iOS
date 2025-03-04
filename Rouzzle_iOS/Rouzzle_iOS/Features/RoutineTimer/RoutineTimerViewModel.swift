@@ -56,4 +56,18 @@ final class RoutineTimerViewModel {
     
     // MARK: - ViewModel
     var timerState: TimerState = .running
+    var viewTasks: [TaskList] = []
+    var isRoutineCompleted = false // 모든 작업 완료 여부 체크
+    var currentTaskIndex: Int = 0
+    
+    var inProgressTask: TaskList? {
+        if viewTasks.isEmpty || isRoutineCompleted {
+            return nil // 진행 중인 작업이 없음
+        }
+        return viewTasks[currentTaskIndex] // 진행 중인 작업 가져옴
+    }
+    
+    init(routine: RoutineItem) {
+        self.viewTasks = routine.taskList
+    }
 }
