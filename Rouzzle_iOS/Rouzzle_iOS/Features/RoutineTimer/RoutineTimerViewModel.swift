@@ -59,6 +59,7 @@ final class RoutineTimerViewModel {
     var viewTasks: [TaskList] = []
     var isRoutineCompleted = false // 모든 작업 완료 여부 체크
     var currentTaskIndex: Int = 0
+    var timeRemaining: Int = 0
     
     var inProgressTask: TaskList? {
         if viewTasks.isEmpty || isRoutineCompleted {

@@ -48,13 +48,31 @@ struct RoutineTimerView: View {
                         .foregroundStyle(viewModel.timerState.puzzleTimerColor)
                     
                     VStack {
-                        Text("04:39")
-                            .font(.ptBold(size: 66))
-                            .foregroundStyle(.white)
+                        if viewModel.inProgressTask?.timer != nil { // 시간 있는 할일
+                            if viewModel.timeRemaining >= 0 {
+                                Text(viewModel.timeRemaining.toTimeString())
+                                    .font(.ptBold(size: 66))
+                                    .foregroundStyle(.white)
+                            } else { // 할일 시간 초과
+                                Text("+\(abs(viewModel.timeRemaining).toTimeString())")
+                                    .font(.ptBold(size: 66))
+                                    .foregroundStyle(viewModel.timerState == .paused ? .white : .overtimeText)
+                            }
+                        } else { // 시간 없는 할일
+                            Text("Check!")
+                                .font(.ptBold(size: 66))
+                                .foregroundStyle(.white)
+                        }
                         
-                        Text("5분")
-                            .font(.ptRegular())
-                            .foregroundStyle(viewModel.timerState.timeTextColor)
+                        if let timerValue = viewModel.inProgressTask?.timer {
+                            let minutes = timerValue / 60
+                            let seconds = timerValue % 60
+                            Text(minutes > 0 ? "\(minutes)분" : "\(seconds)초")
+                                .font(.ptRegular())
+                                .foregroundStyle(viewModel.timerState.timeTextColor)
+                        } else {
+                            Text("")
+                        }
                     }
                 }
                 .padding(.top, 30)
