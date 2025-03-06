@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9701CC092D75F37400CBFA5D /* RoutineTimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9701CC082D75F37400CBFA5D /* RoutineTimerViewModel.swift */; };
+		9701CC0B2D76EA9D00CBFA5D /* TaskListSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9701CC0A2D76EA9D00CBFA5D /* TaskListSheet.swift */; };
 		238B0AA72D76BD2F00CC5AAB /* RecommendedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238B0AA62D76BD2F00CC5AAB /* RecommendedSet.swift */; };
 		BD34AD222D2927D60031548C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD34AD1E2D2927D60031548C /* ContentView.swift */; };
 		BD34AD242D2927D60031548C /* Rouzzle_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD34AD202D2927D60031548C /* Rouzzle_iOSApp.swift */; };
@@ -65,6 +67,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9701CC082D75F37400CBFA5D /* RoutineTimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTimerViewModel.swift; sourceTree = "<group>"; };
+		9701CC0A2D76EA9D00CBFA5D /* TaskListSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListSheet.swift; sourceTree = "<group>"; };
 		238B0AA62D76BD2F00CC5AAB /* RecommendedSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedSet.swift; sourceTree = "<group>"; };
 		BD34AD082D2927C80031548C /* Rouzzle_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rouzzle_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD34AD1D2D2927D60031548C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -176,6 +180,8 @@
 			isa = PBXGroup;
 			children = (
 				BD35566D2D6DF7030034F0CD /* RoutineTimerView.swift */,
+				9701CC0A2D76EA9D00CBFA5D /* TaskListSheet.swift */,
+				9701CC082D75F37400CBFA5D /* RoutineTimerViewModel.swift */,
 			);
 			path = RoutineTimer;
 			sourceTree = "<group>";
@@ -544,6 +550,7 @@
 				BD764D4F2D313394008E94E5 /* RecommendView.swift in Sources */,
 				BD764D972D337D04008E94E5 /* EmojiSearchKeywords.swift in Sources */,
 				BD764DBD2D3CC907008E94E5 /* SwiftDataService.swift in Sources */,
+				9701CC092D75F37400CBFA5D /* RoutineTimerViewModel.swift in Sources */,
 				BD764D982D337D04008E94E5 /* EmojiCategory.swift in Sources */,
 				238B0AA72D76BD2F00CC5AAB /* RecommendedSet.swift in Sources */,
 				BD764D992D337D04008E94E5 /* EmojiPickerViewModel.swift in Sources */,
@@ -561,6 +568,7 @@
 				BD764D472D313320008E94E5 /* RoutineHomeView.swift in Sources */,
 				BD764D7B2D337090008E94E5 /* Untitled.swift in Sources */,
 				BD764D452D312932008E94E5 /* RoutineItem.swift in Sources */,
+				9701CC0B2D76EA9D00CBFA5D /* TaskListSheet.swift in Sources */,
 				BD764DA82D378764008E94E5 /* RecommendTaskData.swift in Sources */,
 				BD764DA62D3786FC008E94E5 /* RouzzleButton.swift in Sources */,
 				BD34AD242D2927D60031548C /* Rouzzle_iOSApp.swift in Sources */,
