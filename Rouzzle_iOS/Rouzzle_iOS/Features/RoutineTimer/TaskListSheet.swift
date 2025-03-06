@@ -13,6 +13,7 @@ struct TaskListSheet: View {
     @Environment(\.dismiss) private var dismiss
     @State private var draggedItem: TaskList?
     @State private var showEditIcon = false
+    @State private var tempTasks: [TaskList] = []
     var inProgressTask: TaskList?
     
     var body: some View {
@@ -23,7 +24,7 @@ struct TaskListSheet: View {
 
             ScrollView {
                 VStack(spacing: 20) {
-                    ForEach(tasks) { task in
+                    ForEach(showEditIcon ? tempTasks : tasks) { task in
                         if showEditIcon {
                             // 순서 수정 버튼 눌렀을 때
                             TaskStatusRow(
@@ -33,9 +34,7 @@ struct TaskListSheet: View {
                                 timeInterval: task.elapsedTime ?? task.timer,
                                 showEditIcon: $showEditIcon,
                                 showDeleteIcon: .constant(false),
-                                onDelete: {
-                                    // onDelete(task)
-                                }
+                                onDelete: {}
                             )
                             .onDrag {
                                 self.draggedItem = task
@@ -45,7 +44,7 @@ struct TaskListSheet: View {
                                 of: [.text],
                                 delegate: DropViewDelegate(
                                     item: task,
-                                    items: $tasks,
+                                    items: $tempTasks,
                                     draggedItem: $draggedItem
                                 )
                             )
@@ -68,6 +67,7 @@ struct TaskListSheet: View {
             
             if showEditIcon {
                 Button {
+                    tasks = tempTasks
                     dismiss()
                 } label: {
                     Text("완료")
@@ -77,6 +77,7 @@ struct TaskListSheet: View {
                 .padding(.bottom, 20)
             } else {
                 Button {
+                    tempTasks = tasks
                     showEditIcon.toggle()
                 } label: {
                     Text("순서 수정")
