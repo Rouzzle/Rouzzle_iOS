@@ -24,11 +24,11 @@ struct TaskListSheet: View {
 
             ScrollView {
                 VStack(spacing: 20) {
-                    ForEach(showEditIcon ? tempTasks : tasks) { task in
+                    // 미완료 할일 드래그앤드롭 가능(편집 모드)
+                    ForEach(showEditIcon ? tempTasks.filter { !$0.isCompleted } : tasks.filter { !$0.isCompleted }) { task in
                         if showEditIcon {
-                            // 순서 수정 버튼 눌렀을 때
                             TaskStatusRow(
-                                taskStatus: task.isCompleted ? .completed : .pending,
+                                taskStatus: .pending,
                                 emojiText: task.emoji,
                                 title: task.title,
                                 timeInterval: task.elapsedTime ?? task.timer,
@@ -49,10 +49,8 @@ struct TaskListSheet: View {
                                 )
                             )
                         } else {
-                            // 순서 수정 버튼 안 눌렀을 때
                             TaskStatusRow(
-                                taskStatus: task.id == inProgressTask?.id ? .inProgress :
-                                    (task.isCompleted ? .completed : .pending),
+                                taskStatus: task.id == inProgressTask?.id ? .inProgress : .pending,
                                 emojiText: task.emoji,
                                 title: task.title,
                                 timeInterval: task.elapsedTime ?? task.timer,
@@ -60,6 +58,19 @@ struct TaskListSheet: View {
                                 showDeleteIcon: .constant(false)
                             )
                         }
+                    }
+                    
+                    // 완료된 할일 드래그앤드롭 불가, 밑으로 정렬
+                    ForEach(showEditIcon ? tempTasks.filter { $0.isCompleted } : tasks.filter { $0.isCompleted }) { task in
+                        TaskStatusRow(
+                            taskStatus: .completed,
+                            emojiText: task.emoji,
+                            title: task.title,
+                            timeInterval: task.elapsedTime ?? task.timer,
+                            showEditIcon: $showEditIcon,
+                            showDeleteIcon: .constant(false),
+                            onDelete: {}
+                        )
                     }
                 }
                 .padding()
