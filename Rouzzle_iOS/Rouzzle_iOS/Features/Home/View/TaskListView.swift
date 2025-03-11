@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import Factory
 
 struct TaskListView: View {
     let routine: RoutineItem
     @Binding var path: NavigationPath
+    @Injected(\.swiftDataService) private var swiftDataService: SwiftDataServiceProtocol
+
     @State private var showTimerView = false
     @State private var isShowingRoutineSettingsSheet: Bool = false
     @State private var detents: Set<PresentationDetent> = [.fraction(0.12)]
@@ -45,14 +48,22 @@ struct TaskListView: View {
             message: "삭제 버튼 선택 시, 루틴 데이터는\n삭제되며 복구되지 않습니다.",
             primaryButtonTitle: "삭제",
             primaryAction: {
-//                routineStore.deleteRoutine(
-//                    modelContext: modelContext,
-//                    completeAction: completeAction,
-//                    dismiss: { dismiss() }
-//                )
-                dismiss()
+                do {
+                    try swiftDataService.deleteRoutine(routine)
+                    dismiss()
+                } catch {
+                    print("루틴 삭제 실패: \(error.localizedDescription)")
+                }
             }
         )
+        .fullScreenCover(isPresented: $isShowingEditRoutineSheet) {
+            
+//            EditRoutineView(viewModel: EditRoutineViewModel(routine: routineStore.selectedRoutineItem!)) { _ in
+//                routineStore.loadState = .completed
+//                routineStore.toastMessage = "수정에 성공했습니다."
+//                routineStore.fetchViewTask()
+//            }
+        }
     }
 }
 
