@@ -20,6 +20,18 @@ struct RoutineHomeView: View {
     @State private var path = NavigationPath()
     @State private var routineHomeViewModel = RoutineHomeViewModel()
     @State private var selectedFilter = false
+
+    var filteredRoutines: [RoutineItem] {
+        if selectedFilter {
+            let today = Calendar.current.component(.weekday, from: Date())
+            return routines.filter { routine in
+                routine.dayStartTime.keys.contains(today)
+            }
+        } else {
+            return routines
+        }
+    }
+    
     var body: some View {
         NavigationStack(path: $path) {
             ScrollView {
@@ -36,7 +48,7 @@ struct RoutineHomeView: View {
                 .padding(.horizontal)
                 .padding(.bottom)
                 
-                ForEach(routines) { routine in
+                ForEach(filteredRoutines) { routine in
                     RoutineItemView(routine: routine) {
                         path.append(NavigationDestination.routineTimerView(routine: routine))
                     }

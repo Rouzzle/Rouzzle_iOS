@@ -11,7 +11,6 @@ import SwiftUI
 @Observable
 final class RoutineHomeViewModel {
     var currentQuote = QuotesProvider.shared.provideQuote()
-
     func updateQuote() {
         currentQuote = QuotesProvider.shared.provideQuote()
     }
