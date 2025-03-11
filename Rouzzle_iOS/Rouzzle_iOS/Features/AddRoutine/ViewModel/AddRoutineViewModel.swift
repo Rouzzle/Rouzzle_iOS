@@ -20,7 +20,7 @@ final class AddRoutineViewModel {
         case info = 0.5
         case task = 1.0
     }
-        
+
     // MARK: - RoutineItem 업데이트 관련 프로퍼티
     var title: String = ""
     var emoji: String? = "🧩"

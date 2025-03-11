@@ -93,15 +93,26 @@ final class RoutineHistory: Identifiable {
 
 extension RoutineItem {
     static let sampleData: [RoutineItem] = [
-        RoutineItem(title: "아침 루틴", emoji: "🚬", dayStartTime: [1: "06:30"]),
-        RoutineItem(title: "저녁 루틴", emoji: "🍺", dayStartTime: [1: "12:00"]),
-        RoutineItem(title: "운동 루틴", emoji: "💪🏼", dayStartTime: [1: "18:00"])
+        {
+            let routine = RoutineItem(title: "아침 루틴", emoji: "🚬", dayStartTime: [3: "06:30"])
+            routine.taskList = TaskList.sampleData
+            return routine
+        }(),
+        {
+            let routine = RoutineItem(title: "저녁 루틴", emoji: "🍺", dayStartTime: [3: "12:00"])
+            routine.taskList = TaskList.sampleData
+            return routine
+        }(),
+        {
+            let routine = RoutineItem(title: "운동 루틴", emoji: "💪🏼", dayStartTime: [1: "18:00"])
+            routine.taskList = TaskList.sampleData
+            return routine
+        }()
     ]
 }
-
 extension TaskList {
     static let sampleData: [TaskList] = [
-        TaskList(title: "밥 먹기", emoji: "🍚", timer: 3, isCompleted: false),
+        TaskList(title: "밥 먹기", emoji: "🍚", timer: 3, isCompleted: true),
         TaskList(title: "양치 하기", emoji: "🪥", timer: 3, isCompleted: false),
         TaskList(title: "술 마시기", emoji: "🍺", timer: 30, isCompleted: false)
     ]
