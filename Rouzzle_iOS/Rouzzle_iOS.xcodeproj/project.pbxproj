@@ -21,6 +21,10 @@
 		BD35566E2D6DF7030034F0CD /* RoutineTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD35566D2D6DF7030034F0CD /* RoutineTimerView.swift */; };
 		BD3556722D7189800034F0CD /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3556712D7189800034F0CD /* Container.swift */; };
 		BD3556742D8025F80034F0CD /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3556732D8025F80034F0CD /* String+Extension.swift */; };
+		BD3556762D802C250034F0CD /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3556752D802C250034F0CD /* TaskListView.swift */; };
+		BD3556782D8044CE0034F0CD /* NavigationBackButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3556772D8044CE0034F0CD /* NavigationBackButtonModifier.swift */; };
+		BD35567A2D8046410034F0CD /* RoutineSettingsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3556792D8046410034F0CD /* RoutineSettingsSheet.swift */; };
+		BD35567C2D804BEE0034F0CD /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD35567B2D804BEE0034F0CD /* CustomAlert.swift */; };
 		BD764D452D312932008E94E5 /* RoutineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D442D312932008E94E5 /* RoutineItem.swift */; };
 		BD764D472D313320008E94E5 /* RoutineHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D462D313320008E94E5 /* RoutineHomeView.swift */; };
 		BD764D4F2D313394008E94E5 /* RecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764D4E2D313394008E94E5 /* RecommendView.swift */; };
@@ -83,6 +87,10 @@
 		BD35566D2D6DF7030034F0CD /* RoutineTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTimerView.swift; sourceTree = "<group>"; };
 		BD3556712D7189800034F0CD /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		BD3556732D8025F80034F0CD /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		BD3556752D802C250034F0CD /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
+		BD3556772D8044CE0034F0CD /* NavigationBackButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBackButtonModifier.swift; sourceTree = "<group>"; };
+		BD3556792D8046410034F0CD /* RoutineSettingsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineSettingsSheet.swift; sourceTree = "<group>"; };
+		BD35567B2D804BEE0034F0CD /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		BD764D442D312932008E94E5 /* RoutineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineItem.swift; sourceTree = "<group>"; };
 		BD764D462D313320008E94E5 /* RoutineHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineHomeView.swift; sourceTree = "<group>"; };
 		BD764D4E2D313394008E94E5 /* RecommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendView.swift; sourceTree = "<group>"; };
@@ -234,6 +242,8 @@
 			children = (
 				BD764D462D313320008E94E5 /* RoutineHomeView.swift */,
 				BD3556632D6C4E3E0034F0CD /* RoutineFilterToggle.swift */,
+				BD3556752D802C250034F0CD /* TaskListView.swift */,
+				BD3556792D8046410034F0CD /* RoutineSettingsSheet.swift */,
 				BD35565B2D6C46770034F0CD /* RoutineItemView.swift */,
 				BD3556592D6C46530034F0CD /* HeaderView.swift */,
 			);
@@ -376,6 +386,8 @@
 				BD764D882D3378F4008E94E5 /* RouzzleTextField.swift */,
 				BD764DA32D3780B0008E94E5 /* RouzzlePicker.swift */,
 				BD764DA52D3786FC008E94E5 /* RouzzleButton.swift */,
+				BD3556772D8044CE0034F0CD /* NavigationBackButtonModifier.swift */,
+				BD35567B2D804BEE0034F0CD /* CustomAlert.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -541,10 +553,12 @@
 				BD764DA42D3780B0008E94E5 /* RouzzlePicker.swift in Sources */,
 				BD764DB62D3CC02B008E94E5 /* RoutineCategoryByTime.swift in Sources */,
 				BD35565A2D6C46530034F0CD /* HeaderView.swift in Sources */,
+				BD35567C2D804BEE0034F0CD /* CustomAlert.swift in Sources */,
 				BD764D9F2D33B5C7008E94E5 /* EmojiButton.swift in Sources */,
 				BD764DAA2D37880A008E94E5 /* Date+Extension.swift in Sources */,
 				BD764D9D2D337D55008E94E5 /* Day.swift in Sources */,
 				BD3556742D8025F80034F0CD /* String+Extension.swift in Sources */,
+				BD35567A2D8046410034F0CD /* RoutineSettingsSheet.swift in Sources */,
 				BD764D732D31552E008E94E5 /* Color+Extension.swift in Sources */,
 				BDC8BD7D2D6475230048CA54 /* TaskStatusPuzzle.swift in Sources */,
 				BD34AD222D2927D60031548C /* ContentView.swift in Sources */,
@@ -572,10 +586,12 @@
 				BD764D472D313320008E94E5 /* RoutineHomeView.swift in Sources */,
 				BD764D7B2D337090008E94E5 /* Untitled.swift in Sources */,
 				BD764D452D312932008E94E5 /* RoutineItem.swift in Sources */,
+				BD3556762D802C250034F0CD /* TaskListView.swift in Sources */,
 				9701CC0B2D76EA9D00CBFA5D /* TaskListSheet.swift in Sources */,
 				BD764DA82D378764008E94E5 /* RecommendTaskData.swift in Sources */,
 				BD764DA62D3786FC008E94E5 /* RouzzleButton.swift in Sources */,
 				BD34AD242D2927D60031548C /* Rouzzle_iOSApp.swift in Sources */,
+				BD3556782D8044CE0034F0CD /* NavigationBackButtonModifier.swift in Sources */,
 				BD764DC02D3CCEA5008E94E5 /* BorderModifier.swift in Sources */,
 				BD764D7F2D33713D008E94E5 /* AddRoutineContainerView.swift in Sources */,
 			);
