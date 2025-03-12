@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CalendarView: View {
-    @State var month: Date = Date()
+    @Binding var month: Date
     let weekdaySymbols: [String] = Calendar.current.shortWeekdaySymbols
     
     var body: some View {
@@ -105,7 +105,7 @@ struct CalendarView: View {
 }
 
 #Preview {
-    CalendarView()
+    CalendarView(month: .constant(.init()))
 }
 
 private extension CalendarView {
