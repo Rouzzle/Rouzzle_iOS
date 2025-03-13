@@ -62,14 +62,16 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         let calendar = Calendar.current
         
         for (weekday, startDate) in schedule {
+            // startDate로부터 시, 분 추출
             let baseComponents = calendar.dateComponents([.weekday, .hour, .minute], from: startDate)
             
+            // 선택한 요일마다 (repetitionCount + 1)회의 알림 예약
             for index in 0...repetitionCount {
                 var triggerComponents = DateComponents()
                 triggerComponents.weekday = weekday
                 
                 if let baseHour = baseComponents.hour, let baseMinute = baseComponents.minute {
-                    // 기준시간 생성(날짜 임의 지정)
+                    // 임의의 날짜 기준으로 index에 따른 간격 추가
                     let baseDate = calendar.date(from: DateComponents(year: 2000, month: 1, day: 1, hour: baseHour, minute: baseMinute))!
                     // index에 따른 간격 추가
                     let newDate = calendar.date(byAdding: .minute, value: index * intervalMinutes, to: baseDate)!
@@ -82,7 +84,6 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
                 content.title = title
                 content.body = body
                 content.sound = .default
-                // 나중에 루틴 상태 체크 활용 -> routineID를 userInfo에 포함
                 content.userInfo = ["routineID": routineID]
                 
                 // 매주 해당 요일/시간에 반복하도록 trigger
@@ -99,6 +100,23 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
                 }
             }
         }
+    }
+    
+    // 헬퍼: 지정된 요일과 시각에 대해 다음 발생 시점을 계산
+    func nextTriggerDate(for weekday: Int, hour: Int, minute: Int) -> Date {
+        let calendar = Calendar.current
+        let now = Date()
+        var components = DateComponents()
+        components.weekday = weekday
+        components.hour = hour
+        components.minute = minute
+        components.second = 0
+        
+        // now 이후의 다음 발생 시점 계산 (matchPolicy: .nextTime
+        if let nextDate = calendar.nextDate(after: now, matching: components, matchingPolicy: .nextTime) {
+            return nextDate
+        }
+        return now
     }
     
     // 루틴 상태 체크 (알림 발생 직전에 호출)
