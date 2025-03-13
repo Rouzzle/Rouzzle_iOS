@@ -132,7 +132,7 @@ struct RoutineBasicSettingView: View {
 
 struct RoutineNotificationView: View {
     @Bindable var viewModel: AddRoutineViewModel
-    @State private var isOneAlarm: Bool = false
+    //@State private var isOneAlarm: Bool = false
     
     var body: some View {
         VStack(spacing: 20) {
@@ -152,14 +152,14 @@ struct RoutineNotificationView: View {
                 HStack(spacing: 10) {
                     Text("알림 빈도")
                         .font(.headline)
-                    Image(systemName: isOneAlarm ? "checkmark.square" : "square")
+                    Image(systemName: viewModel.isOneAlarm ? "checkmark.square" : "square")
                     Text("1회만")
                         .font(.ptRegular())
-                        .foregroundStyle(isOneAlarm ? .black : .gray)
+                        .foregroundStyle(viewModel.isOneAlarm ? .black : .gray)
                     Spacer()
                 }
                 .onTapGesture {
-                    isOneAlarm.toggle()
+                    viewModel.isOneAlarm.toggle()
                 }
                 
                 HStack(spacing: 10) {
@@ -178,7 +178,7 @@ struct RoutineNotificationView: View {
                     )
                     
                     Text("간격으로")
-                        .foregroundStyle(isOneAlarm ? .gray : .primary)
+                        .foregroundStyle(viewModel.isOneAlarm ? .gray : .primary)
                     
                     // 횟수 선택
                     RouzzlePicker(
@@ -195,7 +195,7 @@ struct RoutineNotificationView: View {
                     )
                     
                     Text("알려드릴게요")
-                        .foregroundStyle(isOneAlarm ? .gray : .primary)
+                        .foregroundStyle(viewModel.isOneAlarm ? .gray : .primary)
                     
                     Spacer()
                 }
