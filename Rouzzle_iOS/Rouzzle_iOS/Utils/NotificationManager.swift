@@ -4,6 +4,10 @@
 //
 //  Created by 이다영 on 3/13/25.
 //
+// 1. 루틴 생성 시, 알림 생성
+// 2. 루틴 수정 시, 알림 수정
+// 3. 루친 삭제 시, 알림 삭제
+// 4. 루틴이 이미 실행 중 or 실행 완료 -> 울릴 예정이었던 알림 패스
 
 import Foundation
 import UserNotifications
@@ -26,7 +30,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         }
     }
     
-    // ✅ 알림 생성 (단일 & 반복 통합)
+    // ✅ 단일 알림 생성(1회만)
     func scheduleNotification(id: String, title: String, body: String, date: Date, repeats: Bool = false) {
         
         let content = UNMutableNotificationContent()
@@ -44,6 +48,68 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         }
     }
     
+    // ✅ 반복 알림 생성(반복 간격, 횟수)
+    /// - Parameters:
+    ///   - routineID: 루틴 고유 식별자
+    ///   - title: 알림 제목 (예: 루틴 이름)
+    ///   - body: 알림 내용
+    ///   - daysOfWeek: 알림을 울릴 요일 배열 (iOS에서는 일요일=1, 월요일=2, ...)
+    ///   - startTime: 알림 시작 시간 (DateComponents의 hour, minute 사용)
+    ///   - repetitionCount: 추가 알림 횟수 (총 알림 횟수는 repetitionCount + 1)
+    ///   - intervalMinutes: 알림 간격 (분 단위)
+    func scheduleRoutineNotification(routineID: String, title: String, body: String, schedule: [Int: Date], repetitionCount: Int, intervalMinutes: Int) {
+        
+        let calendar = Calendar.current
+        
+        for (weekday, startDate) in schedule {
+            let baseComponents = calendar.dateComponents([.weekday, .hour, .minute], from: startDate)
+            
+            for index in 0...repetitionCount {
+                var triggerComponents = DateComponents()
+                triggerComponents.weekday = weekday
+                
+                if let baseHour = baseComponents.hour, let baseMinute = baseComponents.minute {
+                    // 기준시간 생성(날짜 임의 지정)
+                    let baseDate = calendar.date(from: DateComponents(year: 2000, month: 1, day: 1, hour: baseHour, minute: baseMinute))!
+                    // index에 따른 간격 추가
+                    let newDate = calendar.date(byAdding: .minute, value: index * intervalMinutes, to: baseDate)!
+                    let newComponents = calendar.dateComponents([.hour, .minute], from: newDate)
+                    triggerComponents.hour = newComponents.hour
+                    triggerComponents.minute = newComponents.minute
+                }
+                
+                let content = UNMutableNotificationContent()
+                content.title = title
+                content.body = body
+                content.sound = .default
+                // 나중에 루틴 상태 체크 활용 -> routineID를 userInfo에 포함
+                content.userInfo = ["routineID": routineID]
+                
+                // 매주 해당 요일/시간에 반복하도록 trigger
+                let trigger = UNCalendarNotificationTrigger(dateMatching: triggerComponents, repeats: true)
+                let notificationID = "routine_\(routineID)_weekday\(weekday)_index\(index)"
+                let request = UNNotificationRequest(identifier: notificationID, content: content, trigger: trigger)
+                
+                UNUserNotificationCenter.current().add(request) { error in
+                    if let error = error {
+                        print("알림 등록 오류: \(error.localizedDescription)")
+                    } else {
+                        print("알림 등록 성공: \(notificationID)")
+                    }
+                }
+            }
+        }
+    }
+    
+    // 루틴 상태 체크 (알림 발생 직전에 호출)
+    /// 오늘 해당 루틴이 진행 중이거나 이미 완료 -> true
+    /// 실제 로직은 수정 필요
+    func isRoutineActiveOrCompleted(for routineID: String, on date: Date) -> Bool {
+        // TODO: 실제 루틴의 상태(진행 중/실행 완료) 체크 로직 구현
+        return false
+        
+    }
+    
     // ✅ 특정 알림 삭제
     func removeSpecificNotification(id: String) {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
@@ -58,6 +124,15 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     
     // 포그라운드에서도 알림 표시
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        // userInfo에 포함된 routineID를 추출하여, 오늘 해당 루틴 진행중,완료면 알림 패스
+        if let routineID = notification.request.content.userInfo["routineID"] as? String {
+            if isRoutineActiveOrCompleted(for: routineID, on: Date()) {
+                print("루틴 실행중/완료로 알림 패스")
+                completionHandler([])
+                return
+            }
+        }
+        
         completionHandler([.banner, .sound])
     }
 }

@@ -141,6 +141,27 @@ final class AddRoutineViewModel {
         }
         // SwiftDataService를 이용해 루틴 추가
         try swiftDataService.addRoutine(newRoutine)
+        
+        // 알림on -> notificationManager 통해 알림 예약
+        if isNotificationEnabled,
+            let repeatCount = repeatCount,
+           let interval = interval {
+            
+            // [Day: Date]에서 [Int: Date]로 변환 (Day, rawValue사용)
+            var schedule: [Int: Date] = [:]
+            for (day, date) in selectedDateWithTime {
+                schedule[day.rawValue] = date
+            }
+            
+            //새로운 루틴의 고유 id 사용
+            NotificationManager.shared.scheduleRoutineNotification(
+                routineID: newRoutine.id.uuidString,
+                title: title,
+                body: "\(title)루틴 알림",
+                schedule: schedule,
+                repetitionCount: repeatCount,
+                intervalMinutes: interval
+            )
+        }
     }
-    
 }
