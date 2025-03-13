@@ -34,6 +34,7 @@ final class AddRoutineViewModel {
     var recommendTodoTask: [RecommendTodoTask] = []
     var routineTask: [RoutineTask] = []
     var isCompleted: Bool = false
+    var isOneAlarm: Bool = false //추가: "1회만" 체크박스 선택 여부
     // MARK: - View 전용 프로퍼티
     var step: Step = .info
     var disabled: Bool {
@@ -143,25 +144,45 @@ final class AddRoutineViewModel {
         try swiftDataService.addRoutine(newRoutine)
         
         // 알림on -> notificationManager 통해 알림 예약
-        if isNotificationEnabled,
-            let repeatCount = repeatCount,
-           let interval = interval {
-            
-            // [Day: Date]에서 [Int: Date]로 변환 (Day, rawValue사용)
-            var schedule: [Int: Date] = [:]
-            for (day, date) in selectedDateWithTime {
-                schedule[day.rawValue] = date
+        if isNotificationEnabled {
+            if isOneAlarm {
+                // 단일 알람 모드
+                for (day, date) in selectedDateWithTime {
+                    let weekday = day.rawValue
+                    let calendar = Calendar.current
+                    let comps = calendar.dateComponents([.hour, .minute], from: date)
+                    let hour = comps.hour ?? 0
+                    let minute = comps.minute ?? 0
+                    // 지정된 요일, 시, 분에 대해 다음 발생 시점을 계산
+                    let nextDate = NotificationManager.shared.nextTriggerDate(for: weekday, hour: hour, minute: minute)
+                    let notificationID = "routine_\(newRoutine.id.uuidString)_weekday\(weekday)"
+                    NotificationManager.shared.scheduleNotification(
+                        id: notificationID,
+                        title: title,
+                        body: "\(title) 루틴 알림",
+                        date: nextDate,
+                        repeats: false
+                    )
+                }
+            } else {
+                // [Day: Date]에서 [Int: Date]로 변환 (Day, rawValue사용)
+                var schedule: [Int: Date] = [:]
+                for (day, date) in selectedDateWithTime {
+                    schedule[day.rawValue] = date
+                }
+                
+                //새로운 루틴의 고유 id 사용
+                NotificationManager.shared.scheduleRoutineNotification(
+                    routineID: newRoutine.id.uuidString,
+                    title: title,
+                    body: "\(title)루틴 알림",
+                    schedule: schedule,
+                    repetitionCount: repeatCount ?? 1,
+                    intervalMinutes: interval ?? 1
+                )
             }
             
-            //새로운 루틴의 고유 id 사용
-            NotificationManager.shared.scheduleRoutineNotification(
-                routineID: newRoutine.id.uuidString,
-                title: title,
-                body: "\(title)루틴 알림",
-                schedule: schedule,
-                repetitionCount: repeatCount,
-                intervalMinutes: interval
-            )
+            
         }
     }
 }
