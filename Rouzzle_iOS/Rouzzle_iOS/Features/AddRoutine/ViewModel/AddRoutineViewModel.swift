@@ -165,7 +165,7 @@ final class AddRoutineViewModel {
                     )
                 }
             } else {
-                // [Day: Date]에서 [Int: Date]로 변환 (Day, rawValue사용)
+                // 반복 알림 모드: 각 요일별로 repeatCount와 interval을 반영하여 예약
                 var schedule: [Int: Date] = [:]
                 for (day, date) in selectedDateWithTime {
                     schedule[day.rawValue] = date
