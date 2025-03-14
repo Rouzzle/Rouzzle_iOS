@@ -85,7 +85,7 @@ final class RoutineHistory: Identifiable {
     @Attribute(.unique) var id = UUID()
     var date: Date
     
-    // 관계 설정: 특정 루틴에 대한 기록임을 명시합니다.
+    // 관계 설정: 특정 루틴에 대한 기록.
     @Relationship(inverse: \RoutineItem.history)
     var routine: RoutineItem?
     
