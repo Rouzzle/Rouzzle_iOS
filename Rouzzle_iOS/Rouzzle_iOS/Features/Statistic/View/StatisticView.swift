@@ -49,9 +49,9 @@ struct StatisticView: View {
 }
 
 struct RoutineSummaryView: View {
+    
     @Binding var month: Date
     let routines: [RoutineItem]
-    
     
     var body: some View {
         VStack {
