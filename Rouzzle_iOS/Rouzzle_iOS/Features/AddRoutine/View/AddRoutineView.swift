@@ -30,6 +30,7 @@ struct AddRoutineView: View {
                     
                     RoutineNotificationView(viewModel: viewModel)
                         .frame(minHeight: proxy.size.height * 0.28, alignment: .top)
+                        //.onChange(of: viewModel.inNotificationEnabled)
                     
                     RouzzleButton(buttonType: .next, disabled: viewModel.disabled, action: {
                         viewModel.getRecommendTask()

@@ -44,6 +44,12 @@ final class AddRoutineViewModel {
     var isNotificationEnabled: Bool = false {
         didSet {
             if isNotificationEnabled {
+                NotificationManager.shared.requestNotificationPermission { granted in
+                    if !granted {
+                        print("알림 권한 거부")
+                        self.isNotificationEnabled = false
+                    }
+                }
                 interval = interval ?? 1 // 기본값: 1분
                 repeatCount = repeatCount ?? 1 // 기본값: 1번
             } else {
