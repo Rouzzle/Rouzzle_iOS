@@ -155,14 +155,9 @@ extension TaskList {
     ]
 }
 
-extension RoutineHistory {
-    static var sampleData: [RoutineHistory] {
-        let routine = RoutineItem.sampleData[0] // 아침 루틴
-        let calendar = Calendar.current
-        let today = Date()
-        return (-30..<30).map { offset in
-            let date = calendar.date(byAdding: .day, value: offset, to: today)!
-            return RoutineHistory(date: date, routine: routine)
-        }
-    }
+extension TaskHistory {
+    static let sampleData: [TaskHistory] = [
+        TaskHistory(isCompleted: true, task: TaskList.sampleData[0]),
+        TaskHistory(isCompleted: true, task: TaskList.sampleData[1]),
+    ]
 }
