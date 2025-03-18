@@ -7,11 +7,15 @@
 
 import SwiftUI
 import _SwiftData_SwiftUI
-
+import Charts
 struct StatisticView: View {
     @State private var month: Date = Date()
     @State private var selectedRoutine: String = "요약"
+    @Query private var routineHistories: [RoutineHistory]
     let routines: [RoutineItem]
+    var routineWithHistory: [RoutineItem: [RoutineHistory]] {
+        [:]
+    }
     var body: some View {
         VStack {
             Text("통계")
@@ -37,7 +41,9 @@ struct StatisticView: View {
             .padding(.bottom, 32)
             
             if(selectedRoutine == "요약") {
-                //RoutineSummaryView(month: $month, routines: routines)
+                RoutineMaxStreakView(routineHistories: routineHistories)
+                RoutineMonthSelectorView(month: $month, routines: routines)
+                RoutinePercentageView(routinehistories: routineHistories, date: month)
             } else {
                 
             }
@@ -48,7 +54,41 @@ struct StatisticView: View {
     }
 }
 
-struct RoutineSummaryView: View {
+struct RoutineMaxStreakView: View {
+    let routineHistories: [RoutineHistory]
+    
+    var body: some View {
+        VStack(spacing: 12) {
+            if routineHistories.isEmpty {
+                Text("루틴 기록이 없습니다.")
+                    .font(.ptMedium())
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                Text("루틴을 생성하고 실행해 보세요!!")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            } else {
+                let summary = StatisticUtil.shared.computeStreaks(from: routineHistories)
+                Text("나의 최대 연속 기록이에요.")
+                    .font(.ptBold(.title3))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                ForEach(Array(summary.keys), id: \.id) { routine in
+                    if let streak = summary[routine] {
+                        Text("\(routine.title): \(streak)일")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                }
+            }
+            
+        }
+        .padding()
+        .frame(maxWidth: .infinity)
+        .background(Color(uiColor: .systemGray6))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .padding(.horizontal)
+    }
+}
+
+struct RoutineMonthSelectorView: View {
     
     @Binding var month: Date
     let routines: [RoutineItem]
@@ -83,7 +123,41 @@ struct RoutineSummaryView: View {
     func changeMonth(by value: Int) {
         self.month = Calendar.current.date(byAdding: .month, value: value, to: month) ?? month
     }
+}
 
+struct RoutinePercentageView: View {
+    let routinehistories: [RoutineHistory]
+    let date: Date
+    @State private var animatedValue: Double = 0
+    var body: some View {
+        VStack {
+            let routineMonthData = StatisticUtil.shared.computeMonthlyStatsForGroupedHistories(from: routinehistories, for: date)
+            ForEach(Array(routineMonthData.keys), id: \.id) { routine in
+                if let routineStat = routineMonthData[routine] {
+                    let color = StatisticUtil.shared.statisPercentageColor(percentage: routineStat.completionPercentage)
+                    HStack(spacing: 6) {
+                        Text("\(routine.emoji)")
+                        Text(routine.title)
+                        GeometryReader { proxy in
+                            RoundedRectangle(cornerRadius: 4)
+                                .fill(color)
+                                .frame(
+                                    width: proxy.size.width * (CGFloat(routineStat.completionPercentage) * 0.01),
+                                    height: 18
+                                )
+                        }
+                        .frame(height: 18)
+                        Text("\(routineStat.completionPercentage)%")
+                    }
+                }
+            }
+        }
+        .padding()
+        .frame(maxWidth: .infinity)
+        .background(Color(uiColor: .systemGray6))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .padding(.horizontal)
+    }
 }
 
 struct SelectedRoutineButton: View {
@@ -109,11 +183,11 @@ struct SelectedRoutineButton: View {
                         .fill(selected ? .RZFCFFF_0 : .white)
                 )
                 .overlay(
-                     RoundedRectangle(cornerRadius: 40)
-                         .stroke(selected ? Color.accentColor : Color(uiColor: .systemGray), lineWidth: 1)
-                 )
-                 .clipShape(RoundedRectangle(cornerRadius: 40))
-              
+                    RoundedRectangle(cornerRadius: 40)
+                        .stroke(selected ? Color.accentColor : Color(uiColor: .systemGray), lineWidth: 1)
+                )
+                .clipShape(RoundedRectangle(cornerRadius: 40))
+            
         }
         .onTapGesture {
             action()
