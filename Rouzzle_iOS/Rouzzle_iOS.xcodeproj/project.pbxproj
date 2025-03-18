@@ -62,6 +62,7 @@
 		BD764DC62D3CD564008E94E5 /* RecommendTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DC52D3CD55D008E94E5 /* RecommendTask.swift */; };
 		BDC8BD7D2D6475230048CA54 /* TaskStatusPuzzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC8BD7C2D6475230048CA54 /* TaskStatusPuzzle.swift */; };
 		FB6ACED42D744DAC00948FFA /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6ACED32D744DAC00948FFA /* CalenderView.swift */; };
+		FB7345812D895DE2008B56F3 /* StatisticUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7345802D895DE2008B56F3 /* StatisticUtil.swift */; };
 		FBD7812C2D807EB600015F88 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD7812B2D807EB600015F88 /* SampleData.swift */; };
 /* End PBXBuildFile section */
 
@@ -122,6 +123,7 @@
 		BD764DC52D3CD55D008E94E5 /* RecommendTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTask.swift; sourceTree = "<group>"; };
 		BDC8BD7C2D6475230048CA54 /* TaskStatusPuzzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStatusPuzzle.swift; sourceTree = "<group>"; };
 		FB6ACED32D744DAC00948FFA /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
+		FB7345802D895DE2008B56F3 /* StatisticUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticUtil.swift; sourceTree = "<group>"; };
 		FBD7812B2D807EB600015F88 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				BD3556602D6C48BE0034F0CD /* ConvertString.swift */,
+				FB7345802D895DE2008B56F3 /* StatisticUtil.swift */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				BD764D862D3374BE008E94E5 /* AddRoutineTaskView.swift in Sources */,
 				BD764D822D33740C008E94E5 /* AddRoutineViewModel.swift in Sources */,
 				BD764D4F2D313394008E94E5 /* RecommendView.swift in Sources */,
+				FB7345812D895DE2008B56F3 /* StatisticUtil.swift in Sources */,
 				FBD7812C2D807EB600015F88 /* SampleData.swift in Sources */,
 				BD764D972D337D04008E94E5 /* EmojiSearchKeywords.swift in Sources */,
 				BD764DBD2D3CC907008E94E5 /* SwiftDataService.swift in Sources */,
