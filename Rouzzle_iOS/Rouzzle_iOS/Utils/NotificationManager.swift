@@ -94,8 +94,6 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
                 UNUserNotificationCenter.current().add(request) { error in
                     if let error = error {
                         print("알림 등록 오류: \(error.localizedDescription)")
-                    } else {
-                        print("알림 등록 성공: \(notificationID)")
                     }
                 }
             }
