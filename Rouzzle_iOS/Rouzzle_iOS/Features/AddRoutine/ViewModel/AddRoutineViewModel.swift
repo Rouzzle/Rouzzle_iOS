@@ -48,6 +48,8 @@ final class AddRoutineViewModel {
                     if !granted {
                         print("알림 권한 거부")
                         self.isNotificationEnabled = false
+                    } else {
+                        print("알림 권한 허용")
                     }
                 }
                 interval = interval ?? 1 // 기본값: 1분
