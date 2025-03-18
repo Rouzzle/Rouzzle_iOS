@@ -89,7 +89,7 @@ struct RoutineHomeView: View {
             .navigationDestination(for: NavigationDestination.self) { destination in
                 switch destination {
                 case .routineTimerView(let routine):
-                    TaskListView(routine: routine, path: $path)
+                    RoutineTimerView(viewModel: RoutineTimerViewModel(routine: routine))
                 }
             }
             
