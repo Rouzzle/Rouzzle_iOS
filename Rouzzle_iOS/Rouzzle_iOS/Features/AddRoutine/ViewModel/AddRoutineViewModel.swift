@@ -165,22 +165,32 @@ final class AddRoutineViewModel {
         }
     }
     
-    // ✅ 단일 알림 예약 함수
+    // 요일을 한글 형식으로 변환하는 함수
+    private func getKoreanWeekday(from date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE"
+        formatter.locale = Locale(identifier: "ko_KR")
+        return String(formatter.string(from: date).prefix(1))
+    }
+    
+    // 시간을 "HH:mm" 형식으로 변환하는 함수
+    private func formatTime(from date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: date)
+    }
+    
+    // MARK: 단일/반복 알림 예약 함수
     private func scheduleSingleNotification(for routine: RoutineItem) {
-        var scheduledDays: [String] = []
-        var scheduledTimes: [String] = []
-        
+        var scheduledDetails: [String] = []
+                
         for (day, date) in selectedDateWithTime {
-            let weekday = day.rawValue
-            let calendar = Calendar.current
-            let comps = calendar.dateComponents([.hour, .minute], from: date)
-            let hour = comps.hour ?? 0
-            let minute = comps.minute ?? 0
-
-            // ✅ 지정된 요일, 시, 분에 대해 다음 발생 시점을 계산
-            let nextDate = NotificationManager.shared.nextTriggerDate(for: weekday, hour: hour, minute: minute)
-
-            let notificationID = "routine_\(routine.id.uuidString)_weekday\(weekday)"
+            let nextDate = NotificationManager.shared.nextTriggerDate(for: day.rawValue, hour: Calendar.current.component(.hour, from: date), minute: Calendar.current.component(.minute, from: date))
+            
+            let weekday = getKoreanWeekday(from: nextDate)
+            let time = formatTime(from: nextDate)
+            
+            let notificationID = "routine_\(routine.id.uuidString)_weekday\(day.rawValue)"
             NotificationManager.shared.scheduleNotification(
                 id: notificationID,
                 title: title,
@@ -188,33 +198,38 @@ final class AddRoutineViewModel {
                 date: nextDate,
                 repeats: false
             )
-            scheduledDays.append("요일\(weekday)")
-            scheduledTimes.append(String(format: "%02d:%02d", hour, minute))
+            
+            scheduledDetails.append("\(weekday)(\(time))")
         }
-        print("🔔 단일 알림 예약 완료: \(scheduledDays.joined(separator: ", "))")
+        
+        print("🔔 단일 알림 예약 완료: \(scheduledDetails.joined(separator: ", "))")
     }
     
-    // ✅ 반복 알림 예약 함수
+    // 반복 알림 예약
     private func scheduleRoutineNotifications(for routine: RoutineItem) {
-        let schedule: [Int: Date] = selectedDateWithTime.reduce(into: [:]) { result, item in
-            result[item.key.rawValue] = item.value
+        var scheduledDetails: [String] = []
+                
+        for (day, date) in selectedDateWithTime {
+            let nextDate = NotificationManager.shared.nextTriggerDate(for: day.rawValue, hour: Calendar.current.component(.hour, from: date), minute: Calendar.current.component(.minute, from: date))
+            
+            let weekday = getKoreanWeekday(from: nextDate)
+            let time = formatTime(from: nextDate)
+            
+            scheduledDetails.append("\(weekday)(\(time))")
         }
-
+        
         NotificationManager.shared.scheduleRoutineNotification(
             routineID: routine.id.uuidString,
             title: title,
             body: "\(title) 루틴 알림",
-            schedule: schedule,
+            schedule: selectedDateWithTime.reduce(into: [Int: Date]()) { result, item in
+                result[item.key.rawValue] = item.value
+            },
             repetitionCount: repeatCount ?? 1,
             intervalMinutes: interval ?? 1
         )
-
-        let scheduledDays = schedule.keys.map { "\($0)" }.joined(separator: ", ")
-        let scheduledTimes = schedule.values.map {
-                let comps = Calendar.current.dateComponents([.hour, .minute], from: $0)
-                return String(format: "%02d:%02d", comps.hour ?? 0, comps.minute ?? 0)
-            }.joined(separator: ", ")
-        print("🔔 반복 알림 예약 완료: 요일(\(scheduledDays)), 시간(\(scheduledTimes)), 반복횟수: \(repeatCount ?? 1)회, 간격: \(interval ?? 1)분") // 요일마다 시간 다르게 하면 다 콘솔에서 확인하고 아니면 한 번만 출력하기로 바꿔야함
+        
+        print("🔔 반복 알림 예약 완료: \(scheduledDetails.joined(separator: ", ")), 반복횟수: \(repeatCount ?? 1)회, 간격: \(interval ?? 1)분")
     }
 
 }
