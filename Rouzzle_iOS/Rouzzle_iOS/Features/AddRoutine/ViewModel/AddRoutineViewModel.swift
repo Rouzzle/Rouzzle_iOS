@@ -8,6 +8,7 @@
 import Foundation
 import Factory
 import SwiftData
+import UserNotifications
 
 @MainActor
 @Observable
@@ -90,6 +91,7 @@ final class AddRoutineViewModel {
             selectedDateWithTime.removeAll()
         }
     }
+    
     // 특정 요일이 선택되어 있는지 확인하는 함수
     func isSelected(_ day: Day) -> Bool {
         return selectedDateWithTime[day] != nil
@@ -232,4 +234,9 @@ final class AddRoutineViewModel {
         print("🔔 반복 알림 예약 완료: \(scheduledDetails.joined(separator: ", ")), 반복횟수: \(repeatCount ?? 1)회, 간격: \(interval ?? 1)분")
     }
 
+    func requestNotificationPermissionIfNeeded() {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            print("현재 알림 권한 상태: \(settings.authorizationStatus.rawValue)")
+        }
+    }
 }

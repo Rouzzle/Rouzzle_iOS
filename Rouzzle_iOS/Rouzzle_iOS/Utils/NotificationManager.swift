@@ -139,16 +139,13 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     }
     
     // 포그라운드에서도 알림 표시
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        // userInfo에 포함된 routineID를 추출하여, 오늘 해당 루틴 진행중,완료면 알림 패스
-        if let routineID = notification.request.content.userInfo["routineID"] as? String {
-            if isRoutineActiveOrCompleted(for: routineID, on: Date()) {
-                print("루틴 실행중/완료로 알림 패스")
-                completionHandler([])
-                return
-            }
-        }
-        
-        completionHandler([.banner, .sound])
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("포그라운드 알림 표시: \(notification.request.identifier)")
+
+        completionHandler([.banner, .sound, .list])
     }
 }
+
+

@@ -41,6 +41,9 @@ struct AddRoutineView: View {
                 }
             }
             .padding(.horizontal)
+            .onAppear {
+                    viewModel.requestNotificationPermissionIfNeeded()
+                }
             .fullScreenCover(isPresented: $showWeekSetTimeView, content: {
                 WeekSetTimeView(selectedDateWithTime: $viewModel.selectedDateWithTime) { allTime in
                     viewModel.selectedDayChangeDate(allTime)
