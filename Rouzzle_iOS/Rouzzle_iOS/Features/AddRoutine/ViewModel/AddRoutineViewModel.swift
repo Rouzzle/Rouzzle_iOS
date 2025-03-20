@@ -72,7 +72,6 @@ final class AddRoutineViewModel {
             .map { $0.value.formatted(.dateTime.hour().minute()) }
     }
     
-    
     private func generateAlarmIDs(for dates: [Day: Date]) -> [Int: String] {
         var generatedIDs: [Int: String] = [:]
         for (day, _) in dates {
@@ -104,6 +103,13 @@ final class AddRoutineViewModel {
         }
     }
     
+    // 요일 시간 한번에 수정했을 때 불리는 함수
+    func selectedDayChangeDate(_ date: Date) {
+        for day in selectedDateWithTime.keys {
+            selectedDateWithTime[day] = date
+        }
+    }
+    
     func checkIfTimesAreDifferent() -> Bool {
         let uniqueTimes = Set(selectedDateWithTime.values.map {
             Calendar.current.dateComponents([.hour, .minute], from: $0)
@@ -132,7 +138,7 @@ final class AddRoutineViewModel {
             dayStartTime[day.rawValue] = formatter.string(from: date)
         }
         
-        let alarms = isNotificationEnabled ? generateAlarmIDs(for: selectedDateWithTime) : nil
+        let alarms = alarmIDs
         
         // 새로운 루틴 생성
         let newRoutine = RoutineItem(
@@ -157,48 +163,6 @@ final class AddRoutineViewModel {
                 scheduleRoutineNotifications(for: newRoutine)
             }
         }
-        
-//        // 알림on -> notificationManager 통해 알림 예약
-//        if isNotificationEnabled {
-//            if isOneAlarm {
-//                // 단일 알람 모드
-//                for (day, date) in selectedDateWithTime {
-//                    let weekday = day.rawValue
-//                    let calendar = Calendar.current
-//                    let comps = calendar.dateComponents([.hour, .minute], from: date)
-//                    let hour = comps.hour ?? 0
-//                    let minute = comps.minute ?? 0
-//                    // 지정된 요일, 시, 분에 대해 다음 발생 시점을 계산
-//                    let nextDate = NotificationManager.shared.nextTriggerDate(for: weekday, hour: hour, minute: minute)
-//                    let notificationID = "routine_\(newRoutine.id.uuidString)_weekday\(weekday)"
-//                    NotificationManager.shared.scheduleNotification(
-//                        id: notificationID,
-//                        title: title,
-//                        body: "\(title) 루틴 알림",
-//                        date: nextDate,
-//                        repeats: false
-//                    )
-//                }
-//            } else {
-//                // 반복 알림 모드: 각 요일별로 repeatCount와 interval을 반영하여 예약
-//                var schedule: [Int: Date] = [:]
-//                for (day, date) in selectedDateWithTime {
-//                    schedule[day.rawValue] = date
-//                }
-//                
-//                //새로운 루틴의 고유 id 사용
-//                NotificationManager.shared.scheduleRoutineNotification(
-//                    routineID: newRoutine.id.uuidString,
-//                    title: title,
-//                    body: "\(title)루틴 알림",
-//                    schedule: schedule,
-//                    repetitionCount: repeatCount ?? 1,
-//                    intervalMinutes: interval ?? 1
-//                )
-//            }
-//            
-//            
-//        }
     }
     
     // ✅ 단일 알림 예약 함수

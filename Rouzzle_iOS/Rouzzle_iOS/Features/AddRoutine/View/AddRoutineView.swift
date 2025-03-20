@@ -42,7 +42,9 @@ struct AddRoutineView: View {
             }
             .padding(.horizontal)
             .fullScreenCover(isPresented: $showWeekSetTimeView, content: {
-                EmptyView()
+                WeekSetTimeView(selectedDateWithTime: $viewModel.selectedDateWithTime) { allTime in
+                    viewModel.selectedDayChangeDate(allTime)
+                }
             })
         }
     }
