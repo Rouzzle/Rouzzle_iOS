@@ -175,10 +175,10 @@ struct RoutineNotificationView: View {
                         isDisabled: !viewModel.isNotificationEnabled, // 알림이 활성화되어야 사용 가능
                         options: [1, 3, 5, 7, 10], // 선택 가능한 간격
                         selection: Binding(
-                            get: { viewModel.interval ?? 1 },
+                            get: { viewModel.interval},
                             set: { newValue in
-                                viewModel.interval = newValue
-                                print("Interval 선택됨: \(viewModel.interval ?? 0)")
+                                viewModel.interval = newValue!
+                                print("Interval 선택됨: \(viewModel.interval)")
                             }
                         )
                     )
@@ -192,10 +192,10 @@ struct RoutineNotificationView: View {
                         isDisabled: !viewModel.isNotificationEnabled, // 알림이 활성화되어야 사용 가능
                         options: [1, 2, 3, 4, 5], // 선택 가능한 횟수
                         selection: Binding(
-                            get: { viewModel.repeatCount ?? 1 },
+                            get: { viewModel.repeatCount},
                             set: { newValue in
-                                viewModel.repeatCount = newValue
-                                print("Repeat Count 선택됨: \(viewModel.repeatCount ?? 0)")
+                                viewModel.repeatCount = newValue!
+                                print("Repeat Count 선택됨: \(viewModel.repeatCount)")
                             }
                         )
                     )
