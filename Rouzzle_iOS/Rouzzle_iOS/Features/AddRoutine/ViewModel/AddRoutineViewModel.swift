@@ -182,7 +182,7 @@ final class AddRoutineViewModel {
         return formatter.string(from: date)
     }
     
-    // MARK: 단일/반복 알림 예약 함수
+    // MARK: 단일 알림 예약 함수
     private func scheduleSingleNotification(for routine: RoutineItem) {
         var scheduledDetails: [String] = []
                 
@@ -195,8 +195,7 @@ final class AddRoutineViewModel {
             let notificationID = "routine_\(routine.id.uuidString)_weekday\(day.rawValue)"
             NotificationManager.shared.scheduleNotification(
                 id: notificationID,
-                title: title,
-                body: "\(title) 루틴 알림",
+                routineTitle: title,
                 date: nextDate,
                 repeats: false
             )
@@ -207,7 +206,7 @@ final class AddRoutineViewModel {
         print("🔔 단일 알림 예약 완료: \(scheduledDetails.joined(separator: ", "))")
     }
     
-    // 반복 알림 예약
+    // MARK: 반복 알림 예약 함수
     private func scheduleRoutineNotifications(for routine: RoutineItem) {
         var scheduledDetails: [String] = []
                 
@@ -222,8 +221,7 @@ final class AddRoutineViewModel {
         
         NotificationManager.shared.scheduleRoutineNotification(
             routineID: routine.id.uuidString,
-            title: title,
-            body: "\(title) 루틴 알림",
+            routineTitle: title,
             schedule: selectedDateWithTime.reduce(into: [Int: Date]()) { result, item in
                 result[item.key.rawValue] = item.value
             },

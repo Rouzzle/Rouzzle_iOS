@@ -31,11 +31,11 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     }
     
     // ✅ 단일 알림 생성(1회만)
-    func scheduleNotification(id: String, title: String, body: String, date: Date, repeats: Bool = false) {
+    func scheduleNotification(id: String, routineTitle: String, date: Date, repeats: Bool = false) {
         
         let content = UNMutableNotificationContent()
-        content.title = title
-        content.body = body
+        content.title = "\(routineTitle)"
+        content.body = "지금 바로 시작해볼까요?"
         content.sound = .default
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date), repeats: repeats)
@@ -48,7 +48,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         }
     }
     
-    // ✅ 반복 알림 생성(반복 간격, 횟수)
+    // 반복 알림 생성(반복 간격, 횟수)
     /// - Parameters:
     ///   - routineID: 루틴 고유 식별자
     ///   - title: 알림 제목 (예: 루틴 이름)
@@ -57,7 +57,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     ///   - startTime: 알림 시작 시간 (DateComponents의 hour, minute 사용)
     ///   - repetitionCount: 추가 알림 횟수 (총 알림 횟수는 repetitionCount + 1)
     ///   - intervalMinutes: 알림 간격 (분 단위)
-    func scheduleRoutineNotification(routineID: String, title: String, body: String, schedule: [Int: Date], repetitionCount: Int, intervalMinutes: Int) {
+    func scheduleRoutineNotification(routineID: String, routineTitle: String, schedule: [Int: Date], repetitionCount: Int, intervalMinutes: Int) {
         
         let calendar = Calendar.current
         
@@ -81,10 +81,17 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
                 }
                 
                 let content = UNMutableNotificationContent()
-                content.title = title
-                content.body = body
+                content.title = "\(routineTitle)"
                 content.sound = .default
                 content.userInfo = ["routineID": routineID]
+                
+                // 메시지 내용 설정
+                if index == 0 {
+                    content.body = "지금 바로 시작해볼까요?"
+                } else {
+                    let elapsedTime = index * intervalMinutes
+                    content.body = "\(elapsedTime)분이 지났어요! 지금 시작해봐요"
+                }
                 
                 // 매주 해당 요일/시간에 반복하도록 trigger
                 let trigger = UNCalendarNotificationTrigger(dateMatching: triggerComponents, repeats: true)
@@ -126,13 +133,13 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         
     }
     
-    // ✅ 특정 알림 삭제
+    // 특정 알림 삭제
     func removeSpecificNotification(id: String) {
         UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
         print("특정 알림 삭제: \(id)")
     }
     
-    // ✅ 모든 알림 삭제
+    // 모든 알림 삭제
     func removeAllNotifications() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
             print("모든 알림 삭제")
