@@ -11,6 +11,7 @@
 		9701CC092D75F37400CBFA5D /* RoutineTimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9701CC082D75F37400CBFA5D /* RoutineTimerViewModel.swift */; };
 		9701CC0B2D76EA9D00CBFA5D /* TaskListSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9701CC0A2D76EA9D00CBFA5D /* TaskListSheet.swift */; };
 		9771297B2D8942D30046A56A /* RoutineCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9771297A2D8942D30046A56A /* RoutineCompleteView.swift */; };
+		97C44A752D92B7B100416452 /* TimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C44A742D92B7B100416452 /* TimerState.swift */; };
 		BD34AD222D2927D60031548C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD34AD1E2D2927D60031548C /* ContentView.swift */; };
 		BD34AD242D2927D60031548C /* Rouzzle_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD34AD202D2927D60031548C /* Rouzzle_iOSApp.swift */; };
 		BD34AD262D2927D60031548C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD34AD1D2D2927D60031548C /* Assets.xcassets */; };
@@ -77,6 +78,7 @@
 		9701CC082D75F37400CBFA5D /* RoutineTimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTimerViewModel.swift; sourceTree = "<group>"; };
 		9701CC0A2D76EA9D00CBFA5D /* TaskListSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListSheet.swift; sourceTree = "<group>"; };
 		9771297A2D8942D30046A56A /* RoutineCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineCompleteView.swift; sourceTree = "<group>"; };
+		97C44A742D92B7B100416452 /* TimerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerState.swift; sourceTree = "<group>"; };
 		BD34AD082D2927C80031548C /* Rouzzle_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rouzzle_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD34AD1D2D2927D60031548C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD34AD1E2D2927D60031548C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -151,6 +153,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		97C44A712D92B76A00416452 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BD35566D2D6DF7030034F0CD /* RoutineTimerView.swift */,
+				9701CC0A2D76EA9D00CBFA5D /* TaskListSheet.swift */,
+				9771297A2D8942D30046A56A /* RoutineCompleteView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		97C44A722D92B77600416452 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9701CC082D75F37400CBFA5D /* RoutineTimerViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		97C44A732D92B79F00416452 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				97C44A742D92B7B100416452 /* TimerState.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		BD34ACFF2D2927C80031548C = {
 			isa = PBXGroup;
 			children = (
@@ -191,10 +219,9 @@
 		BD35566C2D6DF6E10034F0CD /* RoutineTimer */ = {
 			isa = PBXGroup;
 			children = (
-				BD35566D2D6DF7030034F0CD /* RoutineTimerView.swift */,
-				9701CC0A2D76EA9D00CBFA5D /* TaskListSheet.swift */,
-				9771297A2D8942D30046A56A /* RoutineCompleteView.swift */,
-				9701CC082D75F37400CBFA5D /* RoutineTimerViewModel.swift */,
+				97C44A732D92B79F00416452 /* Model */,
+				97C44A712D92B76A00416452 /* View */,
+				97C44A722D92B77600416452 /* ViewModel */,
 			);
 			path = RoutineTimer;
 			sourceTree = "<group>";
@@ -552,6 +579,7 @@
 				BD3556722D7189800034F0CD /* Container.swift in Sources */,
 				BD3556642D6C4E3E0034F0CD /* RoutineFilterToggle.swift in Sources */,
 				BD3556662D6C60310034F0CD /* Int+Extension.swift in Sources */,
+				97C44A752D92B7B100416452 /* TimerState.swift in Sources */,
 				BD764DA22D33C55E008E94E5 /* Publisher+Extension.swift in Sources */,
 				BD764DA42D3780B0008E94E5 /* RouzzlePicker.swift in Sources */,
 				BD764DB62D3CC02B008E94E5 /* RoutineCategoryByTime.swift in Sources */,
