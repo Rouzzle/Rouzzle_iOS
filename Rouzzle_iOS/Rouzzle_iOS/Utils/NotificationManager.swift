@@ -154,7 +154,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        print("포그라운드 알림 표시: \(notification.request.identifier)")
+        //print("포그라운드 알림 표시: \(notification.request.identifier)")
         completionHandler([.banner, .sound, .list])
     }
 }
