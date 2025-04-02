@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftData
+import SwiftUICore
 
 @Model
 final class RoutineItem: Identifiable {
@@ -23,7 +24,7 @@ final class RoutineItem: Identifiable {
     
     @Relationship(deleteRule: .cascade)
     var history: [RoutineHistory] = []
-     
+
     var isCompleted: Bool {
         return taskList.allSatisfy { $0.isCompleted }
     }
@@ -48,18 +49,22 @@ final class RoutineItem: Identifiable {
     
 }
 
-@Model
+@Model //TODO: 이름이 Task가 더 맞아보여요
 final class TaskList: Identifiable {
     @Attribute(.unique) var id = UUID()
     var title: String
     var emoji: String
     var timer: Int
     var elapsedTime: Int?
+    //TODO: 여기의 isCompleted도 taskHistory에서
     var isCompleted: Bool = false
     
     @Relationship(inverse: \RoutineItem.taskList)
     var routineItem: RoutineItem?
-
+    
+    @Relationship(deleteRule: .cascade)
+    var taskHistories: [TaskHistory] = []
+    
     init(
         id: UUID = UUID(),
         title: String,
@@ -79,20 +84,80 @@ final class TaskList: Identifiable {
 final class RoutineHistory: Identifiable {
     @Attribute(.unique) var id = UUID()
     var date: Date
-    var isSuccess: Bool
     
+    // 관계 설정: 특정 루틴에 대한 기록.
     @Relationship(inverse: \RoutineItem.history)
     var routine: RoutineItem?
     
-    init(date: Date, isSuccess: Bool, routine: RoutineItem? = nil) {
+    @Relationship(deleteRule: .cascade)
+    var taskHistories: [TaskHistory] = []
+    
+    //TODO: 추가됨
+    /// 모든 task를 다 완료했는지
+    var isCompleted: Bool {
+        return taskHistories.allSatisfy { $0.isCompleted }
+    }
+    
+    //TODO: 추가됨
+    /// task 성공율(두 자리 정수)
+    var completeRate: Int {
+        guard !taskHistories.isEmpty else { return 0 }
+        let compoleteCount = taskHistories.filter { $0.isCompleted }.count
+        return (compoleteCount * 100) / taskHistories.count
+    }
+    
+    var rateColor: Color {
+        return switch completeRate {
+        case 0..<29:
+                .accent.opacity(0.3)
+        case 30..<60:
+                .accent.opacity(0.6)
+        default:
+                .accentColor
+        }
+    }
+    
+    
+    init(date: Date, routine: RoutineItem? = nil) {
         self.date = date
-        self.isSuccess = isSuccess
         self.routine = routine
+    }
+}
+
+
+@Model
+final class TaskHistory: Identifiable {
+    @Attribute(.unique) var id = UUID()
+    
+    /// TaskList와의 관계 (어떤 Task인지 확인하기 위해)
+    @Relationship(inverse: \TaskList.taskHistories)
+    var task: TaskList?
+    
+    //TODO: 추가됨
+    /// 해당 Task의 완료 여부
+    var isCompleted: Bool
+    
+    /// RoutineHistory와의 관계: 해당 날짜의 루틴 수행 기록
+    @Relationship(inverse: \RoutineHistory.taskHistories)
+    var routineHistory: RoutineHistory?
+    
+    init(isCompleted: Bool, task: TaskList? = nil, routineHistory: RoutineHistory? = nil) {
+        self.isCompleted = isCompleted
+        self.task = task
+        self.routineHistory = routineHistory
     }
 }
 
 extension RoutineItem {
     static let sampleData: [RoutineItem] = [
+        RoutineItem(title: "아침 루틴", emoji: "🚬", dayStartTime: [1: "06:30"]),
+        RoutineItem(title: "저녁 루틴", emoji: "🍺", dayStartTime: [1: "12:00"]),
+        RoutineItem(title: "운동 루틴", emoji: "💪🏼", dayStartTime: [1: "18:00"])
+    ]
+}
+
+extension RoutineItem {
+    static let sampleDataTaskList: [RoutineItem] = [
         {
             let routine = RoutineItem(title: "아침 루틴", emoji: "🚬", dayStartTime: [3: "06:30"])
             routine.taskList = TaskList.sampleData
@@ -114,6 +179,17 @@ extension TaskList {
     static let sampleData: [TaskList] = [
         TaskList(title: "밥 먹기", emoji: "🍚", timer: 3, isCompleted: true),
         TaskList(title: "양치 하기", emoji: "🪥", timer: 3, isCompleted: false),
-        TaskList(title: "술 마시기", emoji: "🍺", timer: 30, isCompleted: false)
+        TaskList(title: "술 마시기", emoji: "🍺", timer: 30, isCompleted: false),
+        TaskList(title: "음 그래 쉽지않아", emoji: "👺", timer: 30, isCompleted: true),
+        TaskList(title: "이두 조져", emoji: "💪🏿", timer: 10, isCompleted: true),
+        TaskList(title: "삼두 조져", emoji: "🦾", timer: 10, isCompleted: true),
+        TaskList(title: "예비군", emoji: "🪖", timer: 10, isCompleted: true),
+    ]
+}
+
+extension TaskHistory {
+    static let sampleData: [TaskHistory] = [
+        TaskHistory(isCompleted: true, task: TaskList.sampleData[0]),
+        TaskHistory(isCompleted: true, task: TaskList.sampleData[1]),
     ]
 }

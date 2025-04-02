@@ -64,6 +64,13 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    var formattedCalenderDate: String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ko_KR") // 한국 로케일//
+        formatter.dateFormat = "yyyy년MM월"
+        return formatter.string(from: self)
+    }
+    
     var extraData: String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
@@ -78,5 +85,17 @@ extension Date {
     
     func startOfDay() -> Date {
         return Calendar.current.startOfDay(for: self)
+    }
+    
+    var startOfMonth: Date {
+        Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: self))!
+    }
+    
+    var endOfMonth: Date {
+        let calendar = Calendar.current
+        var components = DateComponents()
+        components.month = 1
+        components.day = -1
+        return calendar.date(byAdding: components, to: startOfMonth)!
     }
 }

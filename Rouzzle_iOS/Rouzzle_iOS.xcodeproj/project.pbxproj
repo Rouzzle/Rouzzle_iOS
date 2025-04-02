@@ -78,6 +78,11 @@
 		BD764DC42D3CD52D008E94E5 /* TimeBasedRecommendSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DC32D3CD52D008E94E5 /* TimeBasedRecommendSetView.swift */; };
 		BD764DC62D3CD564008E94E5 /* RecommendTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DC52D3CD55D008E94E5 /* RecommendTask.swift */; };
 		BDC8BD7D2D6475230048CA54 /* TaskStatusPuzzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC8BD7C2D6475230048CA54 /* TaskStatusPuzzle.swift */; };
+		FB6ACED42D744DAC00948FFA /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6ACED32D744DAC00948FFA /* CalenderView.swift */; };
+		FB7345812D895DE2008B56F3 /* StatisticUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7345802D895DE2008B56F3 /* StatisticUtil.swift */; };
+		FB8A906C2D9D20CF00D023D4 /* RoutineSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8A906B2D9D20CF00D023D4 /* RoutineSummaryView.swift */; };
+		FB8A906E2D9D215200D023D4 /* RoutineItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8A906D2D9D215200D023D4 /* RoutineItem+Extension.swift */; };
+		FBD7812C2D807EB600015F88 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD7812B2D807EB600015F88 /* SampleData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -153,6 +158,11 @@
 		BD764DC32D3CD52D008E94E5 /* TimeBasedRecommendSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBasedRecommendSetView.swift; sourceTree = "<group>"; };
 		BD764DC52D3CD55D008E94E5 /* RecommendTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTask.swift; sourceTree = "<group>"; };
 		BDC8BD7C2D6475230048CA54 /* TaskStatusPuzzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStatusPuzzle.swift; sourceTree = "<group>"; };
+		FB6ACED32D744DAC00948FFA /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
+		FB7345802D895DE2008B56F3 /* StatisticUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticUtil.swift; sourceTree = "<group>"; };
+		FB8A906B2D9D20CF00D023D4 /* RoutineSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineSummaryView.swift; sourceTree = "<group>"; };
+		FB8A906D2D9D215200D023D4 /* RoutineItem+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoutineItem+Extension.swift"; sourceTree = "<group>"; };
+		FBD7812B2D807EB600015F88 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				BD3556602D6C48BE0034F0CD /* ConvertString.swift */,
+				FB7345802D895DE2008B56F3 /* StatisticUtil.swift */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -290,6 +301,7 @@
 				BD764D9C2D337D52008E94E5 /* Day.swift */,
 				BD764D442D312932008E94E5 /* RoutineItem.swift */,
 				BD764DA72D378764008E94E5 /* RecommendTaskData.swift */,
+				FBD7812B2D807EB600015F88 /* SampleData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -316,6 +328,8 @@
 			isa = PBXGroup;
 			children = (
 				BD764D502D3133A8008E94E5 /* StatisticView.swift */,
+				FB8A906B2D9D20CF00D023D4 /* RoutineSummaryView.swift */,
+				FB6ACED32D744DAC00948FFA /* CalenderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -480,6 +494,7 @@
 				BD764DA12D33C55E008E94E5 /* Publisher+Extension.swift */,
 				BD764DA92D37880A008E94E5 /* Date+Extension.swift */,
 				BD3556652D6C60310034F0CD /* Int+Extension.swift */,
+				FB8A906D2D9D215200D023D4 /* RoutineItem+Extension.swift */,
 				BD3556732D8025F80034F0CD /* String+Extension.swift */,
 			);
 			path = Extension;
@@ -597,6 +612,7 @@
 				BD3556662D6C60310034F0CD /* Int+Extension.swift in Sources */,
 				BD764DA22D33C55E008E94E5 /* Publisher+Extension.swift in Sources */,
 				BD764DA42D3780B0008E94E5 /* RouzzlePicker.swift in Sources */,
+				FB8A906E2D9D215200D023D4 /* RoutineItem+Extension.swift in Sources */,
 				BD764DB62D3CC02B008E94E5 /* RoutineCategoryByTime.swift in Sources */,
 				BD35565A2D6C46530034F0CD /* HeaderView.swift in Sources */,
 				BD35567C2D804BEE0034F0CD /* CustomAlert.swift in Sources */,
@@ -615,6 +631,8 @@
 				BD764D822D33740C008E94E5 /* AddRoutineViewModel.swift in Sources */,
 				64BE32C62D8AC0830051E12A /* WeekSetTimeView.swift in Sources */,
 				BD764D4F2D313394008E94E5 /* RecommendView.swift in Sources */,
+				FB7345812D895DE2008B56F3 /* StatisticUtil.swift in Sources */,
+				FBD7812C2D807EB600015F88 /* SampleData.swift in Sources */,
 				BD764D972D337D04008E94E5 /* EmojiSearchKeywords.swift in Sources */,
 				BD764DBD2D3CC907008E94E5 /* SwiftDataService.swift in Sources */,
 				9701CC092D75F37400CBFA5D /* RoutineTimerViewModel.swift in Sources */,
@@ -642,9 +660,11 @@
 				BD764DA82D378764008E94E5 /* RecommendTaskData.swift in Sources */,
 				BD764DA62D3786FC008E94E5 /* RouzzleButton.swift in Sources */,
 				BD34AD242D2927D60031548C /* Rouzzle_iOSApp.swift in Sources */,
+				FB8A906C2D9D20CF00D023D4 /* RoutineSummaryView.swift in Sources */,
 				BD3556782D8044CE0034F0CD /* NavigationBackButtonModifier.swift in Sources */,
 				64BE32C82D9D289A0051E12A /* RecommendCategoryView.swift in Sources */,
 				BD764DC02D3CCEA5008E94E5 /* BorderModifier.swift in Sources */,
+				FB6ACED42D744DAC00948FFA /* CalenderView.swift in Sources */,
 				BD764D7F2D33713D008E94E5 /* AddRoutineContainerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
