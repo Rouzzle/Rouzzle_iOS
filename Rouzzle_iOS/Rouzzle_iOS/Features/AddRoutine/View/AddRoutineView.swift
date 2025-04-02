@@ -30,6 +30,7 @@ struct AddRoutineView: View {
                     
                     RoutineNotificationView(viewModel: viewModel)
                         .frame(minHeight: proxy.size.height * 0.28, alignment: .top)
+                        //.onChange(of: viewModel.inNotificationEnabled)
                     
                     RouzzleButton(buttonType: .next, disabled: viewModel.disabled, action: {
                         viewModel.getRecommendTask()
@@ -40,8 +41,13 @@ struct AddRoutineView: View {
                 }
             }
             .padding(.horizontal)
+            .onAppear {
+                    viewModel.requestNotificationPermissionIfNeeded()
+                }
             .fullScreenCover(isPresented: $showWeekSetTimeView, content: {
-                EmptyView()
+                WeekSetTimeView(selectedDateWithTime: $viewModel.selectedDateWithTime) { allTime in
+                    viewModel.selectedDayChangeDate(allTime)
+                }
             })
         }
     }
@@ -132,7 +138,7 @@ struct RoutineBasicSettingView: View {
 
 struct RoutineNotificationView: View {
     @Bindable var viewModel: AddRoutineViewModel
-    @State private var isOneAlarm: Bool = false
+    //@State private var isOneAlarm: Bool = false
     
     var body: some View {
         VStack(spacing: 20) {
@@ -152,14 +158,14 @@ struct RoutineNotificationView: View {
                 HStack(spacing: 10) {
                     Text("알림 빈도")
                         .font(.headline)
-                    Image(systemName: isOneAlarm ? "checkmark.square" : "square")
+                    Image(systemName: viewModel.isOneAlarm ? "checkmark.square" : "square")
                     Text("1회만")
                         .font(.ptRegular())
-                        .foregroundStyle(isOneAlarm ? .black : .gray)
+                        .foregroundStyle(viewModel.isOneAlarm ? .black : .gray)
                     Spacer()
                 }
                 .onTapGesture {
-                    isOneAlarm.toggle()
+                    viewModel.isOneAlarm.toggle()
                 }
                 
                 HStack(spacing: 10) {
@@ -169,16 +175,16 @@ struct RoutineNotificationView: View {
                         isDisabled: !viewModel.isNotificationEnabled, // 알림이 활성화되어야 사용 가능
                         options: [1, 3, 5, 7, 10], // 선택 가능한 간격
                         selection: Binding(
-                            get: { viewModel.interval ?? 1 },
+                            get: { viewModel.interval},
                             set: { newValue in
-                                viewModel.interval = newValue
-                                print("Interval 선택됨: \(viewModel.interval ?? 0)")
+                                viewModel.interval = newValue!
+                                print("Interval 선택됨: \(viewModel.interval)")
                             }
                         )
                     )
                     
                     Text("간격으로")
-                        .foregroundStyle(isOneAlarm ? .gray : .primary)
+                        .foregroundStyle(viewModel.isOneAlarm ? .gray : .primary)
                     
                     // 횟수 선택
                     RouzzlePicker(
@@ -186,16 +192,16 @@ struct RoutineNotificationView: View {
                         isDisabled: !viewModel.isNotificationEnabled, // 알림이 활성화되어야 사용 가능
                         options: [1, 2, 3, 4, 5], // 선택 가능한 횟수
                         selection: Binding(
-                            get: { viewModel.repeatCount ?? 1 },
+                            get: { viewModel.repeatCount},
                             set: { newValue in
-                                viewModel.repeatCount = newValue
-                                print("Repeat Count 선택됨: \(viewModel.repeatCount ?? 0)")
+                                viewModel.repeatCount = newValue!
+                                print("Repeat Count 선택됨: \(viewModel.repeatCount)")
                             }
                         )
                     )
                     
                     Text("알려드릴게요")
-                        .foregroundStyle(isOneAlarm ? .gray : .primary)
+                        .foregroundStyle(viewModel.isOneAlarm ? .gray : .primary)
                     
                     Spacer()
                 }
