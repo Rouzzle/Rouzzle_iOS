@@ -1,0 +1,1 @@
+ Dictionary(uniqueKeysWithValues: routines.map { ($0, $0.history) })
