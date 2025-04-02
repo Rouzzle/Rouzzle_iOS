@@ -43,6 +43,7 @@ struct RecommendExpandedCardView: View {
     }
 
     @ViewBuilder
+    // 이모지, 라벨, 이름, 화살표
     private func cardHeader() -> some View {
         HStack(spacing: 16) {
             Text(card.imageName)
@@ -75,6 +76,7 @@ struct RecommendExpandedCardView: View {
         }
     }
 
+    // 설명 텍스트
     private func descriptionText() -> some View {
         Text(card.fullText)
             .font(.body)
@@ -82,6 +84,7 @@ struct RecommendExpandedCardView: View {
             .padding([.horizontal, .bottom])
     }
 
+    // 전체선택 + 네모박스
     private func selectAllButton() -> some View {
         HStack {
             Spacer()
@@ -106,6 +109,7 @@ struct RecommendExpandedCardView: View {
         .padding(.horizontal)
     }
 
+    // 각각의 루틴, +버튼, RecommendTaskView사용
     private func taskListView() -> some View {
         VStack(spacing: 8) {
             ForEach(card.routines, id: \.title) { task in
@@ -127,6 +131,7 @@ struct RecommendExpandedCardView: View {
         .padding(.horizontal)
     }
 
+    // 내 루틴에 저장하기 버튼 -> RecommendSheet열림
     private func routineAddButton() -> some View {
         RouzzleButton(
             buttonType: .addtoroutine,

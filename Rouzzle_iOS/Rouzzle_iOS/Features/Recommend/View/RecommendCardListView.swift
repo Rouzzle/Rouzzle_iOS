@@ -3,7 +3,7 @@
 //  Rouzzle_iOS
 //
 //  Created by 이다영 on 4/2/25.
-//
+// 추천 루틴 리스트를 보여주는 view
 
 import SwiftUI
 
@@ -24,9 +24,11 @@ struct RecommendCardListView: View {
                     ForEach(cards) { card in
                         Group {
                             if selectedCardID == card.id {
+                                // 펼쳐진 카드
                                 expandedCard(card)
                                     .id("\(card.id)-expanded")
                             } else {
+                                // 접힌 카드
                                 collapsedCard(card)
                                     .id("\(card.id)-collapsed")
                             }
@@ -56,6 +58,7 @@ struct RecommendCardListView: View {
         }
     }
 
+    // 펼쳐진 카드
     private func collapsedCard(_ card: Card) -> some View {
         VStack {
             HStack(spacing: 16) {
@@ -93,6 +96,7 @@ struct RecommendCardListView: View {
         }
     }
 
+    // 접힌 카드
     private func expandedCard(_ card: Card) -> some View {
         RecommendExpandedCardView(
             card: card,
