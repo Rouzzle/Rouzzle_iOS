@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import Factory
+import UserNotifications
 
 @main
 struct Rouzzle_iOSApp: App {
@@ -29,6 +30,7 @@ struct Rouzzle_iOSApp: App {
             fatalError("❌ ModelContainer 초기화 실패: \(error.localizedDescription)")
         }
         Container.modelContainer = modelContainer  // Container의 전역 변수에 주입
+        setupNotificationDelegate()
     }
     
     var body: some Scene {
@@ -37,5 +39,10 @@ struct Rouzzle_iOSApp: App {
                // .modelContainer(modelContainer) // ContentView에 동일한 ModelContainer 전달
                 .modelContainer(SampleData.shared.modelContainer)
         }
+    }
+    
+    private func setupNotificationDelegate() {
+        let center = UNUserNotificationCenter.current()
+        center.delegate = NotificationManager.shared // ✅ 알림 delegate 설정
     }
 }

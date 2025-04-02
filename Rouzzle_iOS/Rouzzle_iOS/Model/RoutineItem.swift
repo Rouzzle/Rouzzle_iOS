@@ -24,8 +24,7 @@ final class RoutineItem: Identifiable {
     
     @Relationship(deleteRule: .cascade)
     var history: [RoutineHistory] = []
-    
-    //TODO: 삭제 되어야? -> history에서 isCompleted를 관리하는게 어때요?
+
     var isCompleted: Bool {
         return taskList.allSatisfy { $0.isCompleted }
     }
@@ -125,6 +124,7 @@ final class RoutineHistory: Identifiable {
     }
 }
 
+
 @Model
 final class TaskHistory: Identifiable {
     @Attribute(.unique) var id = UUID()
@@ -156,9 +156,28 @@ extension RoutineItem {
     ]
 }
 
+extension RoutineItem {
+    static let sampleDataTaskList: [RoutineItem] = [
+        {
+            let routine = RoutineItem(title: "아침 루틴", emoji: "🚬", dayStartTime: [3: "06:30"])
+            routine.taskList = TaskList.sampleData
+            return routine
+        }(),
+        {
+            let routine = RoutineItem(title: "저녁 루틴", emoji: "🍺", dayStartTime: [3: "12:00"])
+            routine.taskList = TaskList.sampleData
+            return routine
+        }(),
+        {
+            let routine = RoutineItem(title: "운동 루틴", emoji: "💪🏼", dayStartTime: [1: "18:00"])
+            routine.taskList = TaskList.sampleData
+            return routine
+        }()
+    ]
+}
 extension TaskList {
     static let sampleData: [TaskList] = [
-        TaskList(title: "밥 먹기", emoji: "🍚", timer: 3, isCompleted: false),
+        TaskList(title: "밥 먹기", emoji: "🍚", timer: 3, isCompleted: true),
         TaskList(title: "양치 하기", emoji: "🪥", timer: 3, isCompleted: false),
         TaskList(title: "술 마시기", emoji: "🍺", timer: 30, isCompleted: false),
         TaskList(title: "음 그래 쉽지않아", emoji: "👺", timer: 30, isCompleted: true),

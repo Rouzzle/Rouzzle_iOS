@@ -44,7 +44,7 @@ struct RecommendTask: View {
             .padding(.bottom, 3)
             
             Text(description)
-                .font(.ptRegular(.callout))
+                .font(.ptLight(size: 12))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .lineSpacing(4)
                 .multilineTextAlignment(.leading)
