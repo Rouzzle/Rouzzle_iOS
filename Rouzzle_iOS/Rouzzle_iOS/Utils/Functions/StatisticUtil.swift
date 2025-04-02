@@ -8,9 +8,11 @@
 import Foundation
 import SwiftUICore
 
+//TODO: routineItem으로만 접근(위 코드들도 routineItem으로 접근해서 history 가져오게 리팩 예정)
 class StatisticUtil {
     static let shared = StatisticUtil()
-    
+    static let summaryRoutine: RoutineItem = RoutineItem(title: "요약", emoji: "", dayStartTime: [:])
+
     func nextScheduledDate(after date: Date, validWeekdays: Set<Int>, calendar: Calendar) -> Date? {
         var nextDate = calendar.date(byAdding: .day, value: 1, to: date)!
         for _ in 0..<7 {
@@ -117,14 +119,10 @@ class StatisticUtil {
     func computeMonthlyStatsForGroupedHistories(from allHistories: [RoutineHistory], for month: Date) -> [RoutineItem: RoutineStats] {
         let calendar = Calendar.current
         // 전체 RoutineHistory를 (RoutineItem, RoutineHistory) 쌍으로 변환하여 그룹핑
-        let groupedTuples = Dictionary(grouping: allHistories.compactMap { (history: RoutineHistory) -> (RoutineItem, RoutineHistory)? in
-            guard let routine = history.routine else { return nil }
-            return (routine, history)
-        }, by: { $0.0 })
-        
-        // 각 루틴별로 RoutineHistory 배열로 변환
-        let grouped: [RoutineItem: [RoutineHistory]] = groupedTuples.mapValues { tuples in
-            tuples.map { $0.1 }
+        let grouped: [RoutineItem: [RoutineHistory]] = allHistories.reduce(into: [RoutineItem: [RoutineHistory]]()) { result, history in
+            if let routine = history.routine {
+                result[routine, default: []].append(history)
+            }
         }
         
         var statsDict: [RoutineItem: RoutineStats] = [:]
@@ -156,6 +154,8 @@ class StatisticUtil {
     }
 }
 
+extension StatisticUtil {
+}
 
 struct RoutineStats {
     let scheduledCount: Int    // 해당 달에 실행 예정인 횟수
@@ -164,3 +164,6 @@ struct RoutineStats {
         scheduledCount > 0 ? Int((Double(completedCount) / Double(scheduledCount)) * 100) : 0
     }
 }
+
+
+

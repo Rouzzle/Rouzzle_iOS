@@ -10,46 +10,50 @@ import _SwiftData_SwiftUI
 import Charts
 struct StatisticView: View {
     @State private var month: Date = Date()
-    @State private var selectedRoutine: String = "요약"
+    @State private var selectedRoutine: RoutineItem = StatisticUtil.summaryRoutine
     @Query private var routineHistories: [RoutineHistory]
     let routines: [RoutineItem]
-    var routineWithHistory: [RoutineItem: [RoutineHistory]] {
-        [:]
-    }
+  
     var body: some View {
-        VStack {
-            Text("통계")
-                .font(.ptSemiBold(.title2))
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding()
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 12) {
-                    SelectedRoutineButton(title: "요약", selected: selectedRoutine == "요약") {
-                        selectedRoutine = "요약"
-                    }
-                    .padding(.leading)
-                    
-                    ForEach(routines, id: \.id) { routine in
-                        let selected = routine.id.uuidString == selectedRoutine
-                        SelectedRoutineButton(title: routine.title, selected: selected) {
-                            selectedRoutine = routine.id.uuidString
+        GeometryReader { proxy in
+            ScrollView(.vertical) {
+                Text("통계")
+                    .font(.ptSemiBold(.title2))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 12) {
+                        SelectedRoutineButton(title: "요약", selected: selectedRoutine == StatisticUtil.summaryRoutine) {
+                            selectedRoutine = StatisticUtil.summaryRoutine
+                        }
+                        .padding(.leading)
+                        
+                        ForEach(routines, id: \.id) { routine in
+                            let selected = routine == selectedRoutine
+                            SelectedRoutineButton(title: routine.title, selected: selected) {
+                                selectedRoutine = routine
+                            }
                         }
                     }
                 }
-            }
-            .padding(.bottom, 32)
-            
-            if(selectedRoutine == "요약") {
-                RoutineMaxStreakView(routineHistories: routineHistories)
-                RoutineMonthSelectorView(month: $month, routines: routines)
-                RoutinePercentageView(routinehistories: routineHistories, date: month)
-            } else {
+                .padding(.bottom, 32)
                 
+                if(selectedRoutine == StatisticUtil.summaryRoutine) {
+                    RoutineMaxStreakView(routineHistories: routineHistories)
+                    HStack {
+                        Text("월간 성공률")
+                            .padding(.leading)
+                            .font(.ptBold())
+                        Spacer()
+                        RoutineMonthSelectorView(month: $month)
+                    }
+                    RoutinePercentageView(routinehistories: routineHistories, date: month)
+                } else {
+                    RoutineSummaryView(selectedRoutine: selectedRoutine, proxy: proxy, month: $month)
+                }
+                Spacer()
             }
-            
-            
-            Spacer()
         }
     }
 }
@@ -82,7 +86,7 @@ struct RoutineMaxStreakView: View {
         }
         .padding()
         .frame(maxWidth: .infinity)
-        .background(Color(uiColor: .systemGray6))
+        .background(.rzf9F9F9)
         .clipShape(RoundedRectangle(cornerRadius: 12))
         .padding(.horizontal)
     }
@@ -91,14 +95,10 @@ struct RoutineMaxStreakView: View {
 struct RoutineMonthSelectorView: View {
     
     @Binding var month: Date
-    let routines: [RoutineItem]
     
     var body: some View {
         VStack {
             HStack {
-                Text("월간 성공률")
-                    .font(.ptBold())
-                Spacer()
                 Button {
                     changeMonth(by: -1)
                 } label: {

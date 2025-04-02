@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftData
+import SwiftUICore
 
 @Model
 final class RoutineItem: Identifiable {
@@ -20,7 +21,7 @@ final class RoutineItem: Identifiable {
     
     @Relationship(deleteRule: .cascade)
     var taskList: [TaskList] = []
-     
+    
     @Relationship(deleteRule: .cascade)
     var history: [RoutineHistory] = []
     
@@ -64,7 +65,7 @@ final class TaskList: Identifiable {
     
     @Relationship(deleteRule: .cascade)
     var taskHistories: [TaskHistory] = []
-
+    
     init(
         id: UUID = UUID(),
         title: String,
@@ -105,7 +106,19 @@ final class RoutineHistory: Identifiable {
         let compoleteCount = taskHistories.filter { $0.isCompleted }.count
         return (compoleteCount * 100) / taskHistories.count
     }
-       
+    
+    var rateColor: Color {
+        return switch completeRate {
+        case 0..<29:
+                .accent.opacity(0.3)
+        case 30..<60:
+                .accent.opacity(0.6)
+        default:
+                .accentColor
+        }
+    }
+    
+    
     init(date: Date, routine: RoutineItem? = nil) {
         self.date = date
         self.routine = routine

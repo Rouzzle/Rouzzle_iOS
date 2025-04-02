@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CalendarView: View {
     @Binding var month: Date
+    let selectedRoutine: RoutineItem
     let weekdaySymbols: [String] = Calendar.current.shortWeekdaySymbols
     
     var body: some View {
@@ -21,36 +22,6 @@ struct CalendarView: View {
     
     private var headerView: some View {
         VStack(alignment: .center) {
-            HStack {
-                Text("월간 요약")
-                    .font(.ptSemiBold(.title3))
-                Image(systemName: "questionmark.circle")
-                    .frame(width: 15, height: 15)
-                    .foregroundStyle(.rz747272)
-                    .onTapGesture {
-                        
-                    }
-                Spacer()
-                
-                Button {
-                    changeMonth(by: -1)
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .foregroundStyle(.basic)
-                }
-                
-                Text(month.formattedCalenderDate)
-                    .padding(.horizontal, 6)
-                
-                Button {
-                    changeMonth(by: 1)
-                } label: {
-                    Image(systemName: "chevron.right")
-                        .foregroundStyle(.basic)
-                }
-                
-            }
-            .padding()
             HStack {
                 ForEach(weekdaySymbols.indices, id: \.self) { index in
                     Text(weekdaySymbols[index].uppercased())
@@ -80,12 +51,22 @@ struct CalendarView: View {
                     if(index > -1 && index < daysInMonth) {
                         let date = getDate(for: index)
                         let day = Calendar.current.component(.day, from: date)
-                        let isToday = date.formattedDateToString == today.formattedDateToString
                         
-                        Text("\(day)")
-                            .foregroundStyle(isToday ? .blue : .primary)
-                            .lineLimit(1)
-                            .padding(.vertical, 12)
+                        let hasCompleteHistory = selectedRoutine.history.first { history in
+                            Calendar.current.isDate(history.date, inSameDayAs: date)
+                        }
+                    
+                        ZStack {
+                            if let color = hasCompleteHistory?.rateColor {
+                                Circle()
+                                    .frame(width: 28, height: 28)
+                                    .foregroundColor(color)
+                            }
+                            Text("\(day)")
+                                .foregroundStyle(hasCompleteHistory != nil ? .white : .primary)
+                                .lineLimit(1)
+                                .padding(.vertical, 12)
+                        }
                     } else if let prevMonthDate = Calendar.current.date(
                         byAdding: .day,
                         value: index + lastDayOfMonthBefore,
@@ -102,10 +83,6 @@ struct CalendarView: View {
         }
         .padding(.horizontal)
     }
-}
-
-#Preview {
-    CalendarView(month: .constant(.init()))
 }
 
 private extension CalendarView {
