@@ -10,6 +10,7 @@ import SwiftUI
 struct RoutineCompleteView: View {
     @Environment(\.dismiss) private var dismiss
     @State var viewModel: RoutineCompleteViewModel
+    @Binding var path: NavigationPath
     
     var body: some View {
         VStack {
@@ -87,7 +88,7 @@ struct RoutineCompleteView: View {
             .padding(.top, 51)
             
             RouzzleButton(buttonType: .complete) {
-                dismiss()
+                path.removeLast(path.count)
             }
             .padding()
         }
@@ -95,5 +96,5 @@ struct RoutineCompleteView: View {
 }
 
 #Preview {
-    RoutineCompleteView(viewModel: .init(routine: RoutineItem.sampleData[0], startTime: Date(), endTime: Date()))
+    RoutineCompleteView(viewModel: .init(routine: RoutineItem.sampleData[0], startTime: Date(), endTime: Date()), path: .constant(NavigationPath()))
 }
