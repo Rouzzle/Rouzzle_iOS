@@ -9,20 +9,17 @@ import SwiftUI
 
 struct RoutineCompleteView: View {
     @Environment(\.dismiss) private var dismiss
+    @State var viewModel: RoutineCompleteViewModel
     
     var body: some View {
         VStack {
             // MARK: - 루틴 이름 박스
-            HStack {
-                Text("☀️")
-                    
-                Text("아침 루틴")
-            }
-            .font(.ptBold(.title))
-            .padding(.top, 60)
+            Text(viewModel.routineTitle)
+                .font(.ptBold(.title))
+                .padding(.top, 60)
             
             // MARK: - 루틴 시작 및 완료 시간
-            Text("1:46 PM ~ 2:06 PM")
+            Text(viewModel.routineTimeRange)
                 .font(.ptRegular())
                 .foregroundStyle(.rz747272)
                 .padding(.top)
@@ -30,7 +27,7 @@ struct RoutineCompleteView: View {
             // MARK: - 연속일, 누적일 박스
             HStack {
                 VStack(spacing: 6) {
-                    Text("\(0)")
+                    Text("\(viewModel.longestDays)")
                         .font(.ptBold(.title))
                     
                     Text("연속일")
@@ -43,7 +40,7 @@ struct RoutineCompleteView: View {
                     .frame(height: 60)
                 
                 VStack(spacing: 6) {
-                    Text("\(0)")
+                    Text("\(viewModel.totalDays)")
                         .font(.ptBold(.title))
                     
                     Text("누적일")
@@ -63,32 +60,26 @@ struct RoutineCompleteView: View {
             // MARK: - 완료한 할 일 리스트
             ScrollView {
                 VStack(spacing: 18) {
-                    HStack(spacing: 18) {
-                        Text("☕️")
-                            .font(.largeTitle)
-                        
-                        Text("커피 마시기")
-                            .font(.ptSemiBold())
-                        
-                        Spacer()
-                        
-                        Text("10분")
-                            .font(.ptRegular())
-                            .foregroundStyle(.rz747272)
-                    }
-                    
-                    HStack(spacing: 18) {
-                        Text("💊")
-                            .font(.largeTitle)
-                        
-                        Text("유산균 먹기")
-                            .font(.ptSemiBold())
-                        
-                        Spacer()
-                        
-                        Text("10분")
-                            .font(.ptRegular())
-                            .foregroundStyle(.rz747272)
+                    ForEach(viewModel.completedTasks, id: \.id) { task in
+                        HStack(spacing: 18) {
+                            Text(task.emoji)
+                                .font(.largeTitle)
+                            
+                            Text(task.title)
+                                .font(.ptSemiBold())
+                            
+                            Spacer()
+                            
+                            if let elapsed = task.elapsedTime {
+                                Text("\(elapsed)초")
+                                    .font(.ptRegular())
+                                    .foregroundStyle(.rz747272)
+                            } else {
+                                Text("\(task.timer)분")
+                                    .font(.ptRegular())
+                                    .foregroundStyle(.rz747272)
+                            }
+                        }
                     }
                 }
                 .padding(.horizontal, 46)
@@ -96,7 +87,7 @@ struct RoutineCompleteView: View {
             .padding(.top, 51)
             
             RouzzleButton(buttonType: .complete) {
-                // 완료 버튼 로직
+                dismiss()
             }
             .padding()
         }
@@ -104,5 +95,5 @@ struct RoutineCompleteView: View {
 }
 
 #Preview {
-    RoutineCompleteView()
+    RoutineCompleteView(viewModel: .init(routine: RoutineItem.sampleData[0], startTime: Date(), endTime: Date()))
 }

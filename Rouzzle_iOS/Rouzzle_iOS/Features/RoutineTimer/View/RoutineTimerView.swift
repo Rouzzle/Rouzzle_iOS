@@ -147,6 +147,13 @@ struct RoutineTimerView: View {
             )
             .presentationDetents(detents)
         }
+        .fullScreenCover(isPresented: $viewModel.routineCompleted) {
+            RoutineCompleteView(viewModel: RoutineCompleteViewModel(
+                routine: viewModel.routineItem,
+                startTime: viewModel.routineTakeTime.0,
+                endTime: viewModel.routineTakeTime.1)
+            )
+        }
         .onAppear {
             viewModel.resetTask()
             viewModel.initializeCurrentTaskIndex()

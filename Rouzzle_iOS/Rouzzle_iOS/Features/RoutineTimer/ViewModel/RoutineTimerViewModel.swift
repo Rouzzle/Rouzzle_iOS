@@ -25,6 +25,8 @@ final class RoutineTimerViewModel {
     private var startTime: Date?
     private var endTime: Date?
     
+    var routineCompleted: Bool = false
+    
     var currentRoutineHistory: RoutineHistory // 현재 루틴 수행 기록
     
     var inProgressTask: TaskList? {
@@ -102,6 +104,10 @@ final class RoutineTimerViewModel {
         timer?.invalidate()
         timer = nil
         routineTakeTime.1 = Date() // 루틴 종료 시간 설정
+        
+        if isRoutineCompleted {
+            routineCompleted = true
+        }
     }
     
     // MARK: - 타이머 토글 함수
