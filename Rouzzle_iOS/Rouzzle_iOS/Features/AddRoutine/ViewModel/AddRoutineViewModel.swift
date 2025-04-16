@@ -189,23 +189,31 @@ final class AddRoutineViewModel {
         )
     }
     
-    // 단일 알림 예약 함수
+    // MARK: 단일 알림 예약 함수
     private func scheduleSingleNotification(for routine: RoutineItem) {
         var scheduledDetails: [String] = []
                 
         for (day, date) in selectedDateWithTime {
             let nextDate = nextNotificationDate(for: day, date: date)
-            let weekday = nextDate.koreanWeekday()
-            let time = nextDate.formattedHourMinute()
             
-            let notificationID = "routine_\(routine.id.uuidString)_weekday\(day.rawValue)"
+            let calendar = Calendar.current
+            let components = calendar.dateComponents([.hour, .minute], from: nextDate)
+            guard let hour = components.hour, let minute = components.minute else { continue }
+
+            let weekday = day.rawValue // Int (1~7, 일~토)
+            let notificationID = "routine_\(routine.id.uuidString)_weekday\(weekday)"
+            
             NotificationManager.shared.scheduleNotification(
                 id: notificationID,
                 routineTitle: title,
-                date: nextDate,
-                repeats: false
+                weekday: weekday,
+                hour: hour,
+                minute: minute
             )
-            scheduledDetails.append("\(weekday)(\(time))")
+            
+            let weekdayName = nextDate.koreanWeekday()
+            let timeString = date.formattedHourMinute()
+            scheduledDetails.append("\(weekdayName) (\(timeString))")
         }
         print("🔔 단일 알림 예약 완료: \(scheduledDetails.joined(separator: ", "))")
     }
@@ -234,7 +242,6 @@ final class AddRoutineViewModel {
         )
         
         print("🔔 반복 알림 예약 완료: \(scheduledDetails.joined(separator: ", ")), 반복횟수: \(repeatCount)회, 간격: \(interval)분")
-        //os_log("🔔 반복 알림 예약 완료: %@, 반복횟수: %d회, 간격: %d분", scheduledDetails.joined(separator: ", "), repeatCount, interval)
     }
 
     func requestNotificationPermissionIfNeeded() {

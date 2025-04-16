@@ -28,10 +28,10 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         return index == 0 ? "지금 바로 시작해볼까요?" : "\(index * intervalMinutes)분이 지났어요! 지금 시작해봐요"
     }
     
-    private func createTrigger(for date: Date, repeats: Bool) -> UNCalendarNotificationTrigger {
-        let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
-        return UNCalendarNotificationTrigger(dateMatching: components, repeats: repeats)
-    }
+//    private func createTrigger(for date: Date, repeats: Bool) -> UNCalendarNotificationTrigger {
+//        let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
+//        return UNCalendarNotificationTrigger(dateMatching: components, repeats: repeats)
+//    }
     
     /// 요일, 기준 시각, index 및 간격을 기반으로 주간 반복 트리거 생성 (옵셔널 안전 처리)
     private func createWeeklyTrigger(weekday: Int, baseHour: Int, baseMinute: Int, index: Int, intervalMinutes: Int) -> UNCalendarNotificationTrigger? {
@@ -63,14 +63,19 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     }
     
     // 단일 알림 생성(1회만)
-    func scheduleNotification(id: String, routineTitle: String, date: Date, repeats: Bool = false) {
+    func scheduleNotification(id: String, routineTitle: String, weekday: Int, hour: Int, minute: Int) {
         
         let content = UNMutableNotificationContent()
         content.title = makeNotificationTitle(for: routineTitle)
         content.body = "지금 바로 시작해볼까요?"
         content.sound = .default
         
-        let trigger = createTrigger(for: date, repeats: repeats)
+        var components = DateComponents()
+        components.weekday = weekday  // 일:1 ~ 토:7 (주의!)
+        components.hour = hour
+        components.minute = minute
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: true)
         let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
         
         UNUserNotificationCenter.current().add(request) { error in
