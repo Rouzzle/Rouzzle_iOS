@@ -12,7 +12,7 @@ struct TaskListView: View {
     let routine: RoutineItem
     @Binding var path: NavigationPath
     @Injected(\.swiftDataService) private var swiftDataService: SwiftDataServiceProtocol
-
+    @Bindable var viewModel: AddRoutineViewModel
     @State private var showTimerView = false
     @State private var isShowingRoutineSettingsSheet: Bool = false
     @State private var detents: Set<PresentationDetent> = [.fraction(0.12)]
@@ -21,8 +21,90 @@ struct TaskListView: View {
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        VStack {
-            Text("Hello, World!")
+        ScrollView {
+            VStack(alignment: .leading) {
+                HStack(alignment: .bottom) {
+                    Label(routine.todayStartTimeFormatted, systemImage: "clock")
+                        .font(.ptMedium())
+                        .foregroundStyle(Color.subHeadlineFontColor)
+                        .padding(.top)
+                    
+                    Spacer()
+                    
+                    Button {
+                        //isShowingAddTaskSheet.toggle()
+                    } label: {
+                        Image(systemName: "plus")
+                            .font(.title)
+                    }
+                }
+                .padding(.bottom, 5)
+                if routine.taskList.isEmpty {
+                    HStack {
+                        Spacer()
+                        VStack(spacing: 8) {
+                            Text("할 일을 추가해보세요!")
+                                .font(.title2)
+                                .foregroundColor(.gray.opacity(0.5))
+                                .font(.subheadline)
+                            Image(systemName: "plus.circle")
+                                .foregroundColor(.gray.opacity(0.5))
+                                .font(.system(size: 28))
+                            
+                        }
+                        .padding(.vertical, 50)
+                        Spacer()
+                    }
+                    .onTapGesture {
+                        //  isShowingAddTaskSheet.toggle()
+                    }
+                }
+                else {
+                    ForEach(routine.taskList) { task in
+                        TaskStatusPuzzle(task: task)
+                    }
+                }
+                
+                RouzzleButton(buttonType: .timerStart, disabled: routine.taskList.isEmpty) {
+                    // isShowingTimerView.toggle()
+                    // 기존의 알림을 제거하기 위해서 필요함
+                    NotificationManager.shared.removeAllNotifications()
+                }
+                .padding(.top)
+                
+                HStack {
+                    Text("추천 할 일")
+                        .font(.ptBold(size: 18))
+                    
+                    Spacer()
+                    
+                    Button {
+                        viewModel.getRecommendTask()
+                    } label: {
+                        Image(systemName: "arrow.clockwise")
+                            .font(.title3)
+                    }
+                }
+                .padding(.top, 30)
+                // 추천 리스트
+                if viewModel.recommendTodoTask.isEmpty {
+                    Text("추천 할 일을 모두 등록했습니다!")
+                        .font(.ptRegular())
+                        .foregroundStyle(.gray)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding(.vertical, 20)
+                } else {
+                    VStack(spacing: 10) {
+                        ForEach(viewModel.recommendTodoTask, id: \.self) { recommend in
+                            TaskRecommendPuzzle(recommendTask: recommend) {
+                                viewModel.getRecommendTask()
+                                viewModel.addTask(from: recommend, to: routine)
+                            }
+                        }
+                    }
+                    // .animation(.smooth, value: //routineStore.recommendTodoTask)
+                }
+            }
         }
         .customNavigationBar(title: "\(routine.emoji) \(routine.title)")
         .toolbar {
@@ -69,6 +151,6 @@ struct TaskListView: View {
 
 #Preview {
     NavigationStack {
-        TaskListView(routine: RoutineItem.sampleData[0], path: .constant(NavigationPath()))
+        TaskListView(routine: RoutineItem.sampleData[0], path: .constant(NavigationPath()), viewModel: AddRoutineViewModel())
     }
 }
