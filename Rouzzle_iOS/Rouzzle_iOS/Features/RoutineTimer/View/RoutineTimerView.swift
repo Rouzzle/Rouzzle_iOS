@@ -13,7 +13,8 @@ struct RoutineTimerView: View {
     @Environment(\.modelContext) private var modelContext
     @State var isShowingTaskListSheet: Bool = false
     @State private var detents: Set<PresentationDetent> = [.fraction(0.5)]
-
+    @Binding var path: NavigationPath
+    
     var body: some View {
         ZStack(alignment: .top) {
             // 그라데이션 배경
@@ -147,6 +148,15 @@ struct RoutineTimerView: View {
             )
             .presentationDetents(detents)
         }
+        .fullScreenCover(isPresented: $viewModel.routineCompleted) {
+            RoutineCompleteView(
+                viewModel: RoutineCompleteViewModel(
+                    routine: viewModel.routineItem,
+                    startTime: viewModel.routineTakeTime.0,
+                    endTime: viewModel.routineTakeTime.1),
+                path: $path
+            )
+        }
         .onAppear {
             viewModel.resetTask()
             viewModel.initializeCurrentTaskIndex()
@@ -156,5 +166,6 @@ struct RoutineTimerView: View {
 }
 
 #Preview {
-    RoutineTimerView(viewModel: .init(routine: RoutineItem.sampleData[0]))
+    RoutineTimerView(viewModel: .init(routine: RoutineItem.sampleData[0]),
+                     path: .constant(NavigationPath()))
 }
