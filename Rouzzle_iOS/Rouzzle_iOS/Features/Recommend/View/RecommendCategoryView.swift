@@ -2,7 +2,7 @@
 //  RecommendCategoryView.swift
 //  Rouzzle_iOS
 //
-//  Created by 이다영 on 4/2/25.
+//  Created by Hyeonjeong Sim on 4/10/25.
 //
 
 import SwiftUI
@@ -10,33 +10,43 @@ import SwiftUI
 struct RecommendCategoryView: View {
     @Binding var selectedCategory: RecommendViewModel.Category
     private let categories = RecommendViewModel.Category.allCases
-
+    
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 12) {
                 ForEach(categories, id: \.self) { category in
-                    let isSelected = selectedCategory == category
-
-                    Text(category.rawValue)
-                        .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(isSelected ? .accentColor : .gray)
-                        .padding(.horizontal, 14)
-                        .padding(.vertical, 8)
-                        .background(
-                            RoundedRectangle(cornerRadius: 20)
-                                .fill(isSelected ? Color.green.opacity(0.15) : Color.white)
-                        )
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(isSelected ? Color.accentColor : Color.gray.opacity(0.4), lineWidth: 1)
-                        )
-                        .onTapGesture {
-                            selectedCategory = category
-                        }
+                    CategoryButton(
+                        category: category,
+                        isSelected: selectedCategory == category,
+                        action: { selectedCategory = category }
+                    )
                 }
             }
             .padding(.horizontal)
             .padding(.vertical, 6)
+        }
+    }
+    
+    private struct CategoryButton: View {
+        let category: RecommendViewModel.Category
+        let isSelected: Bool
+        let action: () -> Void
+        
+        var body: some View {
+            Text(category.rawValue)
+                .font(.ptSemiBold(size: 16))
+                .foregroundStyle(isSelected ? .rz558A24 : .rzc9C9C9)
+                .padding(.horizontal, 14)
+                .padding(.vertical, 8)
+                .background(
+                    RoundedRectangle(cornerRadius: 20)
+                        .fill(isSelected ? Color.rzfcfff0 : Color.white)
+                )
+                .overlay(
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(isSelected ? Color.rz558A24 : Color.rzc9C9C9, lineWidth: 1)
+                )
+                .onTapGesture(perform: action)
         }
     }
 }

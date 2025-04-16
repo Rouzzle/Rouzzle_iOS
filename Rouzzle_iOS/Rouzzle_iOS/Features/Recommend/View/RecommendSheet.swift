@@ -2,55 +2,62 @@
 //  RecommendSheet.swift
 //  Rouzzle_iOS
 //
-//  Created by 이다영 on 4/2/25.
+//  Created by Hyeonjeong Sim on 4/10/25.
 //
 
 import SwiftUI
 
 struct RecommendSheet: View {
     @Environment(\.dismiss) private var dismiss
-
+    
     let tasks: [RecommendTodoTask]
     let routines: [RoutineItem]
     let saveRoutine: (RoutineItem?) -> Void
-
+    
     @State private var selectedRoutineId: UUID?
-
+    
     var selectedRoutine: RoutineItem? {
         routines.first(where: { $0.id == selectedRoutineId })
     }
-
+    
     var body: some View {
-        VStack(spacing: 16) {
-            // 상단 버튼
-            HStack {
-                Button("닫기") {
-                    dismiss()
+        VStack(spacing: 0) {
+            Capsule()
+                .fill(Color.gray.opacity(0.3))
+                .frame(width: 40, height: 3)
+                .padding(.top, 8)
+                .padding(.bottom, -40)
+            
+            VStack {
+                HStack {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("닫기")
+                            .font(.ptMedium(size: 16))
+                    }
+                    Spacer()
+                    Button {
+                        saveRoutine(selectedRoutine)
+                        dismiss()
+                    } label: {
+                        Text("완료")
+                            .font(.ptMedium(size: 16))
+                    }
                 }
-                .font(.headline)
-
-                Spacer()
-
-                Button("완료") {
-                    saveRoutine(selectedRoutine)
-                    dismiss()
+                .padding()
+                Picker("루틴 선택", selection: $selectedRoutineId) {
+                    ForEach(routines, id: \.id) { routine in
+                        Text(routine.title).tag(Optional(routine.id))
+                            .font(.ptMedium(size: 20))
+                    }
+                    Text("루틴 추가하기").tag(nil as UUID?)
+                        .font(.ptMedium(size: 20))
                 }
-                .font(.headline)
+                .pickerStyle(.wheel)
             }
-            .padding(.horizontal)
-
-            Divider()
-
-            // 루틴 선택 휠
-            Picker("루틴 선택", selection: $selectedRoutineId) {
-                ForEach(routines, id: \.id) { routine in
-                    Text(routine.title).tag(Optional(routine.id))
-                }
-                Text("루틴 추가하기").tag(nil as UUID?)
-            }
-            .pickerStyle(.wheel)
+            .padding()
         }
-        .padding()
         .onAppear {
             selectedRoutineId = routines.first?.id
         }

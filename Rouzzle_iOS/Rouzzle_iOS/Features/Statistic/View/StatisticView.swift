@@ -180,7 +180,7 @@ struct SelectedRoutineButton: View {
                 .padding(.horizontal)
                 .background(
                     RoundedRectangle(cornerRadius: 40)
-                        .fill(selected ? .RZFCFFF_0 : .white)
+                        .fill(selected ? .rzfcfff0 : .white)
                 )
                 .overlay(
                     RoundedRectangle(cornerRadius: 40)
