@@ -24,6 +24,49 @@ enum TaskStatus {
     }
 }
 
+struct TaskStatusPuzzle: View {
+    @Bindable var task: TaskList
+    
+    var taskStatus: TaskStatus {
+        task.isCompleted ? .completed : .pending
+    }
+    
+    var body: some View {
+        HStack {
+            Text(task.emoji)
+                .font(.ptBold(size: 40))
+                .padding(.leading, 25)
+            
+            HStack(spacing: 10) {
+                Text(task.title)
+                    .font(.ptMedium())
+                    .strikethrough(taskStatus == .completed)
+                    .lineLimit(1)
+            }
+            .padding(.horizontal, 7)
+            
+            Spacer()
+            
+            Text(task.timer.formattedTimer)
+                .font(.ptRegular())
+                .foregroundColor(Color.subHeadlineFontColor)
+                .padding(.trailing, 25)
+        }
+        .padding(.vertical, 8)
+        .background {
+            if taskStatus == .completed {
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(.secondary)
+                    .opacity(0.5)
+            }
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(style: StrokeStyle(lineWidth: 1))
+                .foregroundStyle(.secondary)
+        }
+        .opacity(taskStatus == .completed ? 0.5 : 1)
+    }
+}
+
 struct TaskStatusRow: View {
     private(set) var taskStatus: TaskStatus
     private(set) var emojiText: String = "💊"

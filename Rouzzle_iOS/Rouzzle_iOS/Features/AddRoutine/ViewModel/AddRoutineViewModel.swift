@@ -242,4 +242,10 @@ final class AddRoutineViewModel {
             print("현재 알림 권한 상태: \(settings.authorizationStatus.rawValue)")
         }
     }
+    
+    // MARK: - Task 관련 메서드
+    func addTask(from recommend: RecommendTodoTask, to routineItem: RoutineItem) {
+        let task = recommend.toTaskList()
+        try? swiftDataService.addTask(to: routineItem, task: task)
+    }
 }
