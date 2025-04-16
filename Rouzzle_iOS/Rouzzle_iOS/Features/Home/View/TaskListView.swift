@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Factory
+// TODO: - 루틴 삭제하기 뻑남, 루틴 수정하기 빈 화면
 
 struct TaskListView: View {
     let routine: RoutineItem
@@ -66,8 +67,8 @@ struct TaskListView: View {
                 }
                 
                 RouzzleButton(buttonType: .timerStart, disabled: routine.taskList.isEmpty) {
-                    // isShowingTimerView.toggle()
-                    // 기존의 알림을 제거하기 위해서 필요함
+                    showTimerView.toggle()
+                    
                     NotificationManager.shared.removeAllNotifications()
                 }
                 .padding(.top)
@@ -138,6 +139,10 @@ struct TaskListView: View {
                 }
             }
         )
+        .fullScreenCover(isPresented: $showTimerView) {
+            // TODO: - 모두 완료되어 있을때 완료 상태를 초기화 해야한다. 아이템 완료상태 초기화 해서 보냄
+            RoutineTimerView(viewModel: RoutineTimerViewModel(routine: routine), path: $path)
+        }
         .fullScreenCover(isPresented: $isShowingEditRoutineSheet) {
             
 //            EditRoutineView(viewModel: EditRoutineViewModel(routine: routineStore.selectedRoutineItem!)) { _ in
