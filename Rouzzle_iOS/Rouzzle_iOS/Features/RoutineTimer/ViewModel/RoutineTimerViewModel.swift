@@ -13,65 +13,34 @@ import SwiftData
 final class RoutineTimerViewModel {
     @ObservationIgnored
     @Injected(\.swiftDataService) private var swiftDataService: SwiftDataServiceProtocol
-    
-    // MARK: - 타이머 관련 색상
-    enum TimerState {
-        case running
-        case paused
-        case overtime
-        
-        var gradientColors: [Color] {
-            switch self {
-            case .overtime:
-                return [.white, Color(.overtimeBackground)]
-            case .running:
-                return [.white, Color(.playBackground)]
-            case .paused:
-                return [.white, Color(.pauseBackground)]
-            }
-        }
-        
-        var puzzleTimerColor: Color {
-            switch self {
-            case .overtime:
-                return Color(.overtimePuzzleTimer)
-            case .running:
-                return Color.themeColor
-            case .paused:
-                return Color(.pausePuzzleTimer)
-            }
-        }
-        
-        var timeTextColor: Color {
-            switch self {
-            case .overtime:
-                return Color(.overtimePuzzleTimer)
-            case .running:
-                return .accent
-            case .paused:
-                return .white
-            }
-        }
-    }
-    
-    // MARK: - ViewModel
+       
     private var timer: Timer?
     var timerState: TimerState = .running
     var viewTasks: [TaskList] = []
-    var isRoutineCompleted = false // 모든 작업 완료 여부 체크
     var currentTaskIndex: Int = 0
     var timeRemaining: Int = 0
     var routineItem: RoutineItem
     private var isResuming = false // 일시정지 후 재개 상태를 추적
-    var routineTakeTime: (Date?, Date?) // 루틴 시작 시간 저장
+    var routineTakeTime: (Date?, Date?) // 루틴 (시작, 종료) 시간
     private var startTime: Date?
     private var endTime: Date?
     
+    var routineCompleted: Bool = false
+    
+    var currentRoutineHistory: RoutineHistory // 현재 루틴 수행 기록
+    
     var inProgressTask: TaskList? {
-        if viewTasks.isEmpty || isRoutineCompleted {
+        if viewTasks.isEmpty || currentTaskIndex >= viewTasks.count {
             return nil // 진행 중인 작업이 없음
         }
         return viewTasks[currentTaskIndex] // 진행 중인 작업 가져옴
+    }
+    
+    // TaskHistory에서 완료 여부 확인
+    var isRoutineCompleted: Bool {
+        return viewTasks.allSatisfy { task in
+            task.taskHistories.contains(where: { $0.isCompleted })
+        }
     }
     
     var nextPendingTask: TaskList? {
@@ -82,7 +51,8 @@ final class RoutineTimerViewModel {
         while checkedTasks < totalTasks {
             nextIndex = (nextIndex + 1) % totalTasks
             checkedTasks += 1
-            if !viewTasks[nextIndex].isCompleted && nextIndex != currentTaskIndex {
+            // 해당 작업에 완료된 TaskHistory가 없으면 미완료로 판단
+            if !viewTasks[nextIndex].taskHistories.contains(where: { $0.isCompleted }) && nextIndex != currentTaskIndex {
                 return viewTasks[nextIndex]
             }
         }
@@ -92,12 +62,13 @@ final class RoutineTimerViewModel {
     init(routine: RoutineItem) {
         self.viewTasks = routine.taskList
         self.routineItem = routine
+        self.currentRoutineHistory = RoutineHistory(date: Date(), routine: routine)
     }
     
     // MARK: - 타이머 시작 함수
     func startTimer() {
         guard currentTaskIndex < viewTasks.count else {
-            isRoutineCompleted = true
+            endRoutine()
             return
         }
         
@@ -133,7 +104,10 @@ final class RoutineTimerViewModel {
         timer?.invalidate()
         timer = nil
         routineTakeTime.1 = Date() // 루틴 종료 시간 설정
-        isRoutineCompleted = true
+        
+        if isRoutineCompleted {
+            routineCompleted = true
+        }
     }
     
     // MARK: - 타이머 토글 함수
@@ -157,20 +131,21 @@ final class RoutineTimerViewModel {
         
         endTime = Date()
         let elapsedTime = Int(endTime?.timeIntervalSince(startTime ?? Date()) ?? 0) // 루틴 수행 시간
+        let currentTask = viewTasks[currentTaskIndex]
+        currentTask.elapsedTime = elapsedTime
         
-        viewTasks[currentTaskIndex].elapsedTime = elapsedTime
+        let taskHistory = TaskHistory(isCompleted: true, task: currentTask, routineHistory: currentRoutineHistory)
+        currentTask.taskHistories.append(taskHistory)
+        currentRoutineHistory.taskHistories.append(taskHistory)
         
-        if let modelIndex = routineItem.taskList.firstIndex(where: { $0.id == viewTasks[currentTaskIndex].id }) {
-            routineItem.taskList[modelIndex].isCompleted = true
-            viewTasks[currentTaskIndex].isCompleted = true
+        currentTask.isCompleted = true // UI 변경을 위해
             
-            do {
-                try context.save()
-                startTime = nil
-                endTime = nil
-            } catch {
-                print("할일 완료 실패")
-            }
+        do {
+            try context.save()
+            startTime = nil
+            endTime = nil
+        } catch {
+            print("할일 완료 실패")
         }
         
         timer?.invalidate()
@@ -192,7 +167,7 @@ final class RoutineTimerViewModel {
         while checkedTasks < viewTasks.count {
             currentTaskIndex = (currentTaskIndex + 1) % viewTasks.count
             checkedTasks += 1
-            if !viewTasks[currentTaskIndex].isCompleted {
+            if !viewTasks[currentTaskIndex].taskHistories.contains(where: { $0.isCompleted }) {
                 foundIncompleteTask = true
                 break
             }
@@ -224,20 +199,21 @@ final class RoutineTimerViewModel {
     
     // MARK: - 진행 중인 할일 인덱스 초기화
     func initializeCurrentTaskIndex() {
-        if let index = viewTasks.firstIndex(where: { !$0.isCompleted }) {
+        if let index = viewTasks.firstIndex(where: { !$0.taskHistories.contains(where: { $0.isCompleted }) }) {
             currentTaskIndex = index
-            return
+        } else {
+            endRoutine()
         }
-        isRoutineCompleted = true
     }
     
     // MARK: - 모든 할일 완료되면 초기화
     func resetTask() {
         print("리셋 테스크")
     
-        if routineItem.taskList.filter({!$0.isCompleted}).isEmpty && !routineItem.taskList.isEmpty { // 모든일이 완료되었다면 초기화
+        // 연결된 TaskHistory 기록 모두 삭제하고 elapsedTime 초기화
+        if routineItem.taskList.filter({ !$0.taskHistories.contains(where: { $0.isCompleted }) }).isEmpty && !routineItem.taskList.isEmpty {
             for task in routineItem.taskList {
-                task.isCompleted = false
+                task.taskHistories.removeAll()
                 task.elapsedTime = nil
             }
         }
