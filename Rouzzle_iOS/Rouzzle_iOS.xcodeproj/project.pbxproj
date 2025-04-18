@@ -7,11 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		238B0AA72D76BD2F00CC5AAB /* RecommendedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238B0AA62D76BD2F00CC5AAB /* RecommendedSet.swift */; };
+		238B0AA72D76BD2F00CC5AAB /* RecommendedSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238B0AA62D76BD2F00CC5AAB /* RecommendedSetView.swift */; };
 		64BE32B82D82E6BA0051E12A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE32B72D82E6BA0051E12A /* NotificationManager.swift */; };
 		64BE32C62D8AC0830051E12A /* WeekSetTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE32C52D8AC0830051E12A /* WeekSetTimeView.swift */; };
+		64BE32C82D9D289A0051E12A /* RecommendCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE32C72D9D289A0051E12A /* RecommendCategoryView.swift */; };
+		64BE32CB2D9D29270051E12A /* RecommendCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE32CA2D9D291F0051E12A /* RecommendCard.swift */; };
+		64BE32CE2D9D297E0051E12A /* RecommendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE32CD2D9D29780051E12A /* RecommendViewModel.swift */; };
+		64BE32D02D9D4B670051E12A /* RecommendCardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE32CF2D9D4B670051E12A /* RecommendCardListView.swift */; };
+		64BE32D22D9D4D100051E12A /* RecommendTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE32D12D9D4D100051E12A /* RecommendTaskView.swift */; };
+		64BE32D42D9D4D520051E12A /* RecommendSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE32D32D9D4D520051E12A /* RecommendSheet.swift */; };
+		64BE32D62D9D4E850051E12A /* RecommendExpandedCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE32D52D9D4E850051E12A /* RecommendExpandedCardView.swift */; };
 		9701CC092D75F37400CBFA5D /* RoutineTimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9701CC082D75F37400CBFA5D /* RoutineTimerViewModel.swift */; };
 		9701CC0B2D76EA9D00CBFA5D /* TaskListSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9701CC0A2D76EA9D00CBFA5D /* TaskListSheet.swift */; };
+		97035C582DA509350033BD3B /* RoutineCompleteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97035C572DA509350033BD3B /* RoutineCompleteViewModel.swift */; };
+		9771297B2D8942D30046A56A /* RoutineCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9771297A2D8942D30046A56A /* RoutineCompleteView.swift */; };
+		97C44A752D92B7B100416452 /* TimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C44A742D92B7B100416452 /* TimerState.swift */; };
 		BD34AD222D2927D60031548C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD34AD1E2D2927D60031548C /* ContentView.swift */; };
 		BD34AD242D2927D60031548C /* Rouzzle_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD34AD202D2927D60031548C /* Rouzzle_iOSApp.swift */; };
 		BD34AD262D2927D60031548C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD34AD1D2D2927D60031548C /* Assets.xcassets */; };
@@ -71,14 +81,29 @@
 		BD764DC42D3CD52D008E94E5 /* TimeBasedRecommendSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DC32D3CD52D008E94E5 /* TimeBasedRecommendSetView.swift */; };
 		BD764DC62D3CD564008E94E5 /* RecommendTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD764DC52D3CD55D008E94E5 /* RecommendTask.swift */; };
 		BDC8BD7D2D6475230048CA54 /* TaskStatusPuzzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC8BD7C2D6475230048CA54 /* TaskStatusPuzzle.swift */; };
+		FB6ACED42D744DAC00948FFA /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6ACED32D744DAC00948FFA /* CalenderView.swift */; };
+		FB7345812D895DE2008B56F3 /* StatisticUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7345802D895DE2008B56F3 /* StatisticUtil.swift */; };
+		FB8A906C2D9D20CF00D023D4 /* RoutineSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8A906B2D9D20CF00D023D4 /* RoutineSummaryView.swift */; };
+		FB8A906E2D9D215200D023D4 /* RoutineItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8A906D2D9D215200D023D4 /* RoutineItem+Extension.swift */; };
+		FBD7812C2D807EB600015F88 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD7812B2D807EB600015F88 /* SampleData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		238B0AA62D76BD2F00CC5AAB /* RecommendedSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedSet.swift; sourceTree = "<group>"; };
+		238B0AA62D76BD2F00CC5AAB /* RecommendedSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedSetView.swift; sourceTree = "<group>"; };
 		64BE32B72D82E6BA0051E12A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		64BE32C52D8AC0830051E12A /* WeekSetTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekSetTimeView.swift; sourceTree = "<group>"; };
+		64BE32C72D9D289A0051E12A /* RecommendCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendCategoryView.swift; sourceTree = "<group>"; };
+		64BE32CA2D9D291F0051E12A /* RecommendCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendCard.swift; sourceTree = "<group>"; };
+		64BE32CD2D9D29780051E12A /* RecommendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendViewModel.swift; sourceTree = "<group>"; };
+		64BE32CF2D9D4B670051E12A /* RecommendCardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendCardListView.swift; sourceTree = "<group>"; };
+		64BE32D12D9D4D100051E12A /* RecommendTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTaskView.swift; sourceTree = "<group>"; };
+		64BE32D32D9D4D520051E12A /* RecommendSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendSheet.swift; sourceTree = "<group>"; };
+		64BE32D52D9D4E850051E12A /* RecommendExpandedCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendExpandedCardView.swift; sourceTree = "<group>"; };
 		9701CC082D75F37400CBFA5D /* RoutineTimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTimerViewModel.swift; sourceTree = "<group>"; };
 		9701CC0A2D76EA9D00CBFA5D /* TaskListSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListSheet.swift; sourceTree = "<group>"; };
+		97035C572DA509350033BD3B /* RoutineCompleteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineCompleteViewModel.swift; sourceTree = "<group>"; };
+		9771297A2D8942D30046A56A /* RoutineCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineCompleteView.swift; sourceTree = "<group>"; };
+		97C44A742D92B7B100416452 /* TimerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerState.swift; sourceTree = "<group>"; };
 		BD34AD082D2927C80031548C /* Rouzzle_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rouzzle_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD34AD1D2D2927D60031548C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD34AD1E2D2927D60031548C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -139,6 +164,11 @@
 		BD764DC32D3CD52D008E94E5 /* TimeBasedRecommendSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBasedRecommendSetView.swift; sourceTree = "<group>"; };
 		BD764DC52D3CD55D008E94E5 /* RecommendTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTask.swift; sourceTree = "<group>"; };
 		BDC8BD7C2D6475230048CA54 /* TaskStatusPuzzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStatusPuzzle.swift; sourceTree = "<group>"; };
+		FB6ACED32D744DAC00948FFA /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
+		FB7345802D895DE2008B56F3 /* StatisticUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticUtil.swift; sourceTree = "<group>"; };
+		FB8A906B2D9D20CF00D023D4 /* RoutineSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineSummaryView.swift; sourceTree = "<group>"; };
+		FB8A906D2D9D215200D023D4 /* RoutineItem+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoutineItem+Extension.swift"; sourceTree = "<group>"; };
+		FBD7812B2D807EB600015F88 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +183,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		64BE32C92D9D29160051E12A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				64BE32CA2D9D291F0051E12A /* RecommendCard.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		64BE32CC2D9D29510051E12A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				64BE32CD2D9D29780051E12A /* RecommendViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		97C44A712D92B76A00416452 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BD35566D2D6DF7030034F0CD /* RoutineTimerView.swift */,
+				9701CC0A2D76EA9D00CBFA5D /* TaskListSheet.swift */,
+				9771297A2D8942D30046A56A /* RoutineCompleteView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		97C44A722D92B77600416452 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9701CC082D75F37400CBFA5D /* RoutineTimerViewModel.swift */,
+				97035C572DA509350033BD3B /* RoutineCompleteViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		97C44A732D92B79F00416452 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				97C44A742D92B7B100416452 /* TimerState.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		BD34ACFF2D2927C80031548C = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				BD3556602D6C48BE0034F0CD /* ConvertString.swift */,
+				FB7345802D895DE2008B56F3 /* StatisticUtil.swift */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -193,9 +267,9 @@
 		BD35566C2D6DF6E10034F0CD /* RoutineTimer */ = {
 			isa = PBXGroup;
 			children = (
-				BD35566D2D6DF7030034F0CD /* RoutineTimerView.swift */,
-				9701CC0A2D76EA9D00CBFA5D /* TaskListSheet.swift */,
-				9701CC082D75F37400CBFA5D /* RoutineTimerViewModel.swift */,
+				97C44A732D92B79F00416452 /* Model */,
+				97C44A712D92B76A00416452 /* View */,
+				97C44A722D92B77600416452 /* ViewModel */,
 			);
 			path = RoutineTimer;
 			sourceTree = "<group>";
@@ -260,6 +334,7 @@
 				BD764D9C2D337D52008E94E5 /* Day.swift */,
 				BD764D442D312932008E94E5 /* RoutineItem.swift */,
 				BD764DA72D378764008E94E5 /* RecommendTaskData.swift */,
+				FBD7812B2D807EB600015F88 /* SampleData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -275,7 +350,9 @@
 		BD764D492D313334008E94E5 /* Recommend */ = {
 			isa = PBXGroup;
 			children = (
+				64BE32C92D9D29160051E12A /* Model */,
 				BD764D552D3133E8008E94E5 /* View */,
+				64BE32CC2D9D29510051E12A /* ViewModel */,
 			);
 			path = Recommend;
 			sourceTree = "<group>";
@@ -284,6 +361,8 @@
 			isa = PBXGroup;
 			children = (
 				BD764D502D3133A8008E94E5 /* StatisticView.swift */,
+				FB8A906B2D9D20CF00D023D4 /* RoutineSummaryView.swift */,
+				FB6ACED32D744DAC00948FFA /* CalenderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -292,7 +371,12 @@
 			isa = PBXGroup;
 			children = (
 				BD764D4E2D313394008E94E5 /* RecommendView.swift */,
-				238B0AA62D76BD2F00CC5AAB /* RecommendedSet.swift */,
+				238B0AA62D76BD2F00CC5AAB /* RecommendedSetView.swift */,
+				64BE32C72D9D289A0051E12A /* RecommendCategoryView.swift */,
+				64BE32D12D9D4D100051E12A /* RecommendTaskView.swift */,
+				64BE32D32D9D4D520051E12A /* RecommendSheet.swift */,
+				64BE32CF2D9D4B670051E12A /* RecommendCardListView.swift */,
+				64BE32D52D9D4E850051E12A /* RecommendExpandedCardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -443,6 +527,7 @@
 				BD764DA12D33C55E008E94E5 /* Publisher+Extension.swift */,
 				BD764DA92D37880A008E94E5 /* Date+Extension.swift */,
 				BD3556652D6C60310034F0CD /* Int+Extension.swift */,
+				FB8A906D2D9D215200D023D4 /* RoutineItem+Extension.swift */,
 				BD3556732D8025F80034F0CD /* String+Extension.swift */,
 			);
 			path = Extension;
@@ -550,13 +635,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64BE32D42D9D4D520051E12A /* RecommendSheet.swift in Sources */,
 				BD764D512D3133A8008E94E5 /* StatisticView.swift in Sources */,
+				64BE32D02D9D4B670051E12A /* RecommendCardListView.swift in Sources */,
 				BD764D892D3378F4008E94E5 /* RouzzleTextField.swift in Sources */,
 				BD3556722D7189800034F0CD /* Container.swift in Sources */,
+				64BE32CE2D9D297E0051E12A /* RecommendViewModel.swift in Sources */,
 				BD3556642D6C4E3E0034F0CD /* RoutineFilterToggle.swift in Sources */,
 				BD3556662D6C60310034F0CD /* Int+Extension.swift in Sources */,
+				97C44A752D92B7B100416452 /* TimerState.swift in Sources */,
 				BD764DA22D33C55E008E94E5 /* Publisher+Extension.swift in Sources */,
 				BD764DA42D3780B0008E94E5 /* RouzzlePicker.swift in Sources */,
+				FB8A906E2D9D215200D023D4 /* RoutineItem+Extension.swift in Sources */,
 				BD764DB62D3CC02B008E94E5 /* RoutineCategoryByTime.swift in Sources */,
 				BD35565A2D6C46530034F0CD /* HeaderView.swift in Sources */,
 				BD35567C2D804BEE0034F0CD /* CustomAlert.swift in Sources */,
@@ -570,24 +660,31 @@
 				BD34AD222D2927D60031548C /* ContentView.swift in Sources */,
 				64BE32B82D82E6BA0051E12A /* NotificationManager.swift in Sources */,
 				BD764D782D315B88008E94E5 /* RoutineHomeViewModel.swift in Sources */,
+				64BE32CB2D9D29270051E12A /* RecommendCard.swift in Sources */,
+				97035C582DA509350033BD3B /* RoutineCompleteViewModel.swift in Sources */,
 				BD764D862D3374BE008E94E5 /* AddRoutineTaskView.swift in Sources */,
 				BD764D822D33740C008E94E5 /* AddRoutineViewModel.swift in Sources */,
 				64BE32C62D8AC0830051E12A /* WeekSetTimeView.swift in Sources */,
 				BD764D4F2D313394008E94E5 /* RecommendView.swift in Sources */,
+				FB7345812D895DE2008B56F3 /* StatisticUtil.swift in Sources */,
+				FBD7812C2D807EB600015F88 /* SampleData.swift in Sources */,
 				BD764D972D337D04008E94E5 /* EmojiSearchKeywords.swift in Sources */,
 				BD764DBD2D3CC907008E94E5 /* SwiftDataService.swift in Sources */,
 				9701CC092D75F37400CBFA5D /* RoutineTimerViewModel.swift in Sources */,
 				BD764D982D337D04008E94E5 /* EmojiCategory.swift in Sources */,
-				238B0AA72D76BD2F00CC5AAB /* RecommendedSet.swift in Sources */,
+				238B0AA72D76BD2F00CC5AAB /* RecommendedSetView.swift in Sources */,
 				BD764D992D337D04008E94E5 /* EmojiPickerViewModel.swift in Sources */,
 				BD764D9A2D337D04008E94E5 /* EmojiPickerView.swift in Sources */,
+				9771297B2D8942D30046A56A /* RoutineCompleteView.swift in Sources */,
 				BD764DC22D3CCF2D008E94E5 /* NewTaskSheetView.swift in Sources */,
 				BD764D9B2D337D04008E94E5 /* EmojiComponents.swift in Sources */,
 				BD764D762D3157A3008E94E5 /* QuotesProvider.swift in Sources */,
 				BD764D842D3374AA008E94E5 /* AddRoutineView.swift in Sources */,
+				64BE32D22D9D4D100051E12A /* RecommendTaskView.swift in Sources */,
 				BD764DC62D3CD564008E94E5 /* RecommendTask.swift in Sources */,
 				BD35566E2D6DF7030034F0CD /* RoutineTimerView.swift in Sources */,
 				BD3556622D6C48BE0034F0CD /* ConvertString.swift in Sources */,
+				64BE32D62D9D4E850051E12A /* RecommendExpandedCardView.swift in Sources */,
 				BD35565C2D6C46770034F0CD /* RoutineItemView.swift in Sources */,
 				BD764DC42D3CD52D008E94E5 /* TimeBasedRecommendSetView.swift in Sources */,
 				BD764D5B2D3154A2008E94E5 /* Font+Extension.swift in Sources */,
@@ -599,8 +696,11 @@
 				BD764DA82D378764008E94E5 /* RecommendTaskData.swift in Sources */,
 				BD764DA62D3786FC008E94E5 /* RouzzleButton.swift in Sources */,
 				BD34AD242D2927D60031548C /* Rouzzle_iOSApp.swift in Sources */,
+				FB8A906C2D9D20CF00D023D4 /* RoutineSummaryView.swift in Sources */,
 				BD3556782D8044CE0034F0CD /* NavigationBackButtonModifier.swift in Sources */,
+				64BE32C82D9D289A0051E12A /* RecommendCategoryView.swift in Sources */,
 				BD764DC02D3CCEA5008E94E5 /* BorderModifier.swift in Sources */,
+				FB6ACED42D744DAC00948FFA /* CalenderView.swift in Sources */,
 				BD764D7F2D33713D008E94E5 /* AddRoutineContainerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

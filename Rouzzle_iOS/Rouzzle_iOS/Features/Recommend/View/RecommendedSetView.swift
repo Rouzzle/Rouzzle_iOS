@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RecommendedSet: View {
+struct RecommendedSetView: View {
     @Environment(\.dismiss) private var dismiss
     
     // 외부에서 주입받는 카테고리
@@ -30,7 +30,7 @@ struct RecommendedSet: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color(.RZFCFFF_0)
+                Color(.rzfcfff0)
                     .edgesIgnoringSafeArea(.all)
                 
                 ScrollView(showsIndicators: false) {
@@ -150,7 +150,7 @@ extension RoutineCategoryByTime {
 
 
 #Preview {
-    RecommendedSet(category: .morning) { tasks in
+    RecommendedSetView(category: .morning) { tasks in
         print("선택된 태스크: \(tasks.count)개")
     }
 }
