@@ -138,12 +138,6 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         
     }
     
-    // 특정 알림 삭제
-    func removeSpecificNotification(id: String) {
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
-        print("특정 알림 삭제: \(id)")
-    }
-    
     // 모든 알림 삭제
     func removeAllNotifications() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
@@ -157,6 +151,26 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         //print("포그라운드 알림 표시: \(notification.request.identifier)")
         completionHandler([.banner, .sound, .list])
     }
+    
+    // 특정 알림 삭제
+    func removeSpecificNotification(id: String) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
+        print("특정 알림 삭제: \(id)")
+    }
+    
+    // 루틴 실행 시 해당 알림 삭제(일시적)
+    func cancelTodayAlarms(for routine: RoutineItem) {
+        let routineID = routine.id.uuidString
+        let today = Date()
+        let weekday = Calendar.current.component(.weekday, from: today)
+        let repetitionCount = routine.repeatCount ?? 0
+
+        for index in 0...repetitionCount {
+            let alarmID = "routine_\(routineID)_weekday\(weekday)_index\(index)"
+            removeSpecificNotification(id: alarmID)
+        }
+    }
+
 }
 
 

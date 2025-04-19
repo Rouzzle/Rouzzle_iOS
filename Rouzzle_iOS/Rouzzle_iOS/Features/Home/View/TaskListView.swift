@@ -69,7 +69,7 @@ struct TaskListView: View {
                 RouzzleButton(buttonType: .timerStart, disabled: routine.taskList.isEmpty) {
                     showTimerView.toggle()
                     
-                    NotificationManager.shared.removeAllNotifications()
+                    NotificationManager.shared.cancelTodayAlarms(for: routine)
                 }
                 .padding(.top)
                 
