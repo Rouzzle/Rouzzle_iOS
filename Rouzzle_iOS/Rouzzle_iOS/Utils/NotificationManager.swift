@@ -129,15 +129,6 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         return now
     }
     
-    // 루틴 상태 체크 (알림 발생 직전에 호출)
-    /// 오늘 해당 루틴이 진행 중이거나 이미 완료 -> true
-    /// 실제 로직은 수정 필요
-    func isRoutineActiveOrCompleted(for routineID: String, on date: Date) -> Bool {
-        // TODO: 실제 루틴의 상태(진행 중/실행 완료) 체크 로직 구현
-        return false
-        
-    }
-    
     // 모든 알림 삭제
     func removeAllNotifications() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
@@ -165,12 +156,73 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         let weekday = Calendar.current.component(.weekday, from: today)
         let repetitionCount = routine.repeatCount ?? 0
 
+        guard let _ = routine.dayStartTime[weekday] else {
+            print("⛔️ [삭제 스킵] 오늘(\(weekday)) 루틴 시작 시간이 설정되어 있지 않음 → 알림 삭제 생략")
+            return
+        }
+        
         for index in 0...repetitionCount {
             let alarmID = "routine_\(routineID)_weekday\(weekday)_index\(index)"
             removeSpecificNotification(id: alarmID)
         }
     }
 
+    // 알림 재설정 (필요할까....)
+    func restoreTodayAlarms(for routine: RoutineItem) {
+        let calendar = Calendar.current
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+
+        let routineID = routine.id.uuidString
+        let today = Date()
+        let weekday = calendar.component(.weekday, from: today)
+        let repetitionCount = routine.repeatCount ?? 0
+        let intervalMinutes = routine.interval ?? 0
+
+        guard let timeString = routine.dayStartTime[weekday],
+              let date = formatter.date(from: timeString) else {
+            print("⚠️ [복구 실패] 오늘(\(weekday)) 루틴 시작 시간이 유효하지 않음")
+            return
+        }
+
+        let baseComponents = calendar.dateComponents([.hour, .minute], from: date)
+        guard let hour = baseComponents.hour, let minute = baseComponents.minute else {
+            print("⚠️ [복구 실패] 시작 시간 파싱 실패 (timeString: \(timeString))")
+            return
+        }
+
+        print("🔁 [복구 시작] 루틴: \(routine.title), 요일: \(weekday), 시작시각: \(timeString), 반복: \(repetitionCount + 1)회, 간격: \(intervalMinutes)분")
+
+        for index in 0...repetitionCount {
+            guard let trigger = createWeeklyTrigger(
+                weekday: weekday,
+                baseHour: hour,
+                baseMinute: minute,
+                index: index,
+                intervalMinutes: intervalMinutes
+            ) else {
+                print("⚠️ 트리거 생성 실패 - index: \(index)")
+                continue
+            }
+
+            let content = UNMutableNotificationContent()
+            content.title = "\(routine.title) 알림"
+            content.body = index == 0 ? "지금 바로 시작해볼까요?" : "\(index * intervalMinutes)분이 지났어요! 지금 시작해봐요"
+            content.sound = .default
+            content.userInfo = ["routineID": routineID]
+
+            let id = "routine_\(routineID)_weekday\(weekday)_index\(index)"
+            let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
+
+            UNUserNotificationCenter.current().add(request) { error in
+                if let error = error {
+                    print("알림 복구 실패: \(id) - \(error.localizedDescription)")
+                } else {
+                    print("알림 복구 완료: \(id)")
+                }
+            }
+        }
+    }
 }
 
 
