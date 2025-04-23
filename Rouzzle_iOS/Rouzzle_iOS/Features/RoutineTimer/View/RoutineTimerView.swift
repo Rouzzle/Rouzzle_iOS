@@ -167,16 +167,6 @@ struct RoutineTimerView: View {
         }
         .alert("루틴을 종료하시겠어요?", isPresented: $showExitAlert) {
             Button("나가기", role: .destructive) {
-                if let startTime = viewModel.routineTakeTime.0 {
-                    let now = Date()
-                    let elapsed = now.timeIntervalSince(startTime)
-                    
-                    if elapsed < 5 * 60 {
-                        NotificationManager.shared.restoreTodayAlarms(for: viewModel.routineItem)
-                    } else {
-                        print("루틴 5분 이상 진행 → 알림 복구 X")
-                    }
-                }
                 dismiss()
             }
             Button("취소", role: .cancel) { }

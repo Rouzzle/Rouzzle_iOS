@@ -166,63 +166,6 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
             removeSpecificNotification(id: alarmID)
         }
     }
-
-    // 알림 재설정 (필요할까....)
-    func restoreTodayAlarms(for routine: RoutineItem) {
-        let calendar = Calendar.current
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
-
-        let routineID = routine.id.uuidString
-        let today = Date()
-        let weekday = calendar.component(.weekday, from: today)
-        let repetitionCount = routine.repeatCount ?? 0
-        let intervalMinutes = routine.interval ?? 0
-
-        guard let timeString = routine.dayStartTime[weekday],
-              let date = formatter.date(from: timeString) else {
-            print("⚠️ [복구 실패] 오늘(\(weekday)) 루틴 시작 시간이 유효하지 않음")
-            return
-        }
-
-        let baseComponents = calendar.dateComponents([.hour, .minute], from: date)
-        guard let hour = baseComponents.hour, let minute = baseComponents.minute else {
-            print("⚠️ [복구 실패] 시작 시간 파싱 실패 (timeString: \(timeString))")
-            return
-        }
-
-        print("🔁 [복구 시작] 루틴: \(routine.title), 요일: \(weekday), 시작시각: \(timeString), 반복: \(repetitionCount + 1)회, 간격: \(intervalMinutes)분")
-
-        for index in 0...repetitionCount {
-            guard let trigger = createWeeklyTrigger(
-                weekday: weekday,
-                baseHour: hour,
-                baseMinute: minute,
-                index: index,
-                intervalMinutes: intervalMinutes
-            ) else {
-                print("⚠️ 트리거 생성 실패 - index: \(index)")
-                continue
-            }
-
-            let content = UNMutableNotificationContent()
-            content.title = "\(routine.title) 알림"
-            content.body = index == 0 ? "지금 바로 시작해볼까요?" : "\(index * intervalMinutes)분이 지났어요! 지금 시작해봐요"
-            content.sound = .default
-            content.userInfo = ["routineID": routineID]
-
-            let id = "routine_\(routineID)_weekday\(weekday)_index\(index)"
-            let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
-
-            UNUserNotificationCenter.current().add(request) { error in
-                if let error = error {
-                    print("알림 복구 실패: \(id) - \(error.localizedDescription)")
-                } else {
-                    print("알림 복구 완료: \(id)")
-                }
-            }
-        }
-    }
 }
 
 
