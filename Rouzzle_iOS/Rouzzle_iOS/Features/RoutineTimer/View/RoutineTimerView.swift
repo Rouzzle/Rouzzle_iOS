@@ -12,6 +12,8 @@ struct RoutineTimerView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
     @State var isShowingTaskListSheet: Bool = false
+    // 나가기 -> 알럿 (알림재설정 or 그대로 나가기)
+    @State private var showExitAlert: Bool = false
     @State private var detents: Set<PresentationDetent> = [.fraction(0.5)]
     @Binding var path: NavigationPath
     
@@ -29,7 +31,8 @@ struct RoutineTimerView: View {
             VStack {
                 // MARK: - X 버튼
                 Button {
-                    dismiss()
+                    showExitAlert = true
+                    //dismiss()
                 } label: {
                     Image(systemName: "xmark")
                         .font(.largeTitle)
@@ -161,6 +164,12 @@ struct RoutineTimerView: View {
             viewModel.resetTask()
             viewModel.initializeCurrentTaskIndex()
             viewModel.startTimer()
+        }
+        .alert("루틴을 종료하시겠어요?", isPresented: $showExitAlert) {
+            Button("나가기", role: .destructive) {
+                dismiss()
+            }
+            Button("취소", role: .cancel) { }
         }
     }
 }
