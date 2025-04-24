@@ -10,10 +10,10 @@ import Factory
 // TODO: - 루틴 삭제하기 뻑남, 루틴 수정하기 빈 화면
 
 struct TaskListView: View {
-    let routine: RoutineItem
+   // let routine: RoutineItem
     @Binding var path: NavigationPath
-    @Injected(\.swiftDataService) private var swiftDataService: SwiftDataServiceProtocol
-    @Bindable var viewModel: AddRoutineViewModel
+   // @Injected(\.swiftDataService) private var swiftDataService: SwiftDataServiceProtocol
+    @ObservedObject var viewModel: TaskListViewModel
     @State private var showTimerView = false
     @State private var isShowingRoutineSettingsSheet: Bool = false
     @State private var detents: Set<PresentationDetent> = [.fraction(0.12)]
@@ -25,7 +25,7 @@ struct TaskListView: View {
         ScrollView {
             VStack(alignment: .leading) {
                 HStack(alignment: .bottom) {
-                    Label(routine.todayStartTimeFormatted, systemImage: "clock")
+                    Label(viewModel.routineItem.todayStartTimeFormatted, systemImage: "clock")
                         .font(.ptMedium())
                         .foregroundStyle(Color.subHeadlineFontColor)
                         .padding(.top)
@@ -40,7 +40,7 @@ struct TaskListView: View {
                     }
                 }
                 .padding(.bottom, 5)
-                if routine.taskList.isEmpty {
+                if viewModel.routineItem.taskList.isEmpty {
                     HStack {
                         Spacer()
                         VStack(spacing: 8) {
@@ -61,15 +61,15 @@ struct TaskListView: View {
                     }
                 }
                 else {
-                    ForEach(routine.taskList) { task in
+                    ForEach(viewModel.routineItem.taskList) { task in
                         TaskStatusPuzzle(task: task)
                     }
                 }
                 
-                RouzzleButton(buttonType: .timerStart, disabled: routine.taskList.isEmpty) {
+                RouzzleButton(buttonType: .timerStart, disabled: viewModel.routineItem.taskList.isEmpty) {
                     showTimerView.toggle()
                     
-                    NotificationManager.shared.cancelTodayAlarms(for: routine)
+                    NotificationManager.shared.cancelTodayAlarms(for: viewModel.routineItem)
                 }
                 .padding(.top)
                 
@@ -99,7 +99,7 @@ struct TaskListView: View {
                         ForEach(viewModel.recommendTodoTask, id: \.self) { recommend in
                             TaskRecommendPuzzle(recommendTask: recommend) {
                                 viewModel.getRecommendTask()
-                                viewModel.addTask(from: recommend, to: routine)
+                                viewModel.addTask(from: recommend, to: viewModel.routineItem)
                             }
                         }
                     }
@@ -107,7 +107,7 @@ struct TaskListView: View {
                 }
             }
         }
-        .customNavigationBar(title: "\(routine.emoji) \(routine.title)")
+        .customNavigationBar(title: "\(viewModel.routineItem.emoji) \(viewModel.routineItem.title)")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
@@ -125,26 +125,25 @@ struct TaskListView: View {
             )
             .presentationDetents([.fraction(0.25)])
         }
+        .onAppear {
+            viewModel.getRecommendTask()
+        }
         .customAlert(
             isPresented: $isShowingDeleteAlert,
             title: "해당 루틴을 삭제합니다",
             message: "삭제 버튼 선택 시, 루틴 데이터는\n삭제되며 복구되지 않습니다.",
             primaryButtonTitle: "삭제",
             primaryAction: {
-                do {
-                    try swiftDataService.deleteRoutine(routine)
-                    dismiss()
-                } catch {
-                    print("루틴 삭제 실패: \(error.localizedDescription)")
-                }
+                viewModel.deleteRoutine()
+                dismiss()
             }
         )
         .fullScreenCover(isPresented: $showTimerView) {
             // TODO: - 모두 완료되어 있을때 완료 상태를 초기화 해야한다. 아이템 완료상태 초기화 해서 보냄
-            RoutineTimerView(viewModel: RoutineTimerViewModel(routine: routine), path: $path)
+            RoutineTimerView(viewModel: RoutineTimerViewModel(routine: viewModel.routineItem), path: $path)
         }
         .fullScreenCover(isPresented: $isShowingEditRoutineSheet) {
-            
+        
 //            EditRoutineView(viewModel: EditRoutineViewModel(routine: routineStore.selectedRoutineItem!)) { _ in
 //                routineStore.loadState = .completed
 //                routineStore.toastMessage = "수정에 성공했습니다."
@@ -154,8 +153,8 @@ struct TaskListView: View {
     }
 }
 
-#Preview {
-    NavigationStack {
-        TaskListView(routine: RoutineItem.sampleData[0], path: .constant(NavigationPath()), viewModel: AddRoutineViewModel())
-    }
-}
+//#Preview {
+//    NavigationStack {
+//        TaskListView(routine: RoutineItem.sampleData[0], path: .constant(NavigationPath()), viewModel: AddRoutineViewModel())
+//    }
+//}

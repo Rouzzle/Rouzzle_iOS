@@ -99,3 +99,19 @@ extension Date {
         return calendar.date(byAdding: components, to: startOfMonth)!
     }
 }
+
+// MARK: Date Extension (시간 포매팅 및 한글 요일 계산)
+extension Date {
+    func formattedHourMinute() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter.string(from: self)
+    }
+    
+    func koreanWeekday() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE"
+        formatter.locale = Locale(identifier: "ko_KR")
+        return String(formatter.string(from: self).prefix(1))
+    }
+}
