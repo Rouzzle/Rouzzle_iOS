@@ -18,4 +18,10 @@ extension Container {
             SwiftDataServiceImpl(modelContainer: Container.modelContainer)
         }
     }
+    
+    var recommendTaskService: Factory<RecommendTaskServiceProtocol> {
+        Factory(self) {
+            RecommendTaskService()
+        }
+    }
 }
