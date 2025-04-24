@@ -32,6 +32,9 @@ extension Date {
 final class AddRoutineViewModel {
     @ObservationIgnored
     @Injected(\.swiftDataService) private var swiftDataService: SwiftDataServiceProtocol
+    
+    @ObservationIgnored
+    @Injected(\.recommendTaskService) private var recommendTaskService: RecommendTaskServiceProtocol
 
     // MARK: - Types
     enum Step: Double {
@@ -133,12 +136,9 @@ final class AddRoutineViewModel {
     }
     
     func getRecommendTask() {
-        guard let time = selectedDateWithTime.first?.value else {
-            return
-        }
-        let timeSet = time.getTimeCategory()
+        guard let time = selectedDateWithTime.first?.value else { return }
         let routineTitles = routineTask.map { $0.title }
-        recommendTodoTask = RecommendTaskData.getRecommendedTasks(for: timeSet, excluding: routineTitles)
+        recommendTodoTask = recommendTaskService.fetchRecommendedTasks(time: time, excluding: routineTitles)
     }
     
     // MARK: 루틴 저장 및 알림 예약

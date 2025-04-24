@@ -36,8 +36,8 @@ struct Rouzzle_iOSApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-               // .modelContainer(modelContainer) // ContentView에 동일한 ModelContainer 전달
-                .modelContainer(SampleData.shared.modelContainer)
+                .modelContainer(modelContainer) // ContentView에 동일한 ModelContainer 전달
+                //.modelContainer(SampleData.shared.modelContainer)
         }
     }
     

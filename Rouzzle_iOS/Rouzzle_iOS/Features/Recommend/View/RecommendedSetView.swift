@@ -30,7 +30,7 @@ struct RecommendedSetView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color(.RZFCFFF_0)
+                Color(.rzfcfff0)
                     .edgesIgnoringSafeArea(.all)
                 
                 ScrollView(showsIndicators: false) {

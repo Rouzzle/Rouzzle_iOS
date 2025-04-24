@@ -28,11 +28,6 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         return index == 0 ? "지금 바로 시작해볼까요?" : "\(index * intervalMinutes)분이 지났어요! 지금 시작해봐요"
     }
     
-//    private func createTrigger(for date: Date, repeats: Bool) -> UNCalendarNotificationTrigger {
-//        let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
-//        return UNCalendarNotificationTrigger(dateMatching: components, repeats: repeats)
-//    }
-    
     /// 요일, 기준 시각, index 및 간격을 기반으로 주간 반복 트리거 생성 (옵셔널 안전 처리)
     private func createWeeklyTrigger(weekday: Int, baseHour: Int, baseMinute: Int, index: Int, intervalMinutes: Int) -> UNCalendarNotificationTrigger? {
         let calendar = Calendar.current
@@ -134,21 +129,6 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         return now
     }
     
-    // 루틴 상태 체크 (알림 발생 직전에 호출)
-    /// 오늘 해당 루틴이 진행 중이거나 이미 완료 -> true
-    /// 실제 로직은 수정 필요
-    func isRoutineActiveOrCompleted(for routineID: String, on date: Date) -> Bool {
-        // TODO: 실제 루틴의 상태(진행 중/실행 완료) 체크 로직 구현
-        return false
-        
-    }
-    
-    // 특정 알림 삭제
-    func removeSpecificNotification(id: String) {
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
-        print("특정 알림 삭제: \(id)")
-    }
-    
     // 모든 알림 삭제
     func removeAllNotifications() {
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
@@ -161,6 +141,30 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         //print("포그라운드 알림 표시: \(notification.request.identifier)")
         completionHandler([.banner, .sound, .list])
+    }
+    
+    // 특정 알림 삭제
+    func removeSpecificNotification(id: String) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [id])
+        print("특정 알림 삭제: \(id)")
+    }
+    
+    // 루틴 실행 시 해당 알림 삭제(일시적)
+    func cancelTodayAlarms(for routine: RoutineItem) {
+        let routineID = routine.id.uuidString
+        let today = Date()
+        let weekday = Calendar.current.component(.weekday, from: today)
+        let repetitionCount = routine.repeatCount ?? 0
+
+        guard let _ = routine.dayStartTime[weekday] else {
+            print("⛔️ [삭제 스킵] 오늘(\(weekday)) 루틴 시작 시간이 설정되어 있지 않음 → 알림 삭제 생략")
+            return
+        }
+        
+        for index in 0...repetitionCount {
+            let alarmID = "routine_\(routineID)_weekday\(weekday)_index\(index)"
+            removeSpecificNotification(id: alarmID)
+        }
     }
 }
 
