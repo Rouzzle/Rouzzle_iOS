@@ -14,14 +14,6 @@ enum SwiftDataServiceError: Error {
     case deleteFailed(Error)
 }
 
-protocol SwiftDataServiceProtocol {
-    func addRoutine(_ routine: RoutineItem) throws
-    func deleteRoutine(_ routine: RoutineItem) throws
-    func deleteAllRoutines() throws
-    func resetRoutine(from routine: RoutineItem) throws
-    func addTask(to routineItem: RoutineItem, task: TaskList) throws
-    func deleteTask(from routineItem: RoutineItem, task: TaskList) throws
-}
 /// 데이터 관련 작업(루틴, TaskList)을 관리하는 싱글톤 클래스
 @MainActor
 final class SwiftDataServiceImpl: @preconcurrency SwiftDataServiceProtocol {
