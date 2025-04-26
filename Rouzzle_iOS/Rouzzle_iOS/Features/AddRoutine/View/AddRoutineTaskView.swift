@@ -151,33 +151,35 @@ struct RecommendTaskListView: View {
     let refreshRecommend: () -> Void
     let taskAppend: (RoutineTask) -> Void
     var body: some View {
-        HStack {
-            Text("추천 할 일")
-                .font(.ptBold())
-            Spacer()
-            Button {
-                refreshRecommend()
-            } label: {
-                Image(systemName: "arrow.clockwise")
-                    .font(.title3)
-            }
-        }
-        
-        if recommendTask.isEmpty {
-            Text("추천 할 일을 모두 등록했습니다!")
-                .font(.ptRegular())
-                .foregroundStyle(.gray)
-                .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.vertical, 20)
-        } else {
-            VStack(spacing: 10) {
-                ForEach(recommendTask, id: \.self) { recommend in
-                    TaskRecommendPuzzle(recommendTask: recommend) {
-                        taskAppend(recommend.toRoutineTask())
-                    }
+        VStack {
+            HStack {
+                Text("추천 할 일")
+                    .font(.ptBold())
+                Spacer()
+                Button {
+                    refreshRecommend()
+                } label: {
+                    Image(systemName: "arrow.clockwise")
+                        .font(.title3)
                 }
             }
-            .animation(.smooth, value: recommendTask)
+            
+            if recommendTask.isEmpty {
+                Text("추천 할 일을 모두 등록했습니다!")
+                    .font(.ptRegular())
+                    .foregroundStyle(.gray)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .padding(.vertical, 20)
+            } else {
+                VStack(spacing: 10) {
+                    ForEach(recommendTask, id: \.self) { recommend in
+                        TaskRecommendPuzzle(recommendTask: recommend) {
+                            taskAppend(recommend.toRoutineTask())
+                        }
+                    }
+                }
+                .animation(.smooth, value: recommendTask)
+            }
         }
     }
 }

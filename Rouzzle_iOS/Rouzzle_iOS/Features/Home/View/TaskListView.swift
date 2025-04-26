@@ -10,15 +10,21 @@ import Factory
 // TODO: - 루틴 삭제하기 뻑남, 루틴 수정하기 빈 화면
 
 struct TaskListView: View {
-   // let routine: RoutineItem
+    let routine: RoutineItem
     @Binding var path: NavigationPath
-   // @Injected(\.swiftDataService) private var swiftDataService: SwiftDataServiceProtocol
-    @ObservedObject var viewModel: TaskListViewModel
+    @StateObject var viewModel: TaskListViewModel
     @State private var showTimerView = false
     @State private var isShowingRoutineSettingsSheet: Bool = false
     @State private var detents: Set<PresentationDetent> = [.fraction(0.12)]
     @State private var isShowingEditRoutineSheet: Bool = false
     @State private var isShowingDeleteAlert: Bool = false
+    
+    init(routine: RoutineItem, path: Binding<NavigationPath>) {
+        self.routine = routine
+        self._path = path
+        _viewModel = StateObject(wrappedValue: TaskListViewModel(routineItem: routine))
+    }
+    
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -72,38 +78,17 @@ struct TaskListView: View {
                     NotificationManager.shared.cancelTodayAlarms(for: viewModel.routineItem)
                 }
                 .padding(.top)
-                
-                HStack {
-                    Text("추천 할 일")
-                        .font(.ptBold(size: 18))
-                    
-                    Spacer()
-                    
-                    Button {
-                        viewModel.getRecommendTask()
-                    } label: {
-                        Image(systemName: "arrow.clockwise")
-                            .font(.title3)
-                    }
-                }
-                .padding(.top, 30)
+
                 // 추천 리스트
-                if viewModel.recommendTodoTask.isEmpty {
-                    Text("추천 할 일을 모두 등록했습니다!")
-                        .font(.ptRegular())
-                        .foregroundStyle(.gray)
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(.vertical, 20)
-                } else {
-                    VStack(spacing: 10) {
-                        ForEach(viewModel.recommendTodoTask, id: \.self) { recommend in
-                            TaskRecommendPuzzle(recommendTask: recommend) {
-                                viewModel.getRecommendTask()
-                                viewModel.addTask(from: recommend, to: viewModel.routineItem)
-                            }
-                        }
+                RecommendTaskListView(recommendTask: $viewModel.recommendTodoTask) {
+                    viewModel.getRecommendTask()
+                } taskAppend: { routineTask in
+                    if let index = viewModel.routineTask.firstIndex(where: { $0.hashValue == routineTask.hashValue }) {
+                        viewModel.routineTask.remove(at: index)
+                    } else {
+                        viewModel.routineTask.append(routineTask)
+                        viewModel.saveRoutineTasks(task: routineTask)
                     }
-                    // .animation(.smooth, value: //routineStore.recommendTodoTask)
                 }
             }
         }

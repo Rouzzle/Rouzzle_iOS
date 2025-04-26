@@ -1,0 +1,48 @@
+
+{
+  "morning": [
+    { "emoji": "🏃‍♂️", "title": "아침 운동하기", "timer": 1800 },
+    { "emoji": "🍳", "title": "아침 식사 준비하기", "timer": 1200 },
+    { "emoji": "🧘‍♂️", "title": "명상하기", "timer": 1200 },
+    { "emoji": "📰", "title": "뉴스 보기", "timer": 900 },
+    { "emoji": "☕️", "title": "커피 마시기", "timer": 600 },
+    { "emoji": "📖", "title": "독서하기", "timer": 1800 },
+    { "emoji": "🎧", "title": "좋아하는 음악 듣기", "timer": 1200 },
+    { "emoji": "🚿", "title": "샤워하기", "timer": 1200 },
+    { "emoji": "🛌", "title": "이불 정리", "timer": 1200 },
+    { "emoji": "🍽", "title": "요리하기", "timer": 1800 },
+    { "emoji": "🏋️‍♂️", "title": "가벼운 운동하기", "timer": 1200 },
+    { "emoji": "🌞", "title": "산책하기", "timer": 1200 }
+  ],
+  "afternoon": [
+    { "emoji": "🥗", "title": "점심 식사하기", "timer": 1800 },
+    { "emoji": "💻", "title": "프로젝트 작업하기", "timer": 120 },
+    { "emoji": "📞", "title": "전화 통화하기", "timer": 1200 },
+    { "emoji": "📚", "title": "학습하기", "timer": 2700 },
+    { "emoji": "🍽", "title": "요리하기", "timer": 1800 },
+    { "emoji": "🌞", "title": "산책하기", "timer": 900 },
+    { "emoji": "📝", "title": "점심 계획 세우기", "timer": 300 }
+  ],
+  "evening": [
+    { "emoji": "🍲", "title": "저녁 식사 준비하기", "timer": 2700 },
+    { "emoji": "📖", "title": "독서하기", "timer": 1800 },
+    { "emoji": "👨‍👩‍👧‍👦", "title": "가족과 시간 보내기", "timer": 3600 },
+    { "emoji": "🎬", "title": "영화 보기", "timer": 7200 },
+    { "emoji": "🛀", "title": "목욕하기", "timer": 1800 },
+    { "emoji": "🍽", "title": "요리하기", "timer": 1800 },
+    { "emoji": "🌞", "title": "산책하기", "timer": 900 },
+    { "emoji": "🛋", "title": "휴식하기", "timer": 1200 }
+  ],
+  "night": [
+    { "emoji": "🧘‍♂️", "title": "명상하기", "timer": 1200 },
+    { "emoji": "📓", "title": "일기 쓰기", "timer": 900 },
+    { "emoji": "🛏️", "title": "잠자리 준비하기", "timer": 600 },
+    { "emoji": "📱", "title": "SNS 확인하기", "timer": 1200 },
+    { "emoji": "🔍", "title": "내일 계획 세우기", "timer": 900 },
+    { "emoji": "🌙", "title": "수면 준비하기", "timer": 900 },
+    { "emoji": "📓", "title": "오늘 하루 정리하기", "timer": 600 },
+    { "emoji": "🌞", "title": "산책하기", "timer": 900 },
+    { "emoji": "🛀", "title": "반신욕하기", "timer": 1200 },
+    { "emoji": "🛋", "title": "휴식하기", "timer": 1200 }
+  ]
+}
