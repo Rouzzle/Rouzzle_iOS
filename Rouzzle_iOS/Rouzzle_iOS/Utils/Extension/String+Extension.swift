@@ -40,9 +40,10 @@ extension String {
     
     /// 데이터에 올라간 시간(05:23) 문자열을 Date객체로 변환하는 함수
     func toDate() -> Date? {
-           let formatter = DateFormatter()
-           formatter.dateFormat = "HH:mm"
-           formatter.locale = Locale(identifier: "ko_KR")
-           return formatter.date(from: self)
-       }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        formatter.locale = Locale(identifier: "ko_KR")
+        formatter.timeZone = .current // 현재 디바이스 시간대
+        return formatter.date(from: self)
+    }
 }

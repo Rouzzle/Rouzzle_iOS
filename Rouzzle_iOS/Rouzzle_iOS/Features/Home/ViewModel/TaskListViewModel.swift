@@ -14,10 +14,21 @@ final class TaskListViewModel: ObservableObject {
     @Injected(\.recommendTaskService) private var recommendTaskService: RecommendTaskServiceProtocol
     
     @Published var routineItem: RoutineItem
-    @Published var recommendTodoTask: [RecommendTodoTask] = []
+    @Published var recommendTodoTask: [RecommendTodoTask] = [] {
+        didSet {
+            print("Recommend: \(recommendTodoTask.count)")
+        }
+    }
+    @Published var routineTask: [RoutineTask]
     
     init(routineItem: RoutineItem) {
         self.routineItem = routineItem
+        self.routineTask = routineItem.taskList.map{$0.toRoutineTask()}
+    }
+    
+    func saveRoutineTasks(task: RoutineTask) {
+        try? swiftDataService.addTask(to: routineItem, task: task.toTaskList())
+        getRecommendTask()
     }
     
     func deleteRoutine() {

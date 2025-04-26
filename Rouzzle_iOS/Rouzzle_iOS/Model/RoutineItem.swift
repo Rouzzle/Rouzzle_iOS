@@ -78,6 +78,11 @@ final class TaskList: Identifiable {
         self.timer = timer
         self.isCompleted = isCompleted
     }
+    
+    func toRoutineTask() -> RoutineTask {
+        return RoutineTask(title: title, emoji: emoji, timer: timer)
+    }
+
 }
 
 @Model
