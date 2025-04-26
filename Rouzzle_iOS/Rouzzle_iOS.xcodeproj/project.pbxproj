@@ -84,6 +84,8 @@
 		BD911A082DB9955D0039FA3D /* RecommendTaskServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD911A072DB9955D0039FA3D /* RecommendTaskServiceProtocol.swift */; };
 		BD911A0A2DB995730039FA3D /* RecommedTaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD911A092DB995730039FA3D /* RecommedTaskService.swift */; };
 		BD911A0C2DBA6DC70039FA3D /* TaskListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD911A0B2DBA6DC70039FA3D /* TaskListViewModel.swift */; };
+		BD911A142DBB9E4E0039FA3D /* RecommendTasks.json in Resources */ = {isa = PBXBuildFile; fileRef = BD911A132DBB9E3F0039FA3D /* RecommendTasks.json */; };
+		BD911A162DBBECAE0039FA3D /* RecommendTodoTasks.json in Resources */ = {isa = PBXBuildFile; fileRef = BD911A152DBBECA30039FA3D /* RecommendTodoTasks.json */; };
 		BDC8BD7D2D6475230048CA54 /* TaskStatusPuzzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC8BD7C2D6475230048CA54 /* TaskStatusPuzzle.swift */; };
 		FB6ACED42D744DAC00948FFA /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6ACED32D744DAC00948FFA /* CalenderView.swift */; };
 		FB7345812D895DE2008B56F3 /* StatisticUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7345802D895DE2008B56F3 /* StatisticUtil.swift */; };
@@ -171,6 +173,8 @@
 		BD911A072DB9955D0039FA3D /* RecommendTaskServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTaskServiceProtocol.swift; sourceTree = "<group>"; };
 		BD911A092DB995730039FA3D /* RecommedTaskService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommedTaskService.swift; sourceTree = "<group>"; };
 		BD911A0B2DBA6DC70039FA3D /* TaskListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListViewModel.swift; sourceTree = "<group>"; };
+		BD911A132DBB9E3F0039FA3D /* RecommendTasks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RecommendTasks.json; sourceTree = "<group>"; };
+		BD911A152DBBECA30039FA3D /* RecommendTodoTasks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RecommendTodoTasks.json; sourceTree = "<group>"; };
 		BDC8BD7C2D6475230048CA54 /* TaskStatusPuzzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStatusPuzzle.swift; sourceTree = "<group>"; };
 		FB6ACED32D744DAC00948FFA /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
 		FB7345802D895DE2008B56F3 /* StatisticUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticUtil.swift; sourceTree = "<group>"; };
@@ -295,6 +299,8 @@
 		BD764D3F2D312866008E94E5 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				BD911A152DBBECA30039FA3D /* RecommendTodoTasks.json */,
+				BD911A132DBB9E3F0039FA3D /* RecommendTasks.json */,
 				BD34AD1D2D2927D60031548C /* Assets.xcassets */,
 				BD764D662D3154B6008E94E5 /* Font */,
 			);
@@ -641,10 +647,12 @@
 				BD764D6A2D3154B6008E94E5 /* Halo Dek.otf in Resources */,
 				BD764D6B2D3154B6008E94E5 /* Pretendard-ExtraBold.otf in Resources */,
 				BD764D6C2D3154B6008E94E5 /* Pretendard-Black.otf in Resources */,
+				BD911A142DBB9E4E0039FA3D /* RecommendTasks.json in Resources */,
 				BD764D6D2D3154B6008E94E5 /* Pretendard-ExtraLight.otf in Resources */,
 				BD764D6E2D3154B6008E94E5 /* Pretendard-Thin.otf in Resources */,
 				BD764D6F2D3154B6008E94E5 /* Pretendard-Bold.otf in Resources */,
 				BD764D702D3154B6008E94E5 /* Pretendard-Light.otf in Resources */,
+				BD911A162DBBECAE0039FA3D /* RecommendTodoTasks.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
