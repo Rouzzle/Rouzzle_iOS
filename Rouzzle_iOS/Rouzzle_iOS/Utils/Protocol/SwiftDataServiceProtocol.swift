@@ -14,4 +14,7 @@ protocol SwiftDataServiceProtocol {
     func resetRoutine(from routine: RoutineItem) throws
     func addTask(to routineItem: RoutineItem, task: TaskList) throws
     func deleteTask(from routineItem: RoutineItem, task: TaskList) throws
+    func addRoutineHistory(_ history: RoutineHistory) throws
+    func addTaskHistory(_ history: TaskHistory) throws
+    func updateRoutineHistory(_ history: RoutineHistory) throws
 }

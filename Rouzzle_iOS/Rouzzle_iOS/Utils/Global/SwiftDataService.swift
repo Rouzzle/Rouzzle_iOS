@@ -29,6 +29,11 @@ final class SwiftDataServiceImpl: @preconcurrency SwiftDataServiceProtocol {
         try saveContext()
     }
     
+    func addRoutineHistory(_ history: RoutineHistory) throws {
+        context.insert(history)
+        try saveContext()
+    }
+
     func deleteRoutine(_ routine: RoutineItem) throws {
         context.delete(routine)
         try saveContext()
@@ -56,12 +61,21 @@ final class SwiftDataServiceImpl: @preconcurrency SwiftDataServiceProtocol {
         try saveContext()
     }
     
+    func updateRoutineHistory(_ history: RoutineHistory) throws {
+        try saveContext()
+    }
+    
     // MARK: - Task 관련 메서드
     func addTask(to routineItem: RoutineItem, task: TaskList)  {
         task.routineItem = routineItem
         routineItem.taskList.append(task)
         context.insert(task)
        // try saveContext()
+    }
+    
+    func addTaskHistory(_ history: TaskHistory) throws {
+        context.insert(history)
+        try saveContext()
     }
     
     func deleteTask(from routineItem: RoutineItem, task: TaskList) throws {

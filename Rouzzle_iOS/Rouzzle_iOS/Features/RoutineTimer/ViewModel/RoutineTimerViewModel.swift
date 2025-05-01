@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Factory
-import SwiftData
 
 @Observable
 final class RoutineTimerViewModel {
@@ -21,13 +20,13 @@ final class RoutineTimerViewModel {
     var timeRemaining: Int = 0
     var routineItem: RoutineItem
     private var isResuming = false // 일시정지 후 재개 상태를 추적
-    var routineTakeTime: (Date?, Date?) // 루틴 (시작, 종료) 시간
+    var routineTakeTime: (Date?, Date?) = (nil, nil) // 루틴 (시작, 종료) 시간
     private var startTime: Date?
     private var endTime: Date?
     
     var routineCompleted: Bool = false
     
-    var currentRoutineHistory: RoutineHistory // 현재 루틴 수행 기록
+    var currentRoutineHistory: RoutineHistory? = nil // 현재 루틴 수행 기록
     
     var inProgressTask: TaskList? {
         if viewTasks.isEmpty || currentTaskIndex >= viewTasks.count {
@@ -62,11 +61,16 @@ final class RoutineTimerViewModel {
     init(routine: RoutineItem) {
         self.viewTasks = routine.taskList
         self.routineItem = routine
-        self.currentRoutineHistory = RoutineHistory(date: Date(), routine: routine)
     }
     
     // MARK: - 타이머 시작 함수
     func startTimer() {
+        if currentRoutineHistory == nil {
+            let history = RoutineHistory(date: Date(), routine: routineItem)
+            currentRoutineHistory = history
+            try? swiftDataService.addRoutineHistory(history)
+        }
+        
         guard currentTaskIndex < viewTasks.count else {
             endRoutine()
             return
@@ -105,6 +109,11 @@ final class RoutineTimerViewModel {
         timer = nil
         routineTakeTime.1 = Date() // 루틴 종료 시간 설정
         
+        if let history = currentRoutineHistory {
+            history.date = routineTakeTime.1!
+            try? swiftDataService.updateRoutineHistory(history)
+        }
+
         if isRoutineCompleted {
             routineCompleted = true
         }
@@ -123,7 +132,7 @@ final class RoutineTimerViewModel {
     }
     
     // MARK: - 완료 체크 및 다음 할일로 이동 함수
-    func markTaskAsCompleted(_ context: ModelContext) {
+    func markTaskAsCompleted() {
         guard currentTaskIndex < viewTasks.count else {
             endRoutine()
             return
@@ -136,17 +145,14 @@ final class RoutineTimerViewModel {
         
         let taskHistory = TaskHistory(isCompleted: true, task: currentTask, routineHistory: currentRoutineHistory)
         currentTask.taskHistories.append(taskHistory)
-        currentRoutineHistory.taskHistories.append(taskHistory)
+        currentRoutineHistory?.taskHistories.append(taskHistory)
+        
+        try? swiftDataService.addTaskHistory(taskHistory)
         
         currentTask.isCompleted = true // UI 변경을 위해
-            
-        do {
-            try context.save()
-            startTime = nil
-            endTime = nil
-        } catch {
-            print("할일 완료 실패")
-        }
+        
+        startTime = nil
+        endTime = nil
         
         timer?.invalidate()
         moveToNextIncompleteTask()

@@ -10,7 +10,6 @@ import SwiftUI
 struct RoutineTimerView: View {
     @State var viewModel: RoutineTimerViewModel
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.modelContext) private var modelContext
     @State var isShowingTaskListSheet: Bool = false
     // 나가기 -> 알럿 (알림재설정 or 그대로 나가기)
     @State private var showExitAlert: Bool = false
@@ -96,7 +95,7 @@ struct RoutineTimerView: View {
                     
                     // 완료 체크
                     Button {
-                        viewModel.markTaskAsCompleted(modelContext)
+                        viewModel.markTaskAsCompleted()
                     } label: {
                         Image(.checkIcon)
                     }
