@@ -10,7 +10,6 @@ import SwiftUI
 struct RoutineTimerView: View {
     @State var viewModel: RoutineTimerViewModel
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.modelContext) private var modelContext
     @State var isShowingTaskListSheet: Bool = false
     // 나가기 -> 알럿 (알림재설정 or 그대로 나가기)
     @State private var showExitAlert: Bool = false
@@ -96,7 +95,7 @@ struct RoutineTimerView: View {
                     
                     // 완료 체크
                     Button {
-                        viewModel.markTaskAsCompleted(modelContext)
+                        viewModel.markTaskAsCompleted()
                     } label: {
                         Image(.checkIcon)
                     }
@@ -161,9 +160,13 @@ struct RoutineTimerView: View {
             )
         }
         .onAppear {
-            viewModel.resetTask()
-            viewModel.initializeCurrentTaskIndex()
             viewModel.startTimer()
+        }
+        .onChange(of: viewModel.inProgressTask) { _, newTask in
+          guard !viewModel.isResuming,
+                let task = newTask else { return }
+          viewModel.timeRemaining = task.timer
+          viewModel.startTime = Date()
         }
         .alert("루틴을 종료하시겠어요?", isPresented: $showExitAlert) {
             Button("나가기", role: .destructive) {
