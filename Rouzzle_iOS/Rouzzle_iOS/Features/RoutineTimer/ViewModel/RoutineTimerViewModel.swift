@@ -19,9 +19,9 @@ final class RoutineTimerViewModel {
     var currentTaskIndex: Int = 0
     var timeRemaining: Int = 0
     var routineItem: RoutineItem
-    private var isResuming = false // 일시정지 후 재개 상태를 추적
+    var isResuming = false // 일시정지 후 재개 상태를 추적
     var routineTakeTime: (Date?, Date?) = (nil, nil) // 루틴 (시작, 종료) 시간
-    private var startTime: Date?
+    var startTime: Date?
     private var endTime: Date?
     
     var routineCompleted: Bool = false

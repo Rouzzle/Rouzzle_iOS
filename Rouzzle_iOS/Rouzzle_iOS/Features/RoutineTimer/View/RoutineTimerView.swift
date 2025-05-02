@@ -162,6 +162,12 @@ struct RoutineTimerView: View {
         .onAppear {
             viewModel.startTimer()
         }
+        .onChange(of: viewModel.inProgressTask) { _, newTask in
+          guard !viewModel.isResuming,
+                let task = newTask else { return }
+          viewModel.timeRemaining = task.timer
+          viewModel.startTime = Date()
+        }
         .alert("루틴을 종료하시겠어요?", isPresented: $showExitAlert) {
             Button("나가기", role: .destructive) {
                 dismiss()
