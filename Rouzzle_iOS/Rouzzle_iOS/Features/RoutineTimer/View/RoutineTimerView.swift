@@ -160,8 +160,6 @@ struct RoutineTimerView: View {
             )
         }
         .onAppear {
-            viewModel.resetTask()
-            viewModel.initializeCurrentTaskIndex()
             viewModel.startTimer()
         }
         .alert("루틴을 종료하시겠어요?", isPresented: $showExitAlert) {
