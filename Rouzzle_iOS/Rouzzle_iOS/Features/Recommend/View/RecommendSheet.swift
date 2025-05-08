@@ -15,9 +15,14 @@ struct RecommendSheet: View {
     let saveRoutine: (RoutineItem?) -> Void
     
     @State private var selectedRoutineId: UUID?
+    @State private var showAddRoutine = false
     
     var selectedRoutine: RoutineItem? {
-        routines.first(where: { $0.id == selectedRoutineId })
+        if selectedRoutineId == nil {
+            return nil
+        } else {
+            return routines.first(where: { $0.id == selectedRoutineId })
+        }
     }
     
     var body: some View {
@@ -38,19 +43,25 @@ struct RecommendSheet: View {
                     }
                     Spacer()
                     Button {
-                        saveRoutine(selectedRoutine)
-                        dismiss()
+                        if selectedRoutineId == nil {
+                            showAddRoutine = true
+                        } else {
+                            saveRoutine(selectedRoutine)
+                            dismiss()
+                        }
                     } label: {
                         Text("완료")
                             .font(.ptMedium(size: 16))
                     }
                 }
                 .padding()
+                
                 Picker("루틴 선택", selection: $selectedRoutineId) {
                     ForEach(routines, id: \.id) { routine in
                         Text(routine.title).tag(Optional(routine.id))
                             .font(.ptMedium(size: 20))
                     }
+                    
                     Text("루틴 추가하기").tag(nil as UUID?)
                         .font(.ptMedium(size: 20))
                 }
@@ -59,7 +70,19 @@ struct RecommendSheet: View {
             .padding()
         }
         .onAppear {
-            selectedRoutineId = routines.first?.id
+            if !routines.isEmpty {
+                selectedRoutineId = routines.first?.id
+            } else {
+                selectedRoutineId = nil
+            }
+        }
+        .fullScreenCover(isPresented: $showAddRoutine) {
+            AddRoutineContainerView()
+                .onDisappear {
+                    if !routines.isEmpty {
+                        selectedRoutineId = routines.first?.id
+                    }
+                }
         }
     }
 }
