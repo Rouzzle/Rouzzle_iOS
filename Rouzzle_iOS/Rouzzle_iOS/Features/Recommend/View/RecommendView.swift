@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct RecommendView: View {
     @State private var viewModel = RecommendViewModel()
@@ -29,12 +30,18 @@ struct RecommendView: View {
                 cards: $viewModel.filteredCards,
                 selectedRecommendTask: $viewModel.selectedRecommend,
                 isAllSelected: $allCheckBtn,
-                addRoutine: { title, emoji, routine in
-                    guard let newRoutine = routine else { return }
-                    newRoutine.title = title
-                    newRoutine.emoji = emoji
+                addRoutine: { _, _, routine in
+                    guard let selectedRoutine = routine else { return }
+                    
+                    for task in viewModel.selectedRecommend {
+                        if !selectedRoutine.taskList.contains(where: { $0.title == task.title }) {
+                            let newTask = task.toTaskList()
+                            selectedRoutine.taskList.append(newTask)
+                        }
+                    }
+                    
                     Task {
-                        await viewModel.addTask(newRoutine)
+                        await viewModel.addTask(selectedRoutine)
                     }
                 }
             )

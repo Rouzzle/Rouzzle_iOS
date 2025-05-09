@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct RecommendCardListView: View {
     @Binding var cards: [Card]
@@ -13,6 +14,9 @@ struct RecommendCardListView: View {
     @Binding var isAllSelected: Bool
     @State private var selectedCardID: UUID?
     @State private var showingRoutineSheet = false
+    
+    @Query private var routines: [RoutineItem]
+    
     let addRoutine: (String, String, RoutineItem?) -> Void
     
     var body: some View {
@@ -190,8 +194,8 @@ struct RecommendCardListView: View {
             }
         )
         .sheet(isPresented: $showingRoutineSheet) {
-            RecommendSheet(tasks: selectedRecommendTask, routines: []) { routine in
-                addRoutine(card.title, card.imageName, routine)
+            RecommendSheet(tasks: selectedRecommendTask, routines: routines) { routine in
+                addRoutine("", "", routine)
             }
             .presentationDetents([.fraction(0.3)])
             .interactiveDismissDisabled()
