@@ -114,7 +114,6 @@ final class RoutineTimerViewModel {
         
         if isRoutineCompleted {
             routineCompleted = true
-            resetTask()
         }
     }
     
@@ -204,8 +203,7 @@ final class RoutineTimerViewModel {
     
     /// 할일 완료되면 초기화
     func resetTask() {
-        guard let history = currentRoutineHistory,
-              history.isCompleted else { return }
+        guard let history = currentRoutineHistory, isRoutineCompleted else { return }
         
         for task in routineItem.taskList {
             task.isCompleted = false

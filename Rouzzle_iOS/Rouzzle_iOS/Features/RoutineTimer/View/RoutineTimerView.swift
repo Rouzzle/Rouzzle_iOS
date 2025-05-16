@@ -161,6 +161,7 @@ struct RoutineTimerView: View {
         }
         .onAppear {
             viewModel.startTimer()
+            viewModel.resetTask()
         }
         .onChange(of: viewModel.inProgressTask) { _, newTask in
           guard !viewModel.isResuming,
