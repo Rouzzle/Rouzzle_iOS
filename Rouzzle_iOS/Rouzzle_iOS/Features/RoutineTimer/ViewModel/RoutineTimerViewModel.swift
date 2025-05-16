@@ -58,6 +58,38 @@ final class RoutineTimerViewModel {
         return pendings[idx + 1]
     }
     
+    // MARK: - CompleteView Properties
+    // 루틴 이름(이모지 + 이름)
+    var routineTitle: String {
+        return "\(routineItem.emoji)  \(routineItem.title)"
+    }
+    
+    // 루틴 시작/완료 시간
+    var routineTimeRange: String {
+        guard let start = routineTakeTime.0,
+              let end = routineTakeTime.1
+        else { return "시간 정보 없음" }
+        return "\(start.toTimeString()) ~ \(end.toTimeString())"
+    }
+    
+    // 누적일
+    var totalDays: Int {
+        return routineItem.totalDaysCount()
+    }
+    
+    // 연속일
+    var longestDays: Int {
+        return routineItem.longestStreak()
+    }
+    
+    // 완료된 할일 리스트
+    var completedTasks: [TaskList] {
+        return routineItem.taskList.filter { task in
+            // TaskList가 연결된 TaskHistory 중 하나라도 완료되었으면 완료로 간주
+            task.taskHistories.contains(where: { $0.isCompleted })
+        }
+    }
+    
     init(routine: RoutineItem) {
         self.viewTasks = routine.taskList
         self.routineItem = routine

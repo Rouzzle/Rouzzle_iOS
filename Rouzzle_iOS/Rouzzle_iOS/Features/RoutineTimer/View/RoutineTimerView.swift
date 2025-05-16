@@ -152,10 +152,7 @@ struct RoutineTimerView: View {
         }
         .fullScreenCover(isPresented: $viewModel.routineCompleted) {
             RoutineCompleteView(
-                viewModel: RoutineCompleteViewModel(
-                    routine: viewModel.routineItem,
-                    startTime: viewModel.routineTakeTime.0,
-                    endTime: viewModel.routineTakeTime.1),
+                viewModel: viewModel,
                 path: $path
             )
         }

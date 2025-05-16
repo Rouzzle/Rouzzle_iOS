@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RoutineCompleteView: View {
     @Environment(\.dismiss) private var dismiss
-    @State var viewModel: RoutineCompleteViewModel
+    @Bindable var viewModel: RoutineTimerViewModel
     @Binding var path: NavigationPath
     
     var body: some View {
@@ -96,5 +96,5 @@ struct RoutineCompleteView: View {
 }
 
 #Preview {
-    RoutineCompleteView(viewModel: .init(routine: RoutineItem.sampleData[0], startTime: Date(), endTime: Date()), path: .constant(NavigationPath()))
+    RoutineCompleteView(viewModel: .init(routine: RoutineItem.sampleData[0]), path: .constant(NavigationPath()))
 }
