@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		238B0AA72D76BD2F00CC5AAB /* RecommendedSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238B0AA62D76BD2F00CC5AAB /* RecommendedSetView.swift */; };
+		6431D0D22DD77CCA00EA9FD8 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6431D0D12DD77CC500EA9FD8 /* MyPageView.swift */; };
+		6431D0D42DD77CD300EA9FD8 /* UserInformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6431D0D32DD77CCE00EA9FD8 /* UserInformationView.swift */; };
 		64BE32B82D82E6BA0051E12A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE32B72D82E6BA0051E12A /* NotificationManager.swift */; };
 		64BE32C62D8AC0830051E12A /* WeekSetTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE32C52D8AC0830051E12A /* WeekSetTimeView.swift */; };
 		64BE32C82D9D289A0051E12A /* RecommendCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE32C72D9D289A0051E12A /* RecommendCategoryView.swift */; };
@@ -96,6 +98,8 @@
 
 /* Begin PBXFileReference section */
 		238B0AA62D76BD2F00CC5AAB /* RecommendedSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedSetView.swift; sourceTree = "<group>"; };
+		6431D0D12DD77CC500EA9FD8 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
+		6431D0D32DD77CCE00EA9FD8 /* UserInformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationView.swift; sourceTree = "<group>"; };
 		64BE32B72D82E6BA0051E12A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		64BE32C52D8AC0830051E12A /* WeekSetTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekSetTimeView.swift; sourceTree = "<group>"; };
 		64BE32C72D9D289A0051E12A /* RecommendCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendCategoryView.swift; sourceTree = "<group>"; };
@@ -195,6 +199,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6431D0D02DD77CBE00EA9FD8 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				6431D0D32DD77CCE00EA9FD8 /* UserInformationView.swift */,
+				6431D0D12DD77CC500EA9FD8 /* MyPageView.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
 		64BE32C92D9D29160051E12A /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +323,7 @@
 		BD764D402D3128BA008E94E5 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				6431D0D02DD77CBE00EA9FD8 /* MyPage */,
 				BD35566C2D6DF6E10034F0CD /* RoutineTimer */,
 				BD764D7C2D33711A008E94E5 /* AddRoutine */,
 				BD764D412D3128C6008E94E5 /* Home */,
@@ -704,6 +718,7 @@
 				9701CC092D75F37400CBFA5D /* RoutineTimerViewModel.swift in Sources */,
 				BD764D982D337D04008E94E5 /* EmojiCategory.swift in Sources */,
 				238B0AA72D76BD2F00CC5AAB /* RecommendedSetView.swift in Sources */,
+				6431D0D22DD77CCA00EA9FD8 /* MyPageView.swift in Sources */,
 				BD764D992D337D04008E94E5 /* EmojiPickerViewModel.swift in Sources */,
 				BD764D9A2D337D04008E94E5 /* EmojiPickerView.swift in Sources */,
 				9771297B2D8942D30046A56A /* RoutineCompleteView.swift in Sources */,
@@ -723,6 +738,7 @@
 				BD764D472D313320008E94E5 /* RoutineHomeView.swift in Sources */,
 				BD764D7B2D337090008E94E5 /* Untitled.swift in Sources */,
 				BD764D452D312932008E94E5 /* RoutineItem.swift in Sources */,
+				6431D0D42DD77CD300EA9FD8 /* UserInformationView.swift in Sources */,
 				BD3556762D802C250034F0CD /* TaskListView.swift in Sources */,
 				9701CC0B2D76EA9D00CBFA5D /* TaskListSheet.swift in Sources */,
 				BD764DA82D378764008E94E5 /* RecommendTaskData.swift in Sources */,
