@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		238B0AA72D76BD2F00CC5AAB /* RecommendedSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238B0AA62D76BD2F00CC5AAB /* RecommendedSetView.swift */; };
+		37DCA9932E4D44FB00CC5AAB /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37DCA9922E4D44FB00CC5AAB /* CalendarView.swift */; };
+		502F2A832E388842300CC5AAB /* SelectedRoutineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502F2A822E388842300CC5AAB /* SelectedRoutineButton.swift */; };
+		633A29532E4B674F00CC5AAB /* RoutinePercentageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633A29522E4B674F00CC5AAB /* RoutinePercentageView.swift */; };
 		64BE32B82D82E6BA0051E12A /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE32B72D82E6BA0051E12A /* NotificationManager.swift */; };
 		64BE32C62D8AC0830051E12A /* WeekSetTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE32C52D8AC0830051E12A /* WeekSetTimeView.swift */; };
 		64BE32C82D9D289A0051E12A /* RecommendCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE32C72D9D289A0051E12A /* RecommendCategoryView.swift */; };
@@ -17,6 +20,7 @@
 		64BE32D22D9D4D100051E12A /* RecommendTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE32D12D9D4D100051E12A /* RecommendTaskView.swift */; };
 		64BE32D42D9D4D520051E12A /* RecommendSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE32D32D9D4D520051E12A /* RecommendSheet.swift */; };
 		64BE32D62D9D4E850051E12A /* RecommendExpandedCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64BE32D52D9D4E850051E12A /* RecommendExpandedCardView.swift */; };
+		8F0E4A892ECD7745E400CC5AAB /* RoutineMonthSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0E4A882ECD7745E400CC5AAB /* RoutineMonthSelectorView.swift */; };
 		9701CC092D75F37400CBFA5D /* RoutineTimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9701CC082D75F37400CBFA5D /* RoutineTimerViewModel.swift */; };
 		9701CC0B2D76EA9D00CBFA5D /* TaskListSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9701CC0A2D76EA9D00CBFA5D /* TaskListSheet.swift */; };
 		97035C582DA509350033BD3B /* RoutineCompleteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97035C572DA509350033BD3B /* RoutineCompleteViewModel.swift */; };
@@ -87,7 +91,9 @@
 		BD911A142DBB9E4E0039FA3D /* RecommendTasks.json in Resources */ = {isa = PBXBuildFile; fileRef = BD911A132DBB9E3F0039FA3D /* RecommendTasks.json */; };
 		BD911A162DBBECAE0039FA3D /* RecommendTodoTasks.json in Resources */ = {isa = PBXBuildFile; fileRef = BD911A152DBBECA30039FA3D /* RecommendTodoTasks.json */; };
 		BDC8BD7D2D6475230048CA54 /* TaskStatusPuzzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC8BD7C2D6475230048CA54 /* TaskStatusPuzzle.swift */; };
-		FB6ACED42D744DAC00948FFA /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB6ACED32D744DAC00948FFA /* CalenderView.swift */; };
+		BE1CCC152E444441F500CC5AAB /* RoutineMaxStreakView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE1CCC142E444441F500CC5AAB /* RoutineMaxStreakView.swift */; };
+		CA9FAA482EE4F644100CC5AAB /* SummaryCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9FAA472EE4F644100CC5AAB /* SummaryCountView.swift */; };
+		E62D9D2F2E9244DF00CC5AAB /* CalendarDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62D9D2E2E9244DF00CC5AAB /* CalendarDayView.swift */; };
 		FB7345812D895DE2008B56F3 /* StatisticUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7345802D895DE2008B56F3 /* StatisticUtil.swift */; };
 		FB8A906C2D9D20CF00D023D4 /* RoutineSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8A906B2D9D20CF00D023D4 /* RoutineSummaryView.swift */; };
 		FB8A906E2D9D215200D023D4 /* RoutineItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB8A906D2D9D215200D023D4 /* RoutineItem+Extension.swift */; };
@@ -96,6 +102,9 @@
 
 /* Begin PBXFileReference section */
 		238B0AA62D76BD2F00CC5AAB /* RecommendedSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedSetView.swift; sourceTree = "<group>"; };
+		37DCA9922E4D44FB00CC5AAB /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		502F2A822E388842300CC5AAB /* SelectedRoutineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedRoutineButton.swift; sourceTree = "<group>"; };
+		633A29522E4B674F00CC5AAB /* RoutinePercentageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinePercentageView.swift; sourceTree = "<group>"; };
 		64BE32B72D82E6BA0051E12A /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		64BE32C52D8AC0830051E12A /* WeekSetTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekSetTimeView.swift; sourceTree = "<group>"; };
 		64BE32C72D9D289A0051E12A /* RecommendCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendCategoryView.swift; sourceTree = "<group>"; };
@@ -105,6 +114,7 @@
 		64BE32D12D9D4D100051E12A /* RecommendTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendTaskView.swift; sourceTree = "<group>"; };
 		64BE32D32D9D4D520051E12A /* RecommendSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendSheet.swift; sourceTree = "<group>"; };
 		64BE32D52D9D4E850051E12A /* RecommendExpandedCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendExpandedCardView.swift; sourceTree = "<group>"; };
+		8F0E4A882ECD7745E400CC5AAB /* RoutineMonthSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineMonthSelectorView.swift; sourceTree = "<group>"; };
 		9701CC082D75F37400CBFA5D /* RoutineTimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineTimerViewModel.swift; sourceTree = "<group>"; };
 		9701CC0A2D76EA9D00CBFA5D /* TaskListSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListSheet.swift; sourceTree = "<group>"; };
 		97035C572DA509350033BD3B /* RoutineCompleteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineCompleteViewModel.swift; sourceTree = "<group>"; };
@@ -176,7 +186,9 @@
 		BD911A132DBB9E3F0039FA3D /* RecommendTasks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RecommendTasks.json; sourceTree = "<group>"; };
 		BD911A152DBBECA30039FA3D /* RecommendTodoTasks.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = RecommendTodoTasks.json; sourceTree = "<group>"; };
 		BDC8BD7C2D6475230048CA54 /* TaskStatusPuzzle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskStatusPuzzle.swift; sourceTree = "<group>"; };
-		FB6ACED32D744DAC00948FFA /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
+		BE1CCC142E444441F500CC5AAB /* RoutineMaxStreakView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineMaxStreakView.swift; sourceTree = "<group>"; };
+		CA9FAA472EE4F644100CC5AAB /* SummaryCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCountView.swift; sourceTree = "<group>"; };
+		E62D9D2E2E9244DF00CC5AAB /* CalendarDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayView.swift; sourceTree = "<group>"; };
 		FB7345802D895DE2008B56F3 /* StatisticUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticUtil.swift; sourceTree = "<group>"; };
 		FB8A906B2D9D20CF00D023D4 /* RoutineSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineSummaryView.swift; sourceTree = "<group>"; };
 		FB8A906D2D9D215200D023D4 /* RoutineItem+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RoutineItem+Extension.swift"; sourceTree = "<group>"; };
@@ -195,6 +207,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C9E4A1A2E6147AB00CC5AAB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E62D9D2E2E9244DF00CC5AAB /* CalendarDayView.swift */,
+				37DCA9922E4D44FB00CC5AAB /* CalendarView.swift */,
+				BE1CCC142E444441F500CC5AAB /* RoutineMaxStreakView.swift */,
+				8F0E4A882ECD7745E400CC5AAB /* RoutineMonthSelectorView.swift */,
+				633A29522E4B674F00CC5AAB /* RoutinePercentageView.swift */,
+				502F2A822E388842300CC5AAB /* SelectedRoutineButton.swift */,
+				CA9FAA472EE4F644100CC5AAB /* SummaryCountView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		64BE32C92D9D29160051E12A /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,7 +402,7 @@
 			children = (
 				BD764D502D3133A8008E94E5 /* StatisticView.swift */,
 				FB8A906B2D9D20CF00D023D4 /* RoutineSummaryView.swift */,
-				FB6ACED32D744DAC00948FFA /* CalenderView.swift */,
+				2C9E4A1A2E6147AB00CC5AAB /* Components */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -732,7 +758,13 @@
 				BD3556782D8044CE0034F0CD /* NavigationBackButtonModifier.swift in Sources */,
 				64BE32C82D9D289A0051E12A /* RecommendCategoryView.swift in Sources */,
 				BD764DC02D3CCEA5008E94E5 /* BorderModifier.swift in Sources */,
-				FB6ACED42D744DAC00948FFA /* CalenderView.swift in Sources */,
+				E62D9D2F2E9244DF00CC5AAB /* CalendarDayView.swift in Sources */,
+				37DCA9932E4D44FB00CC5AAB /* CalendarView.swift in Sources */,
+				BE1CCC152E444441F500CC5AAB /* RoutineMaxStreakView.swift in Sources */,
+				8F0E4A892ECD7745E400CC5AAB /* RoutineMonthSelectorView.swift in Sources */,
+				633A29532E4B674F00CC5AAB /* RoutinePercentageView.swift in Sources */,
+				502F2A832E388842300CC5AAB /* SelectedRoutineButton.swift in Sources */,
+				CA9FAA482EE4F644100CC5AAB /* SummaryCountView.swift in Sources */,
 				BD764D7F2D33713D008E94E5 /* AddRoutineContainerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
