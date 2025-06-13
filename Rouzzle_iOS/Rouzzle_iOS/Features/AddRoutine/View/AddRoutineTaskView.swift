@@ -28,12 +28,16 @@ struct AddRoutineTaskView: View {
                         RecommendTaskListView(recommendTask: $viewModel.recommendTodoTask) {
                             viewModel.getRecommendTask()
                         } taskAppend: { routineTask in
-                            if let index = viewModel.routineTask.firstIndex(where: { $0.hashValue == routineTask.hashValue }) {
-                                viewModel.routineTask.remove(at: index)
-                            } else {
-                                viewModel.routineTask.append(routineTask)
+                            withAnimation(.easeInOut(duration: 0.3)) {
+                                if let index = viewModel.routineTask.firstIndex(where: { $0.hashValue == routineTask.hashValue }) {
+                                    viewModel.routineTask.remove(at: index)
+                                } else {
+                                    viewModel.routineTask.append(routineTask)
+                                }
                             }
-                            viewModel.getRecommendTask()
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                                viewModel.getRecommendTask()
+                            }
                         }
                         RouzzleButton(buttonType: .save) {
                             do {
@@ -115,7 +119,7 @@ struct SelectedTaskListView: View {
             }
         }
         .frame(maxWidth: .infinity, minHeight: minHeight, alignment: .top)
-        .animation(.smooth, value: selectedTask)
+        .animation(.easeInOut(duration: 0.3), value: selectedTask)
     }
 }
 
@@ -178,7 +182,7 @@ struct RecommendTaskListView: View {
                         }
                     }
                 }
-                .animation(.smooth, value: recommendTask)
+                .animation(.easeInOut(duration: 0.3), value: recommendTask)
             }
         }
     }

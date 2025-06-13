@@ -63,8 +63,11 @@ struct RoutineFilterToggle: View {
         .frame(height: 35)
         .background(
             RoundedRectangle(cornerRadius: 23)
+                .fill(Color.black.opacity(0.05))
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 23)
                 .stroke(.white, lineWidth: 1)
-                .clipShape(RoundedRectangle(cornerRadius: 23))
         )
     }
 }

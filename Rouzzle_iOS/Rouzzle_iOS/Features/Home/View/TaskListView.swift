@@ -83,11 +83,13 @@ struct TaskListView: View {
                 RecommendTaskListView(recommendTask: $viewModel.recommendTodoTask) {
                     viewModel.getRecommendTask()
                 } taskAppend: { routineTask in
-                    if let index = viewModel.routineTask.firstIndex(where: { $0.hashValue == routineTask.hashValue }) {
-                        viewModel.routineTask.remove(at: index)
-                    } else {
-                        viewModel.routineTask.append(routineTask)
-                        viewModel.saveRoutineTasks(task: routineTask)
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        if let index = viewModel.routineTask.firstIndex(where: { $0.hashValue == routineTask.hashValue }) {
+                            viewModel.routineTask.remove(at: index)
+                        } else {
+                            viewModel.routineTask.append(routineTask)
+                            viewModel.saveRoutineTasks(task: routineTask)
+                        }
                     }
                 }
             }
